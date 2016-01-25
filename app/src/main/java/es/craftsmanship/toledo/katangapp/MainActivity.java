@@ -3,7 +3,9 @@ package es.craftsmanship.toledo.katangapp;
 import android.app.Activity;
 import android.os.Bundle;
 
-
+/**
+ * @author Cristóbal Hermida
+ */
 public class MainActivity extends Activity {
 
     @Override
