@@ -1,4 +1,4 @@
-package tarterapps.com.katangapp;
+package es.craftsmanship.toledo.katangapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

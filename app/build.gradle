@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "tarterapps.com.katangapp"
+        applicationId "es.craftsmanship.toledo.katangapp"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
