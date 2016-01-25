@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import android.app.Activity;
+
 import android.os.Bundle;
 
 /**
