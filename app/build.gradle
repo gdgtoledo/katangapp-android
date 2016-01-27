@@ -26,4 +26,5 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.github.craftsmanship-toledo:katangapp-api:katangapp-api-1.0'
 }
