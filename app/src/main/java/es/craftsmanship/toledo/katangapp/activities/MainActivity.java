@@ -28,4 +28,17 @@ public class MainActivity extends Activity {
 
     }
 
+    // A private method to help us initialize our variables.
+    private void initializeVariables() {
+
+        // text view label
+        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        txtradiolabel = (TextView)findViewById(R.id.txtradiolabel);
+        button = (ImageView) findViewById(R.id.button);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
+
+    }
+
 }
