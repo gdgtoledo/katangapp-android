@@ -25,6 +25,36 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        initializeVariables();
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int progress = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
+
+                progress = progresValue;
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+                // Toast.makeText(getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
+                //se debe poner el valor más vistoso
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                txtradiolabel.setText(String.valueOf(progress));
+
+            }
+        });
+
+
 
     }
 
