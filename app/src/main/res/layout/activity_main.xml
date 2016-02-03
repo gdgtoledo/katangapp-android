@@ -1,11 +1,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@mipmap/home">
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="katanga"
+        android:fontFamily=""
+        android:id="@+id/title_katanga"
+        android:textColor="#ffffff"
+        android:textColorHighlight="#ffffff"
+        android:textSize="40dp"
+        android:layout_marginBottom="60dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+
+    <SeekBar
+        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:id="@+id/seekBar"
+        android:max="500"
+        android:progressBackgroundTint="@android:color/white"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+    <at.markushi.ui.CircleButton
+
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        app:cb_color="#f6ec5e"
+        app:cb_pressedRingWidth="8dip"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtradiolabel"
+        android:layout_below="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:height="50dp"
+        android:numeric="integer"
+        android:textColor="#76ffffff"
+        android:textColorHighlight="#8bffffff"
+        android:textAlignment="center"
+        android:singleLine="true" />
 
 </RelativeLayout>
