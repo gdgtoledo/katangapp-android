@@ -2,11 +2,20 @@ package es.craftsmanship.toledo.katangapp.activities;
 
 import android.app.Activity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * @author Cristóbal Hermida
@@ -57,6 +66,63 @@ public class MainActivity extends Activity {
 
 
     }
+
+    // AsyncTask <TypeOfVarArgParams , ProgressValue , ResultValue> .
+    private class ServiceConnectionTask extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected void onPreExecute() {
+
+            progressBar.setVisibility(View.VISIBLE);
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            String s = null;
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                InputStream in = urlConnection.getInputStream();
+
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
+
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+            intent.putExtra("stopslist",result);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(intent);
+        }
+    }
+
 
     // A private method to help us initialize our variables.
     private void initializeVariables() {
