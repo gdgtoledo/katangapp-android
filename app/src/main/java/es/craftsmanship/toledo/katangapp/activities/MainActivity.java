@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 import android.app.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -137,6 +138,9 @@ public class MainActivity extends Activity {
     // A private method to help us initialize our variables.
     private void initializeVariables() {
 
+        // Font path
+        String fontPath = "fonts/Quicksand-Regular.ttf";
+
         // text view label
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -144,6 +148,12 @@ public class MainActivity extends Activity {
         button = (ImageView) findViewById(R.id.button);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
+        // Loading Font Face
+        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+
+        // Applying font
+        txtKatangaLabel.setTypeface(tf);
+        txtradiolabel.setTypeface(tf);
 
     }
     @Override
