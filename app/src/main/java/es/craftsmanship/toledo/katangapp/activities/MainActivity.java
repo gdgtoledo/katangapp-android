@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private ImageView button;
     private TextView txtradiolabel;
     private ProgressBar progressBar;
+    private ServiceConnectionTask task = null;
 
 
     @Override
@@ -62,7 +63,16 @@ public class MainActivity extends Activity {
 
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String radio = (String) txtradiolabel.getText().toString();
+                String url = "http://secret-depths-4660.herokuapp.com/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
+                // paradas?lt=39.862658&ln=-4.025088&r=500
+                task = (ServiceConnectionTask) new ServiceConnectionTask().execute(new String[] {url});
 
+            }
+        });
 
 
     }
