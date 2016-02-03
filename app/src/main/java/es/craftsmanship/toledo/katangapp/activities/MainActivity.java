@@ -146,5 +146,14 @@ public class MainActivity extends Activity {
 
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (task != null && task.getStatus() != ServiceConnectionTask.Status.FINISHED) {
+            task.cancel(true);
+            task = null;
+        }
+    }
 
 }
