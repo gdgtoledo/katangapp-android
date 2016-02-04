@@ -16,6 +16,9 @@ Do not add a blank line in an empty method.
 ### Method endings
 There won't be a blank line before method endings.
 
+## Indent
+The unit to define an indent will be four spaces. Use a unit after each inner block.
+
 ## Order of methods in a class
 Use alphabetical order to define the methods in a class. This will increase speed when searching for them.
 
