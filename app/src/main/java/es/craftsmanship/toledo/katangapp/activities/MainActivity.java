@@ -32,6 +32,7 @@ import java.net.URL;
 public class MainActivity extends Activity {
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
+    private static final int DEFAULT_RADIO = 500;
 
     private ImageView button;
     private ProgressBar progressBar;
@@ -77,6 +78,10 @@ public class MainActivity extends Activity {
                 CharSequence charSequence = txtRadiolabel.getText();
 
                 String radio = charSequence.toString();
+
+                if (radio == null || radio.isEmpty()) {
+                    radio = String.valueOf(DEFAULT_RADIO);
+                }
 
                 String url = BACKEND_ENDPOINT + "/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
 
