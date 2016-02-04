@@ -7,6 +7,8 @@ can be joined. Otherwise, let's separate with a blank line.
 Let's use one blank line between methods, one blank line after class declaration, and one blank line before
 class-closing curly brackets.
 
+Add a blank line before a line if it adds clarity when separating this line from the previous one, which was indented.
+
 ### File endings
 Do not add a blank line after the last line with content.
 
