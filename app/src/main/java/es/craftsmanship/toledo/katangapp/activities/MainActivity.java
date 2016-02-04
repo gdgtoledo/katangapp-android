@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
     private SeekBar seekBar;
     private ServiceConnectionTask task = null;
     private TextView txtKatangaLabel;
-    private TextView txtradiolabel;
+    private TextView txtRadiolabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                txtradiolabel.setText(String.valueOf(progress));
+                txtRadiolabel.setText(String.valueOf(progress));
             }
 
         });
@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                String radio = (String) txtradiolabel.getText().toString();
+                String radio = (String) txtRadiolabel.getText().toString();
 
                 String url = "http://secret-depths-4660.herokuapp.com/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
 
@@ -158,7 +158,7 @@ public class MainActivity extends Activity {
         // text view label
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtradiolabel = (TextView)findViewById(R.id.txtradiolabel);
+        txtRadiolabel = (TextView)findViewById(R.id.txtRadiolabel);
         button = (ImageView) findViewById(R.id.button);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
@@ -167,7 +167,7 @@ public class MainActivity extends Activity {
 
         // Applying font
         txtKatangaLabel.setTypeface(tf);
-        txtradiolabel.setTypeface(tf);
+        txtRadiolabel.setTypeface(tf);
     }
 
 }

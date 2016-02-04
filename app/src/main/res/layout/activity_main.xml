@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/txtradiolabel"
+        android:id="@+id/txtRadiolabel"
         android:layout_below="@+id/seekBar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="56dp"

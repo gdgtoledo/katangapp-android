@@ -39,5 +39,8 @@ ones.
 
 On each type, first add the constants (static final), then the static, and finally the regular ones.
 
+## Names
+Use camel case for variables and methods.
+
 ## Organize imports
 Separate imports with a blank line on those ones differing their second package names.
