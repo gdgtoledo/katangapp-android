@@ -19,8 +19,25 @@ There won't be a blank line before method endings.
 ## Indent
 The unit to define an indent will be four spaces. Use a unit after each inner block.
 
-## Order of methods in a class
-Use alphabetical order to define the methods in a class. This will increase speed when searching for them.
+## Order
+Having an order criterium  will increase speed when searching for them.
+
+### Attributes in a class
+Use alphabetical order to define the attributes in a class.
+
+### Imports
+Order imports by this criterium:
+
+First the application packages, then order them alphabetically, adding blank lines when needed.
+
+### Methods in a class
+Use alphabetical order to define the methods in a class.
+
+### Modifiers (Attributes and Methods)
+On first place, add the public elements, then, separated by a blank line, the protected ones, and finally the private
+ones.
+
+On each type, first add the constants (static final), then the static, and finally the regular ones.
 
 ## Organize imports
 Separate imports with a blank line on those ones differing their second package names.

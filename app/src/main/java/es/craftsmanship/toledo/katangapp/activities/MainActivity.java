@@ -28,12 +28,12 @@ import java.net.URL;
  */
 public class MainActivity extends Activity {
 
-    private SeekBar seekBar;
-    private TextView txtKatangaLabel;
     private ImageView button;
-    private TextView txtradiolabel;
     private ProgressBar progressBar;
+    private SeekBar seekBar;
     private ServiceConnectionTask task = null;
+    private TextView txtKatangaLabel;
+    private TextView txtradiolabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
