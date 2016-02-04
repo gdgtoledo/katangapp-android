@@ -39,6 +39,9 @@ Having an order criterium  will increase speed when searching for them.
 ### Attributes in a class
 Use alphabetical order to define the attributes in a class.
 
+### Attributes in a XML element
+Use alphabetical order to define the attributes in a XML element.
+
 ### Imports
 Order imports by this criterium:
 
