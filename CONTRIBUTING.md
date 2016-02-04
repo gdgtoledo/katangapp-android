@@ -1,5 +1,9 @@
 # CONTRIBUTING
 
+## Chaining
+Avoid chaining. Use variables instead of allowing chaining. Please justify in your commit comment
+why you need to chain method calls.
+
 ## Indent
 The unit to define an indent will be four spaces. Use a unit after each inner block.
 

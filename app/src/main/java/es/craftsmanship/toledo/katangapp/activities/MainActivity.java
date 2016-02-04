@@ -71,12 +71,15 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                String radio = (String) txtRadiolabel.getText().toString();
+                CharSequence charSequence = txtRadiolabel.getText();
+
+                String radio = charSequence.toString();
 
                 String url = BACKEND_ENDPOINT + "/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
 
-                task = (ServiceConnectionTask) new ServiceConnectionTask().execute(
-                    new String[] {url});
+                ServiceConnectionTask serviceConnectionTask = new ServiceConnectionTask();
+
+                task = (ServiceConnectionTask)serviceConnectionTask.execute(new String[]{url});
             }
 
         });
