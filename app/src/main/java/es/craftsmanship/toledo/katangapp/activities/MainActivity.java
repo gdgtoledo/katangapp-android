@@ -156,7 +156,9 @@ public class MainActivity extends Activity {
 
     }
 
-    // A private method to help us initialize our variables.
+    /**
+     * A private method to help us initialize our variables
+     */
     private void initializeVariables() {
         String fontPath = "fonts/Quicksand-Regular.ttf";
 
