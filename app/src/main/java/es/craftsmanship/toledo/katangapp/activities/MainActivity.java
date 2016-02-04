@@ -160,15 +160,13 @@ public class MainActivity extends Activity {
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-        String fontPath = "fonts/Quicksand-Regular.ttf";
-
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadiolabel = (TextView)findViewById(R.id.txtRadiolabel);
         button = (ImageView) findViewById(R.id.button);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
 
         txtKatangaLabel.setTypeface(tf);
         txtRadiolabel.setTypeface(tf);
