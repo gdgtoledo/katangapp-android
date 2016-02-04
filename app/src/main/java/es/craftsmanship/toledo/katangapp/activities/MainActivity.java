@@ -75,8 +75,6 @@ public class MainActivity extends Activity {
 
                 String url = BACKEND_ENDPOINT + "/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
 
-                // paradas?lt=39.862658&ln=-4.025088&r=500
-
                 task = (ServiceConnectionTask) new ServiceConnectionTask().execute(
                     new String[] {url});
             }
