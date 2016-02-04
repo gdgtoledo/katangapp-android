@@ -83,21 +83,18 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (task != null && task.getStatus() != ServiceConnectionTask.Status.FINISHED) {
+            task.cancel(true);
+            task = null;
+        }
+    }
+
     // AsyncTask <TypeOfVarArgParams , ProgressValue , ResultValue> .
     private class ServiceConnectionTask extends AsyncTask<String, Integer, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            progressBar.setVisibility(View.VISIBLE);
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-
-        }
 
         @Override
         protected String doInBackground(String... urls) {
@@ -137,8 +134,20 @@ public class MainActivity extends Activity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(intent);
         }
-    }
 
+        @Override
+        protected void onPreExecute() {
+
+            progressBar.setVisibility(View.VISIBLE);
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+        }
+    }
 
     // A private method to help us initialize our variables.
     private void initializeVariables() {
@@ -160,15 +169,6 @@ public class MainActivity extends Activity {
         txtKatangaLabel.setTypeface(tf);
         txtradiolabel.setTypeface(tf);
 
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (task != null && task.getStatus() != ServiceConnectionTask.Status.FINISHED) {
-            task.cancel(true);
-            task = null;
-        }
     }
 
 }

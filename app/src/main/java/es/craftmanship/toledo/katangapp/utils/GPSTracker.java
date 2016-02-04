@@ -17,12 +17,18 @@ import android.support.annotation.Nullable;
  */
 public class GPSTracker extends Service implements LocationListener {
 
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
     @Override
     public void onLocationChanged(Location location) {
     }
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+    public void onProviderDisabled(String provider) {
     }
 
     @Override
@@ -30,13 +36,7 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     @Override
-    public void onProviderDisabled(String provider) {
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public void onStatusChanged(String provider, int status, Bundle extras) {
     }
 
 }
