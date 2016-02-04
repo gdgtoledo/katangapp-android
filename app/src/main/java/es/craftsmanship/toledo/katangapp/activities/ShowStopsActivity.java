@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+/**
+ * @author Cristóbal Hermida
+ */
 public class ShowStopsActivity extends AppCompatActivity {
 
     @Override
