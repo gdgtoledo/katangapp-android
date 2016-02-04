@@ -63,5 +63,4 @@
         android:textColorHighlight="#8bffffff"
         android:textAlignment="center"
         android:singleLine="true" />
-
 </RelativeLayout>
