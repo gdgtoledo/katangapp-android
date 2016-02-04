@@ -35,52 +35,49 @@ public class MainActivity extends Activity {
     private ProgressBar progressBar;
     private ServiceConnectionTask task = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         initializeVariables();
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             int progress = 0;
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-
                 progress = progresValue;
-
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
                 // Toast.makeText(getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
                 //se debe poner el valor más vistoso
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
                 txtradiolabel.setText(String.valueOf(progress));
-
             }
+
         });
+
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String radio = (String) txtradiolabel.getText().toString();
+
                 String url = "http://secret-depths-4660.herokuapp.com/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
+
                 // paradas?lt=39.862658&ln=-4.025088&r=500
+
                 task = (ServiceConnectionTask) new ServiceConnectionTask().execute(new String[] {url});
-
             }
+
         });
-
-
     }
 
     @Override
@@ -89,6 +86,7 @@ public class MainActivity extends Activity {
 
         if (task != null && task.getStatus() != ServiceConnectionTask.Status.FINISHED) {
             task.cancel(true);
+
             task = null;
         }
     }
@@ -102,6 +100,7 @@ public class MainActivity extends Activity {
             String s = null;
             URL url;
             HttpURLConnection urlConnection = null;
+
             try {
                 url = new URL(urls[0]);
 
@@ -114,7 +113,6 @@ public class MainActivity extends Activity {
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -129,29 +127,31 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             progressBar.setVisibility(View.INVISIBLE);
+
             Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+
             intent.putExtra("stopslist",result);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             getApplicationContext().startActivity(intent);
         }
 
         @Override
         protected void onPreExecute() {
-
             progressBar.setVisibility(View.VISIBLE);
+
             super.onPreExecute();
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-
         }
+
     }
 
     // A private method to help us initialize our variables.
     private void initializeVariables() {
-
         // Font path
         String fontPath = "fonts/Quicksand-Regular.ttf";
 
@@ -168,7 +168,6 @@ public class MainActivity extends Activity {
         // Applying font
         txtKatangaLabel.setTypeface(tf);
         txtradiolabel.setTypeface(tf);
-
     }
 
 }

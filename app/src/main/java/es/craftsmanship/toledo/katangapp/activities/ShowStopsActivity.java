@@ -16,11 +16,13 @@ public class ShowStopsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_show_stops);
+
         Intent i = getIntent();
         String stops = i.getStringExtra("stopslist");
-        Toast.makeText(getApplicationContext(), "Se ha recibido correctamente", Toast.LENGTH_SHORT).show();
 
+        Toast.makeText(getApplicationContext(), "Se ha recibido correctamente", Toast.LENGTH_SHORT).show();
     }
 
 }
