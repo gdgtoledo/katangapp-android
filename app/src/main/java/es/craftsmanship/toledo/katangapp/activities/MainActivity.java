@@ -28,6 +28,8 @@ import java.net.URL;
  */
 public class MainActivity extends Activity {
 
+    private static final String BACKEND_ENDPOINT = "http://secret-depths-4660.herokuapp.com";
+
     private ImageView button;
     private ProgressBar progressBar;
     private SeekBar seekBar;
@@ -53,7 +55,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Toast.makeText(getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(
+                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
                 //se debe poner el valor más vistoso
             }
 
@@ -70,11 +73,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String radio = (String) txtRadiolabel.getText().toString();
 
-                String url = "http://secret-depths-4660.herokuapp.com/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
+                String url = BACKEND_ENDPOINT + "/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
 
                 // paradas?lt=39.862658&ln=-4.025088&r=500
 
-                task = (ServiceConnectionTask) new ServiceConnectionTask().execute(new String[] {url});
+                task = (ServiceConnectionTask) new ServiceConnectionTask().execute(
+                    new String[] {url});
             }
 
         });
