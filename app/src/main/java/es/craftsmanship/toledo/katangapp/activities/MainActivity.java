@@ -31,7 +31,7 @@ import java.net.URL;
  */
 public class MainActivity extends Activity {
 
-    private static final String BACKEND_ENDPOINT = "http://secret-depths-4660.herokuapp.com";
+    private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
 
     private ImageView button;
     private ProgressBar progressBar;
