@@ -1,5 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftmanship.toledo.katangapp.utils.KatangaFont;
+
 import android.app.Activity;
 
 import android.content.Intent;
@@ -166,7 +168,7 @@ public class MainActivity extends Activity {
         button = (ImageView) findViewById(R.id.button);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
+        Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
         txtKatangaLabel.setTypeface(tf);
         txtRadiolabel.setTypeface(tf);
