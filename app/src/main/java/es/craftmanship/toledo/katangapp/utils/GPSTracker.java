@@ -1,11 +1,15 @@
 package es.craftmanship.toledo.katangapp.utils;
 
 import android.app.Service;
+
 import android.content.Intent;
+
 import android.location.Location;
 import android.location.LocationListener;
+
 import android.os.Bundle;
 import android.os.IBinder;
+
 import android.support.annotation.Nullable;
 
 /**
