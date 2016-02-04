@@ -30,7 +30,6 @@
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true" />
 
-
     <SeekBar
         android:layout_height="wrap_content"
         android:layout_width="300dp"
@@ -42,7 +41,6 @@
         android:layout_centerHorizontal="true" />
 
     <at.markushi.ui.CircleButton
-
         android:layout_width="80dip"
         android:layout_height="80dip"
         app:cb_color="#f6ec5e"
