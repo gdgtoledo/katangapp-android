@@ -29,8 +29,8 @@
         android:layout_marginBottom="60dp"
         android:text="katanga"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:textColorHighlight="#ffffff"
+        android:textColor="@android:color/white"
+        android:textColorHighlight="@android:color/white"
         android:textSize="40dp" />
 
     <SeekBar
