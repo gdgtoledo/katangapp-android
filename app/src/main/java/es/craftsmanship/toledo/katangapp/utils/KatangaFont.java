@@ -13,6 +13,7 @@ public enum KatangaFont {
 
     public static Typeface getFont(AssetManager assetManager, KatangaFont font) {
         String fontPath = getFontPath(font);
+
         return Typeface.createFromAsset(assetManager, fontPath);
     }
     
