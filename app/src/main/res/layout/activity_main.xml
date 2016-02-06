@@ -27,7 +27,7 @@
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
-        android:text="katanga"
+        android:text="@string/katanga"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/white"
