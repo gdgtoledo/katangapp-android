@@ -61,7 +61,6 @@
         android:layout_marginTop="56dp"
         android:layout_width="wrap_content"
         android:height="50dp"
-        android:numeric="integer"
         android:singleLine="true"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
