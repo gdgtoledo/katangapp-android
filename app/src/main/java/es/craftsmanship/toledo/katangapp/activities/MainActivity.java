@@ -1,7 +1,5 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftmanship.toledo.katangapp.utils.KatangaFont;
-
 import android.app.Activity;
 
 import android.content.Intent;
@@ -25,6 +23,8 @@ import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 /**
  * @author Cristóbal Hermida
