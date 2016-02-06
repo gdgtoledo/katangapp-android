@@ -1,4 +1,4 @@
-package es.craftmanship.toledo.katangapp.utils;
+package es.craftsmanship.toledo.katangapp.utils;
 
 import android.content.res.AssetManager;
 
