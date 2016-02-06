@@ -17,8 +17,10 @@ public enum KatangaFont {
         switch (font) {
             case QUICKSAND_BOLD:
                 fontPath = "fonts/Quicksand-Bold.ttf";
+                break;
             case QUICKSAND_LIGHT:
                 fontPath = "fonts/Quicksand-Light.ttf";
+                break;
             case QUICKSAND_REGULAR:
                 fontPath = "fonts/Quicksand-Regular.ttf";
         }
