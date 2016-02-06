@@ -31,7 +31,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/white"
-        android:textSize="40dp" />
+        android:textSize="40sp" />
 
     <SeekBar
         android:id="@+id/seekBar"
