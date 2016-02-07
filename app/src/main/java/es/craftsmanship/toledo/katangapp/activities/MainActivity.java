@@ -55,6 +55,8 @@ public class MainActivity extends Activity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 progress = progresValue;
+
+                txtRadiolabel.setText(String.valueOf(progress));
             }
 
             @Override
