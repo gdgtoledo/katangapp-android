@@ -124,9 +124,11 @@ public class MainActivity extends Activity {
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
-            } finally {
+            }
+            finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
