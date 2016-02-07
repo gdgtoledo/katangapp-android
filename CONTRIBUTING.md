@@ -13,7 +13,7 @@ The unit to define an indent will be four spaces. Use a unit after each inner bl
 Restrict line length to 100 characters. If you need more space, cut the line for the first
 parameter. If you still need more space, cut by parameter in a method call.
 
-If you are working with strings, do not curt words.
+If you are working with strings, do not cut words.
 
 ### Blank lines
 Adding blank lines in between code adds clarity. Let's use the criteria that if two lines can be
