@@ -50,13 +50,10 @@ public class MainActivity extends Activity {
         initializeVariables();
 
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-            int progress = 0;
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                progress = progresValue;
-
-                txtRadiolabel.setText(String.valueOf(progress));
+                txtRadiolabel.setText(String.valueOf(progresValue));
             }
 
             @Override
@@ -68,7 +65,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                txtRadiolabel.setText(String.valueOf(progress));
             }
 
         });
