@@ -1,18 +1,32 @@
 package es.craftsmanship.toledo.katangapp;
 
-import android.app.Application;
+import android.support.test.rule.ActivityTestRule;
 
-import android.test.ApplicationTestCase;
+import org.junit.Rule;
+import org.junit.Test;
+
+import es.craftsmanship.toledo.katangapp.activities.MainActivity;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- *
  * @author Cristóbal Hermida
  */
-public class ApplicationTest extends ApplicationTestCase<Application> {
+public class ApplicationTest {
+
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
 
     public ApplicationTest() {
-        super(Application.class);
+        super();
+    }
+
+    @Test
+    public void titleIsDisplayed() {
+        onView(withText("katanga")).check(matches(isDisplayed()));
     }
 
 }
