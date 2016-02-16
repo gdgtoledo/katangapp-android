@@ -87,20 +87,26 @@ public class MainActivity extends Activity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BACKEND_ENDPOINT)
-                        .addConverterFactory(JacksonConverterFactory.create())
-                        .build();
+                    .baseUrl(BACKEND_ENDPOINT)
+                    .addConverterFactory(JacksonConverterFactory.create())
+                    .build();
 
                 StopsService service = retrofit.create(StopsService.class);
+
                 service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
+
                     @Override
-                    public void onResponse(Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+                    public void onResponse(
+                        Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+
                         Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
 
                         intent.putExtra("queryResult", response.body());
+
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         getApplicationContext().startActivity(intent);
+
                         button.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                     }
@@ -109,6 +115,7 @@ public class MainActivity extends Activity {
                     public void onFailure(Call<QueryResult> call, Throwable t) {
                         button.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
+
                         Log.e(TAG, "Error calling server ", t);
                     }
                 });

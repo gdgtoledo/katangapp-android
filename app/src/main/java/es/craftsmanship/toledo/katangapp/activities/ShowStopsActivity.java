@@ -31,12 +31,15 @@ public class ShowStopsActivity extends AppCompatActivity {
         List<BusStopResult> stops = queryResult.getResults();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
+
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
         recyclerView.setLayoutManager(layoutManager);
 
         StopsAdapter adapter = new StopsAdapter(stops);
+
         recyclerView.setAdapter(adapter);
     }
 

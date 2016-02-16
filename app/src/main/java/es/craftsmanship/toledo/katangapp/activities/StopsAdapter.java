@@ -25,8 +25,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
     @Override
     public StopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.stop, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stop, parent, false);
+
         return new StopsViewHolder(view);
     }
 
