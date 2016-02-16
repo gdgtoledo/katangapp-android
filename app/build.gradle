@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "21.1.2"
-    useLibrary 'org.apache.http.legacy'
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "es.craftsmanship.toledo.katangapp"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,8 +25,7 @@ android {
 
 repositories {
     maven { url "https://jitpack.io" }
-    mavenCentral()
-
+    jcenter()
 }
 
 dependencies {
@@ -38,4 +37,22 @@ dependencies {
     compile 'com.github.markushi:circlebutton:1.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.android.support:design:23.1.1'
+
+
+
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test:runner:0.4.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile('com.android.support.test:rules:0.4.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
