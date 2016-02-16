@@ -22,6 +22,7 @@ before_script:
 
 script:
   - ./gradlew clean
+  - ./gradlew assembleDebug
   - ./gradlew aDAT
   - android-wait-for-emulator
   - adb install app/build/outputs/apk/app-debug.apk
