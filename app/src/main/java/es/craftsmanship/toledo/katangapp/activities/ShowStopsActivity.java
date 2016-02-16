@@ -1,12 +1,15 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import android.content.Intent;
-
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import android.widget.Toast;
+import java.util.List;
+
+import es.craftsmanship.toledo.katangapp.models.BusStopResult;
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 /**
  * @author Cristóbal Hermida
@@ -19,12 +22,20 @@ public class ShowStopsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_show_stops);
 
-        Intent i = getIntent();
-        String stops = i.getStringExtra("stopslist");
+        Intent intent = getIntent();
 
-        Toast toast = Toast.makeText(getApplicationContext(), stops, Toast.LENGTH_SHORT);
+        QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
-        toast.show();
+        List<BusStopResult> stops = queryResult.getResults();
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        StopsAdapter adapter = new StopsAdapter(stops);
+        recyclerView.setAdapter(adapter);
     }
 
 }
