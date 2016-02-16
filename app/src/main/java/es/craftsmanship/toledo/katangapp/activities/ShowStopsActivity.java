@@ -34,13 +34,9 @@ public class ShowStopsActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView.setLayoutManager(layoutManager);
-
-        StopsAdapter adapter = new StopsAdapter(stops);
-
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new StopsAdapter(stops));
     }
 
 }
