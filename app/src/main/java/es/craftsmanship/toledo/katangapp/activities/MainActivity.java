@@ -1,30 +1,33 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.graphics.Typeface;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
-
+import android.util.Log;
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.services.StopsService;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.mock.BehaviorDelegate;
+import retrofit2.mock.MockRetrofit;
+import retrofit2.mock.NetworkBehavior;
 
 /**
  * @author Cristóbal Hermida
@@ -33,11 +36,11 @@ public class MainActivity extends Activity {
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
+    private static final String TAG = "KATANGAPP";
 
     private ImageView button;
     private ProgressBar progressBar;
     private SeekBar seekBar;
-    private ServiceConnectionTask task = null;
     private TextView txtKatangaLabel;
     private TextView txtRadiolabel;
 
@@ -77,90 +80,43 @@ public class MainActivity extends Activity {
 
                 String radio = charSequence.toString();
 
-                if (radio == null || radio.isEmpty()) {
+                if (radio.isEmpty()) {
                     radio = String.valueOf(DEFAULT_RADIO);
                 }
 
-                String url = BACKEND_ENDPOINT + "/paradas?lt=39.862658&ln=-4.025088&r=" + radio;
+                button.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
 
-                ServiceConnectionTask serviceConnectionTask = new ServiceConnectionTask();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(BACKEND_ENDPOINT)
+                        .addConverterFactory(JacksonConverterFactory.create())
+                        .build();
 
-                task = (ServiceConnectionTask)serviceConnectionTask.execute(new String[]{url});
+                StopsService service = retrofit.create(StopsService.class);
+                service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
+                    @Override
+                    public void onResponse(Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+                        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+
+                        intent.putExtra("queryResult", response.body());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        getApplicationContext().startActivity(intent);
+                        button.setEnabled(true);
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onFailure(Call<QueryResult> call, Throwable t) {
+                        button.setEnabled(true);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Log.e(TAG, "Error calling server ", t);
+                    }
+                });
+
             }
 
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (task != null && task.getStatus() != ServiceConnectionTask.Status.FINISHED) {
-            task.cancel(true);
-
-            task = null;
-        }
-    }
-
-    // AsyncTask <TypeOfVarArgParams , ProgressValue , ResultValue> .
-    private class ServiceConnectionTask extends AsyncTask<String, Integer, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            String response = "";
-            String s = null;
-            URL url;
-            HttpURLConnection urlConnection = null;
-
-            try {
-                url = new URL(urls[0]);
-
-                urlConnection = (HttpURLConnection) url.openConnection();
-
-                InputStream in = urlConnection.getInputStream();
-
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
-
-                while ((s = buffer.readLine()) != null) {
-                    response += s;
-                }
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            progressBar.setVisibility(View.INVISIBLE);
-
-            Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
-
-            intent.putExtra("stopslist",result);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            getApplicationContext().startActivity(intent);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
-
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
-
     }
 
     /**
@@ -169,8 +125,9 @@ public class MainActivity extends Activity {
     private void initializeVariables() {
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadiolabel = (TextView)findViewById(R.id.txtRadiolabel);
+        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
         button = (ImageView) findViewById(R.id.button);
+        button.setEnabled(true);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
