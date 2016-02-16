@@ -51,6 +51,8 @@ Order imports by this criterium:
 
 First the application packages, then order them alphabetically, adding blank lines when needed.
 
+Static imports should go first.
+
 ### Methods in a class
 Use alphabetical order to define the methods in a class.
 
