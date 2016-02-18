@@ -22,17 +22,34 @@ public class GPSTracker extends Service implements LocationListener {
 
     boolean isNetworkEnabled = false;
 
-    Location location; // location
+    private Location location; // location
 
-    double latitude; // latitude
+    private double latitude; // latitude
 
-    double longitude; // longitude
+    private double longitude; // longitude
 
 
     public GPSTracker(Context context) {
         this.mContext = context;
     }
 
+
+    public double getLatitude(){
+
+        if(location != null){
+            latitude = location.getLatitude();
+        }
+        return latitude;
+    }
+
+
+    public double getLongitude(){
+
+        if(location != null){
+            longitude = location.getLongitude();
+        }
+        return longitude;
+    }
 
     @Nullable
     @Override
