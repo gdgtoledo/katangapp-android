@@ -1,21 +1,27 @@
 package es.craftsmanship.toledo.katangapp.utils;
 
 import android.app.Service;
-
+import android.content.Context;
 import android.content.Intent;
-
 import android.location.Location;
 import android.location.LocationListener;
-
 import android.os.Bundle;
 import android.os.IBinder;
-
 import android.support.annotation.Nullable;
 
 /**
  * @author Cristóbal Hermida
  */
 public class GPSTracker extends Service implements LocationListener {
+
+
+    private final Context mContext;
+
+
+    public GPSTracker(Context context) {
+        this.mContext = context;
+    }
+
 
     @Nullable
     @Override
