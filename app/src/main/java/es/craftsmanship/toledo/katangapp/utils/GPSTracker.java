@@ -18,6 +18,17 @@ public class GPSTracker extends Service implements LocationListener {
     private final Context mContext;
 
 
+    boolean isGPSEnabled = false;
+
+    boolean isNetworkEnabled = false;
+
+    Location location; // location
+
+    double latitude; // latitude
+
+    double longitude; // longitude
+
+
     public GPSTracker(Context context) {
         this.mContext = context;
     }
