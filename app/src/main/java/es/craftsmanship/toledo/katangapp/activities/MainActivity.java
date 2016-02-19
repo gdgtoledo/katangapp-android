@@ -52,6 +52,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (checkGooglePlayServices()) {
+            buildGoogleApiClient();
+        }
+
         setContentView(R.layout.activity_main);
 
         initializeVariables();
@@ -212,5 +216,24 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
