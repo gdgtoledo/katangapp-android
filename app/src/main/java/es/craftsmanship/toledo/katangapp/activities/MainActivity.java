@@ -1,37 +1,32 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftsmanship.toledo.katangapp.models.QueryResult;
-import es.craftsmanship.toledo.katangapp.services.StopsService;
-import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
-
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.graphics.Typeface;
-
 import android.os.Bundle;
-
 import android.util.Log;
-
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.services.StopsService;
+import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
-
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
  * @author Cristóbal Hermida
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
@@ -142,4 +137,18 @@ public class MainActivity extends Activity {
         txtRadiolabel.setTypeface(tf);
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
 }
