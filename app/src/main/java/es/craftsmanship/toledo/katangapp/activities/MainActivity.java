@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private static final int DEFAULT_RADIO = 500;
     private static final String TAG = "KATANGAPP";
 
+
     private ImageView button;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
     private ProgressBar progressBar;
     private SeekBar seekBar;
     private TextView txtKatangaLabel;
