@@ -14,6 +14,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
@@ -29,8 +30,10 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
+    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private static final String TAG = "KATANGAPP";
 
 
@@ -123,6 +126,29 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
         });
     }
+
+    private boolean checkGooglePlayServices() {
+
+        int checkGooglePlayServices = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
+			/*
+			* google play services is missing or update is required
+			*  return code could be
+			* SUCCESS,
+			* SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
+			* SERVICE_DISABLED, SERVICE_INVALID.
+			*/
+            GooglePlayServicesUtil.getErrorDialog(checkGooglePlayServices,
+                    this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
+
+            return false;
+        }
+
+        return true;
+
+    }
+
 
     /**
      * A private method to help us initialize our variables
