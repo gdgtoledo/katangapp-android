@@ -1,46 +1,36 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftsmanship.toledo.katangapp.models.QueryResult;
-import es.craftsmanship.toledo.katangapp.services.StopsService;
-import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
-
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.graphics.Typeface;
-
 import android.os.Bundle;
-
 import android.util.Log;
-
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
+import com.squareup.otto.Subscribe;
 
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import es.craftsmanship.toledo.katangapp.interactors.StopsInteractor;
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
+import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
+
 
 /**
  * @author Cristóbal Hermida
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
-    private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
     private static final String TAG = "KATANGAPP";
 
     private ImageView button;
     private ProgressBar progressBar;
     private SeekBar seekBar;
-    private TextView txtKatangaLabel;
     private TextView txtRadiolabel;
 
     @Override
@@ -71,65 +61,65 @@ public class MainActivity extends Activity {
 
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(this);
+    }
 
-            @Override
-            public void onClick(View v) {
-                CharSequence charSequence = txtRadiolabel.getText();
+    @Override
+    public void onClick(View v) {
+        CharSequence charSequence = txtRadiolabel.getText();
 
-                String radio = charSequence.toString();
+        String radio = charSequence.toString();
 
-                if (radio.isEmpty()) {
-                    radio = String.valueOf(DEFAULT_RADIO);
-                }
+        if (radio.isEmpty()) {
+            radio = String.valueOf(DEFAULT_RADIO);
+        }
 
-                button.setEnabled(false);
-                progressBar.setVisibility(View.VISIBLE);
+        button.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
 
-                Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BACKEND_ENDPOINT)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
+        StopsInteractor stopsInteractor = new StopsInteractor(radio);
+        new Thread(stopsInteractor).start();
+    }
 
-                StopsService service = retrofit.create(StopsService.class);
+    @Subscribe
+    public void stopsReceived(QueryResult queryResult) {
+        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
 
-                service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
+        intent.putExtra("queryResult", queryResult);
 
-                    @Override
-                    public void onResponse(
-                        Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+        getApplicationContext().startActivity(intent);
 
-                        intent.putExtra("queryResult", response.body());
+        button.setEnabled(true);
+        progressBar.setVisibility(View.INVISIBLE);
+    }
 
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    @Subscribe
+    public void stopsReceived(Throwable throwable) {
+        button.setEnabled(true);
+        progressBar.setVisibility(View.INVISIBLE);
 
-                        getApplicationContext().startActivity(intent);
+        Log.e(TAG, "Error calling server ", throwable);
+    }
 
-                        button.setEnabled(true);
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AndroidBus.getInstance().register(this);
+    }
 
-                    @Override
-                    public void onFailure(Call<QueryResult> call, Throwable t) {
-                        button.setEnabled(true);
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                        Log.e(TAG, "Error calling server ", t);
-                    }
-                });
-
-            }
-
-        });
+    @Override
+    protected void onPause() {
+        AndroidBus.getInstance().unregister(this);
+        super.onPause();
     }
 
     /**
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
+        TextView txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
         button = (ImageView) findViewById(R.id.button);
@@ -141,5 +131,6 @@ public class MainActivity extends Activity {
         txtKatangaLabel.setTypeface(tf);
         txtRadiolabel.setTypeface(tf);
     }
+
 
 }
