@@ -145,6 +145,14 @@ public class MainActivity extends Activity
         });
     }
 
+    protected synchronized void buildGoogleApiClient() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(this)
+            .addOnConnectionFailedListener(this)
+            .addApi(LocationServices.API)
+            .build();
+    }
+
     private boolean checkGooglePlayServices() {
         int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
@@ -165,15 +173,23 @@ public class MainActivity extends Activity
         }
 
         return true;
-
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .addApi(LocationServices.API)
-            .build();
+    /**
+     * A private method to help us initialize our variables
+     */
+    private void initializeVariables() {
+        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
+        button = (ImageView) findViewById(R.id.button);
+        button.setEnabled(true);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
+        Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
+        txtKatangaLabel.setTypeface(tf);
+        txtRadiolabel.setTypeface(tf);
     }
 
     @Override
@@ -192,24 +208,6 @@ public class MainActivity extends Activity
                 finish();
             }
         }
-    }
-
-
-    /**
-     * A private method to help us initialize our variables
-     */
-    private void initializeVariables() {
-        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
-        button = (ImageView) findViewById(R.id.button);
-        button.setEnabled(true);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-
-        Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
-
-        txtKatangaLabel.setTypeface(tf);
-        txtRadiolabel.setTypeface(tf);
     }
 
     @Override
