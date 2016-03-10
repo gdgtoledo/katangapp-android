@@ -40,36 +40,31 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
-
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private static final String TAG = "KATANGAPP";
 
-
-
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
-
-
     private ImageView button;
     private Double longitude;
     private Double latitude;
-
     private ProgressBar progressBar;
     private SeekBar seekBar;
     private TextView txtKatangaLabel;
     private TextView txtRadiolabel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         if (checkGooglePlayServices()) {
             buildGoogleApiClient();
         }
+
         initializeVariables();
 
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -149,19 +144,18 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     }
 
     private boolean checkGooglePlayServices() {
+        int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
-        int checkGooglePlayServices = GooglePlayServicesUtil
-                .isGooglePlayServicesAvailable(this);
         if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
-			/*
-			* google play services is missing or update is required
-			*  return code could be
-			* SUCCESS,
-			* SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
-			* SERVICE_DISABLED, SERVICE_INVALID.
-			*/
-            GooglePlayServicesUtil.getErrorDialog(checkGooglePlayServices,
-                    this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
+            /*
+            * google play services is missing or update is required
+            *  return code could be
+            * SUCCESS,
+            * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
+            * SERVICE_DISABLED, SERVICE_INVALID.
+            */
+            GooglePlayServicesUtil.getErrorDialog(
+                    checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
 
             return false;
         }
@@ -176,22 +170,23 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-
             if (resultCode == RESULT_OK) {
                 // Make sure the app is not already connected or attempting to connect
                 if (!mGoogleApiClient.isConnecting() &&
                         !mGoogleApiClient.isConnected()) {
+
                     mGoogleApiClient.connect();
                 }
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Google Play Services must be installed.",
-                        Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(
+                    this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
+
                 finish();
             }
         }
@@ -218,6 +213,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     protected void onStart() {
         super.onStart();
+
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
@@ -226,20 +222,18 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public void onConnected(Bundle bundle) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
+        if (mLastLocation != null) {
             longitude = mLastLocation.getLongitude();
             latitude =  mLastLocation.getLatitude();
-
         }
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
         if (mGoogleApiClient != null) {
             mGoogleApiClient.disconnect();
         }
@@ -247,11 +241,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
     }
+
 }
