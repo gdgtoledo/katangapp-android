@@ -146,9 +146,7 @@ public class MainActivity extends Activity
                     .build();
 
                 StopsService service = retrofit.create(StopsService.class);
-               // 39.862658, -4.025088,
 
-               // service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
                 service.listStops(latitude, longitude, radio).enqueue(new Callback<QueryResult>() {
 
                     @Override
