@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#be303030"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:paddingBottom="8dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="8dp"
-    android:background="#be303030"
     tools:context="es.craftsmanship.toledo.katangapp.activities.ShowStopsActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:background="#be303030"
         android:id="@+id/stops"
+        android:fadeScrollbars="true"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scrollbars="vertical"
-        android:fadeScrollbars="true"
-        android:background="#be303030" />
+        />
 </RelativeLayout>
