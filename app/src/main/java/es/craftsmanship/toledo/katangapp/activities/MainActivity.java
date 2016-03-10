@@ -46,10 +46,10 @@ public class MainActivity extends Activity
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private static final String TAG = "KATANGAPP";
 
-    private GoogleApiClient googleApiClient;
-    private Location lastLocation;
     private ImageView button;
+    private GoogleApiClient googleApiClient;
     private Double longitude;
+    private Location lastLocation;
     private Double latitude;
     private ProgressBar progressBar;
     private SeekBar seekBar;
