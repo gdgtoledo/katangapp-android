@@ -1,14 +1,16 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import android.support.v7.widget.RecyclerView;
+import es.craftsmanship.toledo.katangapp.models.RouteResult;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.support.v7.widget.RecyclerView;
+
 import android.widget.TextView;
 
 import java.util.List;
-
-import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
 /**
  * author Cristóbal Hermida
