@@ -46,8 +46,8 @@ public class MainActivity extends Activity
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private static final String TAG = "KATANGAPP";
 
-    private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation;
     private ImageView button;
     private Double longitude;
     private Double latitude;
@@ -166,7 +166,7 @@ public class MainActivity extends Activity
     }
 
     protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
@@ -178,10 +178,10 @@ public class MainActivity extends Activity
         if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
             if (resultCode == RESULT_OK) {
                 // Make sure the app is not already connected or attempting to connect
-                if (!mGoogleApiClient.isConnecting() &&
-                        !mGoogleApiClient.isConnected()) {
+                if (!googleApiClient.isConnecting() &&
+                        !googleApiClient.isConnected()) {
 
-                    mGoogleApiClient.connect();
+                    googleApiClient.connect();
                 }
             }
             else if (resultCode == RESULT_CANCELED) {
@@ -215,19 +215,19 @@ public class MainActivity extends Activity
     protected void onStart() {
         super.onStart();
 
-        if (mGoogleApiClient != null) {
-            mGoogleApiClient.connect();
+        if (googleApiClient != null) {
+            googleApiClient.connect();
         }
 
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
-        if (mLastLocation != null) {
-            longitude = mLastLocation.getLongitude();
-            latitude =  mLastLocation.getLatitude();
+        if (lastLocation != null) {
+            longitude = lastLocation.getLongitude();
+            latitude =  lastLocation.getLatitude();
         }
     }
 
@@ -235,8 +235,8 @@ public class MainActivity extends Activity
     protected void onStop() {
         super.onStop();
 
-        if (mGoogleApiClient != null) {
-            mGoogleApiClient.disconnect();
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
         }
     }
 
