@@ -11,7 +11,7 @@ import java.util.List;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
 /**
- * Created by cristobalhp on 25/02/2016.
+ * author Cristóbal Hermida
  */
 public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder> {
 
