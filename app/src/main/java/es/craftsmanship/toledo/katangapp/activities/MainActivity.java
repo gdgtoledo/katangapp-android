@@ -225,7 +225,7 @@ public class MainActivity extends Activity
 
         if (lastLocation != null) {
             longitude = lastLocation.getLongitude();
-            latitude =  lastLocation.getLatitude();
+            latitude = lastLocation.getLatitude();
         }
     }
 
