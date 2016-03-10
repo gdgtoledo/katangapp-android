@@ -3,14 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="8dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
+    android:background="#be303030"
     tools:context="es.craftsmanship.toledo.katangapp.activities.ShowStopsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/stops"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="true"
+        android:background="#be303030" />
 </RelativeLayout>
