@@ -58,6 +58,24 @@ public class MainActivity extends Activity
     private TextView txtRadiolabel;
 
     @Override
+    public void onConnected(Bundle bundle) {
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+
+        if (lastLocation != null) {
+            longitude = lastLocation.getLongitude();
+            latitude = lastLocation.getLatitude();
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -221,30 +239,12 @@ public class MainActivity extends Activity
     }
 
     @Override
-    public void onConnected(Bundle bundle) {
-        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-
-        if (lastLocation != null) {
-            longitude = lastLocation.getLongitude();
-            latitude = lastLocation.getLatitude();
-        }
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
 
         if (googleApiClient != null) {
             googleApiClient.disconnect();
         }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
     }
 
 }
