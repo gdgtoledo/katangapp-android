@@ -104,9 +104,9 @@ public class MainActivity extends Activity
                 progressBar.setVisibility(View.VISIBLE);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BACKEND_ENDPOINT)
-                        .addConverterFactory(JacksonConverterFactory.create())
-                        .build();
+                    .baseUrl(BACKEND_ENDPOINT)
+                    .addConverterFactory(JacksonConverterFactory.create())
+                    .build();
 
                 StopsService service = retrofit.create(StopsService.class);
                // 39.862658, -4.025088,
@@ -116,7 +116,7 @@ public class MainActivity extends Activity
 
                     @Override
                     public void onResponse(
-                            Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+                        Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
 
                         Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
 
@@ -156,7 +156,7 @@ public class MainActivity extends Activity
             * SERVICE_DISABLED, SERVICE_INVALID.
             */
             GooglePlayServicesUtil.getErrorDialog(
-                    checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
+                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
 
             return false;
         }
@@ -167,10 +167,10 @@ public class MainActivity extends Activity
 
     protected synchronized void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
+            .addConnectionCallbacks(this)
+            .addOnConnectionFailedListener(this)
+            .addApi(LocationServices.API)
+            .build();
     }
 
     @Override
@@ -178,9 +178,7 @@ public class MainActivity extends Activity
         if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
             if (resultCode == RESULT_OK) {
                 // Make sure the app is not already connected or attempting to connect
-                if (!googleApiClient.isConnecting() &&
-                        !googleApiClient.isConnected()) {
-
+                if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
                     googleApiClient.connect();
                 }
             }
