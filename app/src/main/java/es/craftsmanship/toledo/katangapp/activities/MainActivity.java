@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -31,7 +31,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 /**
  * @author Cristóbal Hermida
  */
-public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener {
+public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
@@ -40,24 +40,29 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private static final String TAG = "KATANGAPP";
 
 
-    private ImageView button;
+
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
+
+
+    private ImageView button;
+    private Double longitude;
+    private Double latitude;
+
     private ProgressBar progressBar;
     private SeekBar seekBar;
     private TextView txtKatangaLabel;
     private TextView txtRadiolabel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
         if (checkGooglePlayServices()) {
             buildGoogleApiClient();
         }
-
-        setContentView(R.layout.activity_main);
-
         initializeVariables();
 
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -96,17 +101,19 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 progressBar.setVisibility(View.VISIBLE);
 
                 Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BACKEND_ENDPOINT)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
+                        .baseUrl(BACKEND_ENDPOINT)
+                        .addConverterFactory(JacksonConverterFactory.create())
+                        .build();
 
                 StopsService service = retrofit.create(StopsService.class);
+               // 39.862658, -4.025088,
 
-                service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
+               // service.listStops(39.862658, -4.025088, radio).enqueue(new Callback<QueryResult>() {
+                service.listStops(latitude, longitude, radio).enqueue(new Callback<QueryResult>() {
 
                     @Override
                     public void onResponse(
-                        Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
+                            Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
 
                         Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
 
@@ -134,15 +141,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         });
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-
-    }
-
     private boolean checkGooglePlayServices() {
 
         int checkGooglePlayServices = GooglePlayServicesUtil
@@ -165,6 +163,33 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     }
 
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
+
+            if (resultCode == RESULT_OK) {
+                // Make sure the app is not already connected or attempting to connect
+                if (!mGoogleApiClient.isConnecting() &&
+                        !mGoogleApiClient.isConnected()) {
+                    mGoogleApiClient.connect();
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Google Play Services must be installed.",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
 
     /**
      * A private method to help us initialize our variables
@@ -184,8 +209,33 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     }
 
     @Override
-    public void onConnected(Bundle bundle) {
+    protected void onStart() {
+        super.onStart();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
 
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+
+            longitude = mLastLocation.getLongitude();
+            latitude =  mLastLocation.getLatitude();
+
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -196,44 +246,5 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 }
