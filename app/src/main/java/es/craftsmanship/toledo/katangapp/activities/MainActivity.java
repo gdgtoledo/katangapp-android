@@ -76,6 +76,24 @@ public class MainActivity extends Activity
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
+            if (resultCode == RESULT_OK) {
+                // Make sure the app is not already connected or attempting to connect
+                if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
+                    googleApiClient.connect();
+                }
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(
+                        this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
+
+                finish();
+            }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -163,6 +181,25 @@ public class MainActivity extends Activity
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (googleApiClient != null) {
+            googleApiClient.connect();
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
+        }
+    }
+
     protected synchronized void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(this)
             .addConnectionCallbacks(this)
@@ -208,43 +245,6 @@ public class MainActivity extends Activity
 
         txtKatangaLabel.setTypeface(tf);
         txtRadiolabel.setTypeface(tf);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-            if (resultCode == RESULT_OK) {
-                // Make sure the app is not already connected or attempting to connect
-                if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
-                    googleApiClient.connect();
-                }
-            }
-            else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(
-                    this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
-
-                finish();
-            }
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (googleApiClient != null) {
-            googleApiClient.connect();
-        }
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (googleApiClient != null) {
-            googleApiClient.disconnect();
-        }
     }
 
 }
