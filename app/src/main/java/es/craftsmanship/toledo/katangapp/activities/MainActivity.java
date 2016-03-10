@@ -5,6 +5,7 @@ import es.craftsmanship.toledo.katangapp.services.StopsService;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.app.Activity;
+import android.app.Dialog;
 
 import android.content.Intent;
 
@@ -155,8 +156,10 @@ public class MainActivity extends Activity
             * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
             * SERVICE_DISABLED, SERVICE_INVALID.
             */
-            GooglePlayServicesUtil.getErrorDialog(
-                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
+            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
+                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES);
+
+            errorDialog.show();
 
             return false;
         }
