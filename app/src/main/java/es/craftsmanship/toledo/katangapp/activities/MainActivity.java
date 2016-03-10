@@ -38,7 +38,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 /**
  * @author Cristóbal Hermida
  */
-public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class MainActivity extends Activity
+    implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
