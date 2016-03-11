@@ -1,16 +1,16 @@
 package es.craftsmanship.toledo.katangapp;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-
-import es.craftsmanship.toledo.katangapp.activities.MainActivity;
-
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import es.craftsmanship.toledo.katangapp.activities.MainActivity;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * @author Cristóbal Hermida
@@ -26,6 +26,11 @@ public class ApplicationTest {
 
     @Test
     public void titleIsDisplayed() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         onView(withText("katanga")).check(matches(isDisplayed()));
     }
 
