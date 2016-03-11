@@ -28,6 +28,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     private RecyclerView lineas;
     private  TextView address =null;
     private  TextView distance =null;
+
     public StopsAdapter(List<BusStopResult> stops) {
         this.stops = stops;
     }
@@ -35,6 +36,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     @Override
     public StopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context= parent.getContext();
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stop, parent, false);
 
         return new StopsViewHolder(view);
@@ -43,7 +45,9 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     @Override
     public void onBindViewHolder(StopsViewHolder holder, int position) {
         BusStopResult stop = new BusStopResult();
+
         stop = stops.get(position);
+
         holder.bind(stop);
     }
 
@@ -53,10 +57,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     }
 
     public class StopsViewHolder extends RecyclerView.ViewHolder {
-
-
        LinesAdapter linesAdapter;
-
 
         public StopsViewHolder(View itemView) {
             super(itemView);
@@ -70,21 +71,22 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             address.setTypeface(tf);
             distance.setTypeface(tf);
-
         }
 
         public void bind(BusStopResult stop) {
-
             int tam=  stop.getResults().size();
+
             lineas.setMinimumHeight(tam*100);
             lineas.setAdapter(new LinesAdapter(stop.getResults()));
             address.setText(stop.getBusStop().getAddress());
+
             String dtc= String.format("%.2f", stop.getDistance());
+
             dtc="("+dtc+" metros)";
+
             distance.setText(dtc);
-
-
         }
+
     }
 
 }
