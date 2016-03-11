@@ -107,6 +107,59 @@ public class MainActivity extends Activity
 
         initializeSeekTrack();
 
+        initializeButton();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (googleApiClient != null) {
+            googleApiClient.connect();
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
+        }
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(this)
+            .addOnConnectionFailedListener(this)
+            .addApi(LocationServices.API)
+            .build();
+    }
+
+    private void initializeSeekTrack() {
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtRadiolabel.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Toast.makeText(
+                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
+                //se debe poner el valor más vistoso
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+        });
+    }
+
+    private void initializeButton() {
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -156,55 +209,6 @@ public class MainActivity extends Activity
                     }
                 });
 
-            }
-
-        });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (googleApiClient != null) {
-            googleApiClient.connect();
-        }
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (googleApiClient != null) {
-            googleApiClient.disconnect();
-        }
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .addApi(LocationServices.API)
-            .build();
-    }
-
-    private void initializeSeekTrack() {
-        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtRadiolabel.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Toast.makeText(
-                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
-                //se debe poner el valor más vistoso
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
             }
 
         });
