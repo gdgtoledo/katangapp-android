@@ -55,7 +55,6 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     }
 
     public class StopsViewHolder extends RecyclerView.ViewHolder {
-       LinesAdapter linesAdapter;
 
         public StopsViewHolder(View itemView) {
             super(itemView);
