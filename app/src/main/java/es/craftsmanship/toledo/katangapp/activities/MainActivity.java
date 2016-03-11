@@ -82,7 +82,6 @@ public class MainActivity extends Activity
         }
 
         if (resultCode == RESULT_OK) {
-            // Make sure the app is not already connected or attempting to connect
             if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
                 googleApiClient.connect();
             }
