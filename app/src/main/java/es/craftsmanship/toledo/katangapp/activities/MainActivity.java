@@ -105,25 +105,7 @@ public class MainActivity extends Activity
 
         initializeVariables();
 
-        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtRadiolabel.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Toast.makeText(
-                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
-                //se debe poner el valor más vistoso
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-
-        });
+        initializeSeekTrack();
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -204,6 +186,28 @@ public class MainActivity extends Activity
             .addOnConnectionFailedListener(this)
             .addApi(LocationServices.API)
             .build();
+    }
+
+    private void initializeSeekTrack() {
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtRadiolabel.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Toast.makeText(
+                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
+                //se debe poner el valor más vistoso
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+        });
     }
 
     /**
