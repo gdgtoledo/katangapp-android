@@ -206,6 +206,23 @@ public class MainActivity extends Activity
             .build();
     }
 
+    /**
+     * A private method to help us initialize our variables
+     */
+    private void initializeVariables() {
+        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
+        button = (ImageView) findViewById(R.id.button);
+        button.setEnabled(true);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
+        Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
+        txtKatangaLabel.setTypeface(tf);
+        txtRadiolabel.setTypeface(tf);
+    }
+
     private boolean isGooglePlayServicesAvailable() {
         int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
@@ -226,23 +243,6 @@ public class MainActivity extends Activity
         }
 
         return true;
-    }
-
-    /**
-     * A private method to help us initialize our variables
-     */
-    private void initializeVariables() {
-        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
-        button = (ImageView) findViewById(R.id.button);
-        button.setEnabled(true);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-
-        Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
-
-        txtKatangaLabel.setTypeface(tf);
-        txtRadiolabel.setTypeface(tf);
     }
 
 }
