@@ -50,7 +50,6 @@ public class MainActivity extends Activity
     private ImageView button;
     private GoogleApiClient googleApiClient;
     private Double longitude;
-    private Location lastLocation;
     private Double latitude;
     private ProgressBar progressBar;
     private SeekBar seekBar;
@@ -59,7 +58,7 @@ public class MainActivity extends Activity
 
     @Override
     public void onConnected(Bundle bundle) {
-        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
         if (lastLocation != null) {
             longitude = lastLocation.getLongitude();
