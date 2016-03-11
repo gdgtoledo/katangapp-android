@@ -44,9 +44,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
     @Override
     public void onBindViewHolder(StopsViewHolder holder, int position) {
-        BusStopResult stop = new BusStopResult();
-
-        stop = stops.get(position);
+        BusStopResult stop = stops.get(position);
 
         holder.bind(stop);
     }
