@@ -99,9 +99,7 @@ public class MainActivity extends Activity
 
         setContentView(R.layout.activity_main);
 
-        if (isGooglePlayServicesAvailable()) {
-            buildGoogleApiClient();
-        }
+        initializeGooglePlayServices();
 
         initializeVariables();
 
@@ -212,6 +210,12 @@ public class MainActivity extends Activity
             }
 
         });
+    }
+
+    private void initializeGooglePlayServices() {
+        if (isGooglePlayServicesAvailable()) {
+            buildGoogleApiClient();
+        }
     }
 
     /**
