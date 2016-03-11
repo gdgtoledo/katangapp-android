@@ -127,14 +127,6 @@ public class MainActivity extends Activity
         }
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .addApi(LocationServices.API)
-            .build();
-    }
-
     private void initializeSeekTrack() {
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -213,9 +205,29 @@ public class MainActivity extends Activity
     }
 
     private void initializeGooglePlayServices() {
-        if (isGooglePlayServicesAvailable()) {
-            buildGoogleApiClient();
+        int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+
+        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
+            /*
+            * google play services is missing or update is required
+            *  return code could be
+            * SUCCESS,
+            * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
+            * SERVICE_DISABLED, SERVICE_INVALID.
+            */
+            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
+                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES);
+
+            errorDialog.show();
+
+            return;
         }
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(this)
+            .addOnConnectionFailedListener(this)
+            .addApi(LocationServices.API)
+            .build();
     }
 
     /**
@@ -233,28 +245,6 @@ public class MainActivity extends Activity
 
         txtKatangaLabel.setTypeface(tf);
         txtRadiolabel.setTypeface(tf);
-    }
-
-    private boolean isGooglePlayServicesAvailable() {
-        int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-
-        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
-            /*
-            * google play services is missing or update is required
-            *  return code could be
-            * SUCCESS,
-            * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
-            * SERVICE_DISABLED, SERVICE_INVALID.
-            */
-            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES);
-
-            errorDialog.show();
-
-            return false;
-        }
-
-        return true;
     }
 
 }
