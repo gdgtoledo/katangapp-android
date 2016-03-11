@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
+import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.content.Context;
@@ -71,10 +72,12 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
         }
 
         public void bind(BusStopResult stop) {
-            int tam = stop.getResults().size();
+            List<RouteResult> results = stop.getResults();
+
+            int tam = results.size();
 
             lineas.setMinimumHeight(tam*100);
-            lineas.setAdapter(new LinesAdapter(stop.getResults()));
+            lineas.setAdapter(new LinesAdapter(results));
             address.setText(stop.getBusStop().getAddress());
 
             String dtc = String.format("%.2f", stop.getDistance());
