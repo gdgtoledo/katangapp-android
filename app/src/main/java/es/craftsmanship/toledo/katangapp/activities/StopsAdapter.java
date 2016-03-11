@@ -74,9 +74,9 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
         public void bind(BusStopResult stop) {
             List<RouteResult> results = stop.getResults();
 
-            int tam = results.size();
+            int size = results.size();
 
-            lineas.setMinimumHeight(tam*100);
+            lineas.setMinimumHeight(size*100);
             lineas.setAdapter(new LinesAdapter(results));
             address.setText(stop.getBusStop().getAddress());
 
