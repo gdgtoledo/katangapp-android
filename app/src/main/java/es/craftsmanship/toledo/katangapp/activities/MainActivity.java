@@ -77,19 +77,21 @@ public class MainActivity extends Activity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-            if (resultCode == RESULT_OK) {
-                // Make sure the app is not already connected or attempting to connect
-                if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
-                    googleApiClient.connect();
-                }
-            }
-            else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(
-                        this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
+        if (requestCode != REQUEST_CODE_RECOVER_PLAY_SERVICES) {
+            return;
+        }
 
-                finish();
+        if (resultCode == RESULT_OK) {
+            // Make sure the app is not already connected or attempting to connect
+            if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
+                googleApiClient.connect();
             }
+        }
+        else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(
+                this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
+
+            finish();
         }
     }
 
