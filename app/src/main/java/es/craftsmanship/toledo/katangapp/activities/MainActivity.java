@@ -99,7 +99,7 @@ public class MainActivity extends Activity
 
         setContentView(R.layout.activity_main);
 
-        if (checkGooglePlayServices()) {
+        if (isGooglePlayServicesAvailable()) {
             buildGoogleApiClient();
         }
 
@@ -206,7 +206,7 @@ public class MainActivity extends Activity
             .build();
     }
 
-    private boolean checkGooglePlayServices() {
+    private boolean isGooglePlayServicesAvailable() {
         int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
         if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
