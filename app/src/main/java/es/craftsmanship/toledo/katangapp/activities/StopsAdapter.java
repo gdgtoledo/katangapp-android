@@ -86,7 +86,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             String dtc = String.format("%.2f", stop.getDistance());
 
-            dtc = "("+dtc+" metros)";
+            dtc = "(" + dtc + " metros)";
 
             distance.setText(dtc);
         }
