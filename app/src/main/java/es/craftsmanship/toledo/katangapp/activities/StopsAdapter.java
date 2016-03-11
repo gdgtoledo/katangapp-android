@@ -86,6 +86,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             String dtc = String.format("%.2f", stop.getDistance());
 
+            // TODO we need to think about i18n for lang keys
             dtc = "(" + dtc + " metros)";
 
             distance.setText(dtc);
