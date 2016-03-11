@@ -24,10 +24,10 @@ import java.util.List;
 public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHolder> {
 
     private final List<BusStopResult> stops;
-    private  Context context;
+    private Context context;
     private RecyclerView lineas;
-    private  TextView address =null;
-    private  TextView distance =null;
+    private TextView address =null;
+    private TextView distance =null;
 
     public StopsAdapter(List<BusStopResult> stops) {
         this.stops = stops;
@@ -35,7 +35,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
     @Override
     public StopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context= parent.getContext();
+        context = parent.getContext();
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stop, parent, false);
 
@@ -74,15 +74,15 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
         }
 
         public void bind(BusStopResult stop) {
-            int tam=  stop.getResults().size();
+            int tam = stop.getResults().size();
 
             lineas.setMinimumHeight(tam*100);
             lineas.setAdapter(new LinesAdapter(stop.getResults()));
             address.setText(stop.getBusStop().getAddress());
 
-            String dtc= String.format("%.2f", stop.getDistance());
+            String dtc = String.format("%.2f", stop.getDistance());
 
-            dtc="("+dtc+" metros)";
+            dtc = "("+dtc+" metros)";
 
             distance.setText(dtc);
         }
