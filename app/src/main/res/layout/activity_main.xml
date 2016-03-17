@@ -54,7 +54,7 @@
         app:cb_pressedRingWidth="8dip" />
 
     <TextView
-        android:id="@+id/txtRadiolabel"
+        android:id="@+id/txtRadioLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekBar"
