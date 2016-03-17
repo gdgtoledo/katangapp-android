@@ -25,12 +25,8 @@ public class ApplicationTest {
     }
 
     @Test
-    public void titleIsDisplayed() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void titleIsDisplayed() throws Exception {
+        Thread.sleep(5000);
 
         onView(withText("katanga")).check(matches(isDisplayed()));
     }
