@@ -236,7 +236,7 @@ public class MainActivity extends Activity
     private void initializeVariables() {
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadiolabel = (TextView) findViewById(R.id.txtRadiolabel);
+        txtRadiolabel = (TextView) findViewById(R.id.txtRadioLabel);
         button = (ImageView) findViewById(R.id.button);
         button.setEnabled(true);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);

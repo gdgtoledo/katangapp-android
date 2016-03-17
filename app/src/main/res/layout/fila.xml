@@ -14,14 +14,13 @@
         android:gravity="center"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"
-        android:text="L3"
+        android:text="@string/l3"
         android:textAlignment="center"
         android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_column="1"
         android:orientation="horizontal">
 
         <TextView
@@ -34,7 +33,7 @@
             android:paddingBottom="12dp"
             android:paddingRight="4dp"
             android:paddingTop="12dp"
-            android:text="8"
+            android:text="@string/default_time"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -46,7 +45,7 @@
             android:gravity="start"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
-            android:text="minutos"
+            android:text="@string/minutes"
             android:textSize="18sp" />
 
     </LinearLayout>
