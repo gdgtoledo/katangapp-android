@@ -11,19 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-
     <TextView
         android:id="@+id/title_katanga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/center"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
         android:fontFamily=""
@@ -33,25 +25,38 @@
         android:textColorHighlight="@android:color/white"
         android:textSize="40sp" />
 
+    <FrameLayout
+        android:id="@+id/center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cb_color="#f6ec5e"
+            app:cb_pressedRingWidth="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:visibility="invisible" />
+    </FrameLayout>
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="53dp"
         android:max="1000"
         android:progress="300"
         android:progressBackgroundTint="@android:color/white" />
-
-    <at.markushi.ui.CircleButton
-        android:id="@+id/button"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:cb_color="#f6ec5e"
-        app:cb_pressedRingWidth="8dip" />
 
     <TextView
         android:id="@+id/txtRadioLabel"
