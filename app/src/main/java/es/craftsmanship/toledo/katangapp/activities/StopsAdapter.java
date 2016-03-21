@@ -1,24 +1,19 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.List;
+
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
-
-import android.content.Context;
-
-import android.graphics.Typeface;
-
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * @author Javier Gamarra
@@ -61,11 +56,9 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             address = (TextView) itemView.findViewById(R.id.stop_address);
             distance = (TextView) itemView.findViewById(R.id.stop_distance);
-            lines = (RecyclerView) itemView.findViewById(R.id.lineas);
-            lines.setLayoutManager(new LinearLayoutManager(context));
+            lines = (RecyclerView) itemView.findViewById(R.id.lines);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
-
             address.setTypeface(tf);
             distance.setTypeface(tf);
         }
@@ -87,7 +80,6 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             distance.setText(sb);
         }
-
     }
 
 }

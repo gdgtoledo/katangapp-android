@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Katangapp</string>
     <string name="katanga">katanga</string>
-    <string name="l3">L3</string>
-    <string name="default_time">8</string>
     <string name="minutes">minutos</string>
+    <string name="bus_image">bus image</string>
 </resources>
