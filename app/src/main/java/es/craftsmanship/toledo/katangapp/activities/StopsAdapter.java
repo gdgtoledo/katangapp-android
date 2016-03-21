@@ -28,8 +28,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     private final List<BusStopResult> stops;
     private Context context;
     private RecyclerView lines;
-    private TextView address =null;
-    private TextView distance =null;
+    private TextView address;
+    private TextView distance;
 
     public StopsAdapter(List<BusStopResult> stops) {
         this.stops = stops;
