@@ -27,7 +27,6 @@ public class ShowStopsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (!intent.hasExtra("queryResult")) {
-
             QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
             List<BusStopResult> busStopResults = queryResult.getResults();
@@ -35,7 +34,6 @@ public class ShowStopsActivity extends AppCompatActivity {
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
 
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
             recyclerView.setAdapter(new StopsAdapter(busStopResults));
         }
     }

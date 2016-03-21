@@ -60,10 +60,10 @@ public class MainActivity extends Activity
     private TextView txtRadiolabel;
 
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
-            .setInterval(3000)
-            .setFastestInterval(16)
-            .setNumUpdates(3)
-            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        .setInterval(3000)
+        .setFastestInterval(16)
+        .setNumUpdates(3)
+        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -73,7 +73,9 @@ public class MainActivity extends Activity
             longitude = lastLocation.getLongitude();
             latitude = lastLocation.getLatitude();
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, GPS_REQUEST, this);
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+            googleApiClient, GPS_REQUEST, this);
     }
 
     @Override
