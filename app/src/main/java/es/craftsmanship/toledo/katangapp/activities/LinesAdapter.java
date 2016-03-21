@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder> {
 
-    private int sizecard;
     private static List<RouteResult> list;
 
     public LinesAdapter(List<RouteResult> list){
