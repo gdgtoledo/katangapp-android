@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fila"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    >
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
-        android:background="#f1f1f0"
         android:id="@+id/linea"
-        android:gravity="center"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="70dp"
+        android:background="#f1f1f0"
+        android:gravity="center"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"
-        android:text="L3"
+        android:text="@string/l3"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:width="70dp"
-        />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_column="1"
+        android:orientation="horizontal">
 
-        >
         <TextView
-            android:layout_height="wrap_content"
+            android:id="@+id/tiempo"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:text="8"
-            android:id="@+id/tiempo"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
             android:gravity="end"
-            android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:paddingRight="4dp"
-            />
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:background="@android:color/white"
-            android:layout_weight="1"
-            android:text="minutos"
             android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:textSize="18sp"
-            android:gravity="start"
+            android:text="@string/default_time"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
-            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="start"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/minutes"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

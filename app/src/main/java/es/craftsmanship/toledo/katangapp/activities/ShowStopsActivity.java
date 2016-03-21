@@ -26,15 +26,18 @@ public class ShowStopsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
+        if (!intent.hasExtra("queryResult")) {
 
-        List<BusStopResult> busStopResults = queryResult.getResults();
+            QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
+            List<BusStopResult> busStopResults = queryResult.getResults();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
 
-        recyclerView.setAdapter(new StopsAdapter(busStopResults));
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            recyclerView.setAdapter(new StopsAdapter(busStopResults));
+        }
     }
 
 }
