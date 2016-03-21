@@ -38,24 +38,20 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
         return lines.size();
     }
 
-    static class LinesHolder extends RecyclerView.ViewHolder{
-        private final TextView linea;
-        private final TextView tiempo;
+    static class LinesHolder extends RecyclerView.ViewHolder {
+
+        private final TextView line;
+        private final TextView time;
 
         public LinesHolder(View itemView) {
             super(itemView);
-            linea = (TextView) itemView.findViewById(R.id.linea);
-            tiempo = (TextView) itemView.findViewById(R.id.tiempo);
-
-
-
+            line = (TextView) itemView.findViewById(R.id.linea);
+            time = (TextView) itemView.findViewById(R.id.tiempo);
         }
 
-            linea.setText(route.getIdl());
-            tiempo.setText(String.valueOf(route.getTime()));
-
-
         public void bind(RouteResult route) {
+            line.setText(route.getIdl());
+            time.setText(String.valueOf(route.getTime()));
         }
     }
 
