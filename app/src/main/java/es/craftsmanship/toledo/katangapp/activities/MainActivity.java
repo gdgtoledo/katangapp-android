@@ -1,24 +1,19 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.interactors.StopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
-import es.craftsmanship.toledo.katangapp.services.StopsService;
+import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.app.Activity;
 import android.app.Dialog;
-
 import android.content.Intent;
-
 import android.graphics.Typeface;
-
 import android.location.Location;
-
 import android.os.Bundle;
-
+import android.support.design.widget.Snackbar;
 import android.util.Log;
-
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -32,24 +27,23 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import com.squareup.otto.Subscribe;
 
 /**
  * @author Cristóbal Hermida
  */
 public class MainActivity extends Activity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener{
+        LocationListener, View.OnClickListener {
 
-    private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
-    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private static final String TAG = "KATANGAPP";
-
+    private static final LocationRequest GPS_REQUEST = LocationRequest.create()
+        .setInterval(3000)
+        .setFastestInterval(16)
+        .setNumUpdates(3)
+        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
     private ImageView button;
     private GoogleApiClient googleApiClient;
     private Double longitude;
@@ -58,11 +52,47 @@ public class MainActivity extends Activity
     private SeekBar seekBar;
     private TextView txtRadioLabel;
 
-    private static final LocationRequest GPS_REQUEST = LocationRequest.create()
-        .setInterval(3000)
-        .setFastestInterval(16)
-        .setNumUpdates(3)
-        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    @Override
+    public void onClick(View v) {
+        CharSequence charSequence = txtRadioLabel.getText();
+
+        String radio = charSequence.toString();
+
+        if (radio.isEmpty()) {
+            radio = String.valueOf(DEFAULT_RADIO);
+        }
+
+        button.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+
+        StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
+        new Thread(stopsInteractor).start();
+    }
+
+    @Subscribe
+    public void stopsReceived(QueryResult queryResult) {
+        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+
+        intent.putExtra("queryResult", queryResult);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        getApplicationContext().startActivity(intent);
+
+        button.setEnabled(true);
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Subscribe
+    public void stopsReceived(Error error) {
+        button.setEnabled(true);
+        progressBar.setVisibility(View.INVISIBLE);
+
+        Log.e(TAG, "Error calling server ", error);
+
+        View content = findViewById(android.R.id.content);
+        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
+    }
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -128,22 +158,23 @@ public class MainActivity extends Activity
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
-
+        AndroidBus.getInstance().register(this);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        AndroidBus.getInstance().unregister(this);
 
         if (googleApiClient != null) {
             googleApiClient.disconnect();
         }
+        super.onPause();
     }
 
     private void initializeSeekTrack() {
@@ -166,58 +197,7 @@ public class MainActivity extends Activity
     }
 
     private void initializeButton() {
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                CharSequence charSequence = txtRadioLabel.getText();
-
-                String radio = charSequence.toString();
-
-                if (radio.isEmpty()) {
-                    radio = String.valueOf(DEFAULT_RADIO);
-                }
-
-                button.setEnabled(false);
-                progressBar.setVisibility(View.VISIBLE);
-
-                Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BACKEND_ENDPOINT)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
-
-                StopsService service = retrofit.create(StopsService.class);
-
-                service.listStops(latitude, longitude, radio).enqueue(new Callback<QueryResult>() {
-
-                    @Override
-                    public void onResponse(
-                        Call<QueryResult> call, retrofit2.Response<QueryResult> response) {
-
-                        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
-
-                        intent.putExtra("queryResult", response.body());
-
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                        getApplicationContext().startActivity(intent);
-
-                        button.setEnabled(true);
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-
-                    @Override
-                    public void onFailure(Call<QueryResult> call, Throwable t) {
-                        button.setEnabled(true);
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                        Log.e(TAG, "Error calling server ", t);
-                    }
-                });
-
-            }
-
-        });
+        button.setOnClickListener(this);
     }
 
     private void initializeGooglePlayServices() {
