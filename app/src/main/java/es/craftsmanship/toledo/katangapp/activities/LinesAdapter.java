@@ -45,8 +45,8 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
         public LinesHolder(View itemView) {
             super(itemView);
-            line = (TextView) itemView.findViewById(R.id.linea);
-            time = (TextView) itemView.findViewById(R.id.tiempo);
+            line = (TextView) itemView.findViewById(R.id.line);
+            time = (TextView) itemView.findViewById(R.id.time);
         }
 
         public void bind(RouteResult route) {
