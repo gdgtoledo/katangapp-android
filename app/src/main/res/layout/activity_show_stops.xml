@@ -4,17 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#be303030"
-    android:paddingBottom="8dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="8dp"
     tools:context="es.craftsmanship.toledo.katangapp.activities.ShowStopsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/stops"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#be303030"
         android:fadeScrollbars="true"
         android:scrollbars="vertical" />
 </RelativeLayout>
