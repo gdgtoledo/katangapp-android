@@ -29,6 +29,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import retrofit2.Call;
@@ -40,7 +42,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * @author Cristóbal Hermida
  */
 public class MainActivity extends Activity
-    implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+    implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        LocationListener{
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private static final int DEFAULT_RADIO = 500;
@@ -56,6 +59,12 @@ public class MainActivity extends Activity
     private TextView txtKatangaLabel;
     private TextView txtRadiolabel;
 
+    private static final LocationRequest GPS_REQUEST = LocationRequest.create()
+            .setInterval(3000)
+            .setFastestInterval(16)
+            .setNumUpdates(3)
+            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
     @Override
     public void onConnected(Bundle bundle) {
         Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
@@ -63,6 +72,15 @@ public class MainActivity extends Activity
         if (lastLocation != null) {
             longitude = lastLocation.getLongitude();
             latitude = lastLocation.getLatitude();
+        }
+        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, GPS_REQUEST, this);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (location != null) {
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
         }
     }
 
