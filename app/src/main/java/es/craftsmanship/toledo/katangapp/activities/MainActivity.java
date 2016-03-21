@@ -56,7 +56,6 @@ public class MainActivity extends Activity
     private Double latitude;
     private ProgressBar progressBar;
     private SeekBar seekBar;
-    private TextView txtKatangaLabel;
     private TextView txtRadioLabel;
 
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
@@ -254,7 +253,7 @@ public class MainActivity extends Activity
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-        txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
+        TextView txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
         button = (ImageView) findViewById(R.id.button);
