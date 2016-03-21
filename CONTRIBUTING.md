@@ -44,7 +44,7 @@ Having an order criterium  will increase speed when searching for them.
 Use alphabetical order to define the attributes in a class.
 
 ### Attributes in a XML element
-Use alphabetical order to define the attributes in a XML element.
+Use common Android-style order (see [http://blog.jetbrains.com/idea/2013/10/rearrange-attributes-in-android-xml-files-with-intellij-idea-13](http://blog.jetbrains.com/idea/2013/10/rearrange-attributes-in-android-xml-files-with-intellij-idea-13)).
 
 ### Imports
 Order imports by this criterium:
