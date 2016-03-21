@@ -17,11 +17,10 @@ import java.util.List;
  */
 public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder> {
 
-    private static List<RouteResult> list;
+    private List<RouteResult> lines;
 
-    public LinesAdapter(List<RouteResult> list){
-        this.list = list;
-       
+    public LinesAdapter(List<RouteResult> lines) {
+        this.lines = lines;
     }
 
     @Override
@@ -33,13 +32,12 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
     @Override
     public void onBindViewHolder(LinesHolder holder, int position) {
-        holder.bind(list.get(position),position);
+        holder.bind(lines.get(position));
     }
 
     @Override
     public int getItemCount() {
-
-       return list.size();
+        return lines.size();
     }
 
     static class LinesHolder extends RecyclerView.ViewHolder{
@@ -55,12 +53,11 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
         }
 
-        public void bind(RouteResult route,int positcion) {
-
             linea.setText(route.getIdl());
             tiempo.setText(String.valueOf(route.getTime()));
 
 
+        public void bind(RouteResult route) {
         }
     }
 
