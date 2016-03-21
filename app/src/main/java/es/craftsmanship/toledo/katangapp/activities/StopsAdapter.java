@@ -27,7 +27,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
     private final List<BusStopResult> stops;
     private Context context;
-    private RecyclerView lineas;
+    private RecyclerView lines;
     private TextView address =null;
     private TextView distance =null;
 
@@ -63,8 +63,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             address = (TextView) itemView.findViewById(R.id.stop_address);
             distance = (TextView) itemView.findViewById(R.id.stop_distance);
-            lineas = (RecyclerView) itemView.findViewById(R.id.lineas);
-            lineas.setLayoutManager(new LinearLayoutManager(context));
+            lines = (RecyclerView) itemView.findViewById(R.id.lineas);
+            lines.setLayoutManager(new LinearLayoutManager(context));
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
@@ -77,8 +77,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             int size = results.size();
 
-            lineas.setMinimumHeight(size * 100);
-            lineas.setAdapter(new LinesAdapter(results));
+            lines.setMinimumHeight(size * 100);
+            lines.setAdapter(new LinesAdapter(results));
 
             BusStop busStop = stop.getBusStop();
 

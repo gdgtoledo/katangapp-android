@@ -57,7 +57,7 @@ public class MainActivity extends Activity
     private ProgressBar progressBar;
     private SeekBar seekBar;
     private TextView txtKatangaLabel;
-    private TextView txtRadiolabel;
+    private TextView txtRadioLabel;
 
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
         .setInterval(3000)
@@ -152,7 +152,7 @@ public class MainActivity extends Activity
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtRadiolabel.setText(String.valueOf(progress));
+                txtRadioLabel.setText(String.valueOf(progress));
             }
 
             @Override
@@ -174,7 +174,7 @@ public class MainActivity extends Activity
 
             @Override
             public void onClick(View v) {
-                CharSequence charSequence = txtRadiolabel.getText();
+                CharSequence charSequence = txtRadioLabel.getText();
 
                 String radio = charSequence.toString();
 
@@ -256,7 +256,7 @@ public class MainActivity extends Activity
     private void initializeVariables() {
         txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadiolabel = (TextView) findViewById(R.id.txtRadioLabel);
+        txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
         button = (ImageView) findViewById(R.id.button);
         button.setEnabled(true);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -264,7 +264,7 @@ public class MainActivity extends Activity
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
         txtKatangaLabel.setTypeface(tf);
-        txtRadiolabel.setTypeface(tf);
+        txtRadioLabel.setTypeface(tf);
     }
 
 }
