@@ -40,6 +40,7 @@ import com.squareup.otto.Subscribe;
 
 /**
  * @author Cristóbal Hermida
+ * @author Javier Gamarra
  */
 public class MainActivity extends Activity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
