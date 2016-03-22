@@ -12,5 +12,5 @@ public interface StopsService {
 
     @GET("paradas")
     Call<QueryResult> listStops(
-            @Query("lt") Double latitude, @Query("ln") Double longitude, @Query("r") String radius);
+        @Query("lt") Double latitude, @Query("ln") Double longitude, @Query("r") String radius);
 }
