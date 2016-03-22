@@ -1,12 +1,14 @@
 package es.craftsmanship.toledo.katangapp.interactors;
 
-import java.io.IOException;
-
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.services.StopsService;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
+
+import java.io.IOException;
+
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
