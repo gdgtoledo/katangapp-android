@@ -12,9 +12,6 @@ public class AndroidBus {
 
     private static final Bus BUS = new MainThreadBus();
 
-    private AndroidBus() {
-    }
-
     public static Bus getInstance() {
         return BUS;
     }
@@ -36,4 +33,8 @@ public class AndroidBus {
             }
         }
     }
+
+    private AndroidBus() {
+    }
+
 }
