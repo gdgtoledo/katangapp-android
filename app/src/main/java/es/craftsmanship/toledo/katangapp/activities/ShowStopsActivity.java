@@ -26,7 +26,9 @@ public class ShowStopsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("queryResult") && intent.getSerializableExtra("queryResult") != null) {
+        if (intent.hasExtra("queryResult") &&
+            (intent.getSerializableExtra("queryResult") != null)) {
+
             QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
             List<BusStopResult> busStopResults = queryResult.getResults();
