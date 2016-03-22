@@ -31,22 +31,25 @@ public class StopsInteractor implements Runnable {
     public void run() {
         try {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BACKEND_ENDPOINT)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
+                .baseUrl(BACKEND_ENDPOINT)
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
 
             StopsService service = retrofit.create(StopsService.class);
 
-            Response<QueryResult> response = service.listStops(latitude, longitude, radio).execute();
+            Response<QueryResult> response = service.listStops(
+                latitude, longitude, radio).execute();
 
             if (response.isSuccess()) {
                 AndroidBus.getInstance().post(response.body());
-            } else {
+            }
+            else {
                 AndroidBus.getInstance().post(new Error(response.message()));
             }
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             AndroidBus.getInstance().post(e);
         }
     }
+
 }
