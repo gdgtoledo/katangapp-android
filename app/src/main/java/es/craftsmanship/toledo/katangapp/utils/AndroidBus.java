@@ -23,12 +23,15 @@ public class AndroidBus {
         public void post(final Object event) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
                 super.post(event);
-            } else {
+            }
+            else {
                 handler.post(new Runnable() {
+
                     @Override
                     public void run() {
                         MainThreadBus.super.post(event);
                     }
+
                 });
             }
         }
