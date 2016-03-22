@@ -253,7 +253,6 @@ public class MainActivity extends Activity
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-        TextView txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
         button = (ImageView) findViewById(R.id.button);
@@ -261,6 +260,8 @@ public class MainActivity extends Activity
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
+        TextView txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
 
         txtKatangaLabel.setTypeface(tf);
         txtRadioLabel.setTypeface(tf);
