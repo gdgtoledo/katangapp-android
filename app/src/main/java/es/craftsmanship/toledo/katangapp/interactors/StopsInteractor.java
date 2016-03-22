@@ -40,12 +40,13 @@ public class StopsInteractor implements Runnable {
             Response<QueryResult> response = service.listStops(
                 latitude, longitude, radio).execute();
 
+            Object event = new Error(response.message());
+
             if (response.isSuccess()) {
-                AndroidBus.getInstance().post(response.body());
+                event = response.body();
             }
-            else {
-                AndroidBus.getInstance().post(new Error(response.message()));
-            }
+
+            AndroidBus.getInstance().post(event);
         }
         catch (IOException e) {
             AndroidBus.getInstance().post(e);
