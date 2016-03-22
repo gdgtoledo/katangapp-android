@@ -1,19 +1,23 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.List;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
+
+import android.content.Context;
+
+import android.graphics.Typeface;
+
+import android.support.v7.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * @author Javier Gamarra
