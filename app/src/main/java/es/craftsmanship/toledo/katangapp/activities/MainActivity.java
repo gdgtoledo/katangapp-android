@@ -156,9 +156,6 @@ public class MainActivity extends Activity
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Toast.makeText(
-                //     getApplicationContext(), "Radio de búsqueda", Toast.LENGTH_SHORT).show();
-                //se debe poner el valor más vistoso
             }
 
             @Override
