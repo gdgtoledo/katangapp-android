@@ -76,8 +76,7 @@ public class MainActivity extends Activity
             radio = String.valueOf(DEFAULT_RADIO);
         }
 
-        button.setEnabled(false);
-        progressBar.setVisibility(View.VISIBLE);
+        toggleVisualComponents(false);
 
         StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
 
@@ -94,14 +93,12 @@ public class MainActivity extends Activity
 
         getApplicationContext().startActivity(intent);
 
-        button.setEnabled(true);
-        progressBar.setVisibility(View.INVISIBLE);
+        toggleVisualComponents(true);
     }
 
     @Subscribe
     public void stopsReceived(Error error) {
-        button.setEnabled(true);
-        progressBar.setVisibility(View.INVISIBLE);
+        toggleVisualComponents(true);
 
         Log.e(TAG, "Error calling server ", error);
 
@@ -260,6 +257,18 @@ public class MainActivity extends Activity
 
         txtKatangaLabel.setTypeface(tf);
         txtRadioLabel.setTypeface(tf);
+    }
+
+    private void toggleVisualComponents(boolean buttonEnabled) {
+        button.setEnabled(buttonEnabled);
+
+        int visibility = View.VISIBLE;
+
+        if (buttonEnabled) {
+            visibility = View.INVISIBLE;
+        }
+
+        progressBar.setVisibility(visibility);
     }
 
 }
