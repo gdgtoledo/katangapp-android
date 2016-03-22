@@ -47,13 +47,17 @@ public class MainActivity extends Activity
         LocationListener, View.OnClickListener {
 
     private static final int DEFAULT_RADIO = 500;
-    private static final String TAG = "KATANGAPP";
+
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
         .setInterval(3000)
         .setFastestInterval(16)
         .setNumUpdates(3)
         .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+    private static final String TAG = "KATANGAPP";
+
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
+
     private ImageView button;
     private GoogleApiClient googleApiClient;
     private Double longitude;
