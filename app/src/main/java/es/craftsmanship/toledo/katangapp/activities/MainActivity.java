@@ -248,8 +248,9 @@ public class MainActivity extends Activity
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
         button = (ImageView) findViewById(R.id.button);
-        button.setEnabled(true);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+
+        toggleVisualComponents(true);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
