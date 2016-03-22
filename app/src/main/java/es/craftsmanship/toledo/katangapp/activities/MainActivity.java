@@ -80,6 +80,7 @@ public class MainActivity extends Activity
         progressBar.setVisibility(View.VISIBLE);
 
         StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
+
         new Thread(stopsInteractor).start();
     }
 
@@ -105,6 +106,7 @@ public class MainActivity extends Activity
         Log.e(TAG, "Error calling server ", error);
 
         View content = findViewById(android.R.id.content);
+
         Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
     }
 
@@ -178,6 +180,7 @@ public class MainActivity extends Activity
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
+
         AndroidBus.getInstance().register(this);
     }
 
@@ -188,6 +191,7 @@ public class MainActivity extends Activity
         if (googleApiClient != null) {
             googleApiClient.disconnect();
         }
+
         super.onPause();
     }
 
