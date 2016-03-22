@@ -7,13 +7,21 @@ import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.app.Activity;
 import android.app.Dialog;
+
 import android.content.Intent;
+
 import android.graphics.Typeface;
+
 import android.location.Location;
+
 import android.os.Bundle;
+
 import android.support.design.widget.Snackbar;
+
 import android.util.Log;
+
 import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -27,6 +35,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
 import com.squareup.otto.Subscribe;
 
 /**
