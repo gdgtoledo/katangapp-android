@@ -60,6 +60,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
             lines = (RecyclerView) itemView.findViewById(R.id.lines);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
             address.setTypeface(tf);
             distance.setTypeface(tf);
         }
