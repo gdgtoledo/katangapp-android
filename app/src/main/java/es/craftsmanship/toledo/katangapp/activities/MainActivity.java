@@ -265,6 +265,8 @@ public class MainActivity extends Activity
 
         int visibility = View.VISIBLE;
 
+        txtRadioLabel.setVisibility(visibility);
+
         if (buttonEnabled) {
             visibility = View.INVISIBLE;
         }
