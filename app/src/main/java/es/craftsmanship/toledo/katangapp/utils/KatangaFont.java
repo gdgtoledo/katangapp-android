@@ -4,6 +4,9 @@ import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author Manuel de la Peña
  */
@@ -14,7 +17,17 @@ public enum KatangaFont {
     public static Typeface getFont(AssetManager assetManager, KatangaFont font) {
         String fontPath = getFontPath(font);
 
-        return Typeface.createFromAsset(assetManager, fontPath);
+        Typeface typeface = _katangaFonts.get(font);
+
+        if (typeface != null) {
+            return typeface;
+        }
+
+        typeface = Typeface.createFromAsset(assetManager, fontPath);
+
+        _katangaFonts.put(font, typeface);
+
+        return typeface;
     }
     
     @NonNull
@@ -29,5 +42,7 @@ public enum KatangaFont {
                 return "fonts/Quicksand-Regular.ttf";
         }
     }
+
+    private static Map<KatangaFont, Typeface> _katangaFonts = new ConcurrentHashMap<>();
 
 }
