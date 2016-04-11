@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 import java.util.List;
 
 /**
@@ -54,7 +56,12 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
         public void bind(RouteResult route) {
             line.setText(route.getIdl());
-            time.setText(String.valueOf(route.getTime()));
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+
+            String formattedTime = numberFormat.format(route.getTime());
+
+            time.setText(formattedTime);
         }
     }
 
