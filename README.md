@@ -8,6 +8,6 @@ In the main diretory, execute `gradlew assemble` and the unsigned APK will be ge
 
 ## Thanks to...
 
-* [Cristobal Hermida](@chremidap)
-* [Javier Gamarra] (@nhpatt)
-* [Manuel de la Peña] (@mdelapenya)
+* [@chermidap](https://github.com/chermidap)
+* [@nhpatt] (https://github.com/nhpatt)
+* [@mdelapenya] (https://github.com/mdelapenya)
