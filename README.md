@@ -4,7 +4,7 @@
 
 ## Building the Android APK
 
-In the main diretory, execute `gradlew assemble` and the unsigned APK will be generated in the `./app/build/outputs/apk` folder.
+In the main directory, execute `gradlew assemble` and the unsigned APK will be generated in the `./app/build/outputs/apk` folder.
 
 ## Thanks to...
 
