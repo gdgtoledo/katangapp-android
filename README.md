@@ -4,6 +4,6 @@
 
 ## Thanks to...
 
-* Cristobal Hermida <chermidap@gmail.com>
-* Javier Gamarra <nhpatt@gmail.com>
-* Manuel de la Peña <manuel.delapenya@liferay.com>
+* [Cristobal Hermida](@chremidap)
+* [Javier Gamarra] (@nhpatt)
+* [Manuel de la Peña] (@mdelapenya)
