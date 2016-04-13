@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchComponentsFrame"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="120dp"
         android:fontFamily=""
         android:text="@string/katanga"
         android:textAppearance="?android:attr/textAppearanceLarge"
