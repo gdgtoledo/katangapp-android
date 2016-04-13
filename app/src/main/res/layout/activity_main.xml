@@ -25,12 +25,22 @@
         android:textColorHighlight="@android:color/white"
         android:textSize="40sp" />
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:max="1000"
+        android:progress="300"
+        android:progressBackgroundTint="@android:color/white" />
+
     <FrameLayout
         android:id="@+id/searchComponentsFrame"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_below="@id/seekBar">
 
         <at.markushi.ui.CircleButton
             android:id="@+id/searchButton"
@@ -46,17 +56,6 @@
             android:padding="10dp"
             android:visibility="invisible" />
     </FrameLayout>
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchComponentsFrame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:max="1000"
-        android:progress="300"
-        android:progressBackgroundTint="@android:color/white" />
 
     <TextView
         android:id="@+id/txtRadioLabel"
