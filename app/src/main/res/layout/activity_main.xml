@@ -15,7 +15,7 @@
         android:id="@+id/title_katanga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/center"
+        android:layout_above="@+id/searchComponentsFrame"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
         android:fontFamily=""
@@ -26,7 +26,7 @@
         android:textSize="40sp" />
 
     <FrameLayout
-        android:id="@+id/center"
+        android:id="@+id/searchComponentsFrame"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
@@ -51,7 +51,7 @@
         android:id="@+id/seekBar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/center"
+        android:layout_below="@+id/searchComponentsFrame"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="53dp"
         android:max="1000"
