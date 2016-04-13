@@ -63,7 +63,7 @@ public class MainActivity extends Activity
 
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
 
-    private ImageView button;
+    private ImageView searchButton;
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
@@ -247,7 +247,7 @@ public class MainActivity extends Activity
     }
 
     private void initializeButton() {
-        button.setOnClickListener(this);
+        searchButton.setOnClickListener(this);
     }
 
     private void initializeGooglePlayServices() {
@@ -293,7 +293,7 @@ public class MainActivity extends Activity
     private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
-        button = (ImageView) findViewById(R.id.button);
+        searchButton = (ImageView) findViewById(R.id.searchButton);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
         toggleVisualComponents(true);
@@ -307,7 +307,7 @@ public class MainActivity extends Activity
     }
 
     private void toggleVisualComponents(boolean buttonEnabled) {
-        button.setEnabled(buttonEnabled);
+        searchButton.setEnabled(buttonEnabled);
 
         int visibility = View.VISIBLE;
 
