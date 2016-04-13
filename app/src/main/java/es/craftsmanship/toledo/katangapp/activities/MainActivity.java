@@ -67,7 +67,7 @@ public class MainActivity extends Activity
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
-    private ProgressBar progressBar;
+    private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private TextView txtRadioLabel;
 
@@ -294,7 +294,7 @@ public class MainActivity extends Activity
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
         searchButton = (ImageView) findViewById(R.id.searchButton);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+        searchProgressBar = (ProgressBar) findViewById(R.id.searchProgressBar);
 
         toggleVisualComponents(true);
 
@@ -317,7 +317,7 @@ public class MainActivity extends Activity
             visibility = View.INVISIBLE;
         }
 
-        progressBar.setVisibility(visibility);
+        searchProgressBar.setVisibility(visibility);
     }
 
 }

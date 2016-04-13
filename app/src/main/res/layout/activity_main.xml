@@ -40,7 +40,7 @@
             app:cb_pressedRingWidth="8dp" />
 
         <ProgressBar
-            android:id="@+id/progressBar1"
+            android:id="@+id/searchProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
