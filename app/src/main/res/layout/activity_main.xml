@@ -40,7 +40,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/seekBar">
+        android:layout_below="@id/seekBar"
+        android:layout_alignParentBottom="true">
 
         <at.markushi.ui.CircleButton
             android:id="@+id/searchButton"
