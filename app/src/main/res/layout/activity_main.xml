@@ -71,5 +71,6 @@
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#76ffffff"
-        android:textColorHighlight="#8bffffff" />
+        android:textColorHighlight="#8bffffff"
+        android:visibility="visible" />
 </RelativeLayout>
