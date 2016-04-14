@@ -221,10 +221,12 @@ public class MainActivity extends Activity
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(true);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(false);
             }
 
         });
