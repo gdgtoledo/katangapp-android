@@ -67,6 +67,7 @@
         android:layout_marginTop="30dp"
         android:height="50dp"
         android:singleLine="true"
+        android:text="500"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#76ffffff"
