@@ -47,6 +47,7 @@
             android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/ic_place_24dp"
             app:cb_color="#f6ec5e"
             app:cb_pressedRingWidth="8dp" />
 
