@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:max="1000"
-        android:progress="300"
+        android:progress="500"
         android:progressBackgroundTint="@android:color/white" />
 
     <FrameLayout
