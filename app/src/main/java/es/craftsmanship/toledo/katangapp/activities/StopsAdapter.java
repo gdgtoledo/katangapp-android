@@ -81,8 +81,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             address.setText(busStop.getAddress());
 
-            // TODO we need to think about i18n for lang keys
-            String sb = "(" + String.format("%.2f", stop.getDistance()) + " metros)";
+            String sb = "(" + String.format("%.2f", stop.getDistance()) + " " +
+                context.getString(R.string.meters) + ")";
 
             distance.setText(sb);
         }
