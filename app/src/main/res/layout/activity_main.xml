@@ -33,7 +33,8 @@
         android:layout_centerVertical="true"
         android:max="1000"
         android:progress="500"
-        android:progressBackgroundTint="@android:color/white" />
+        android:progressDrawable="@drawable/seekbar_progressbar"
+        android:thumb="@drawable/seekbar_thumb" />
 
     <FrameLayout
         android:id="@+id/searchComponentsFrame"
