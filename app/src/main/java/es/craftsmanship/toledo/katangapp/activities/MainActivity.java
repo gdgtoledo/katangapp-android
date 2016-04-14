@@ -5,6 +5,8 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
+import at.markushi.ui.CircleButton;
+
 import android.Manifest;
 
 import android.app.Activity;
@@ -27,7 +29,6 @@ import android.util.Log;
 
 import android.view.View;
 
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -63,7 +64,7 @@ public class MainActivity extends Activity
 
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
 
-    private ImageView searchButton;
+    private CircleButton searchButton;
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
@@ -295,7 +296,7 @@ public class MainActivity extends Activity
     private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
-        searchButton = (ImageView) findViewById(R.id.searchButton);
+        searchButton = (CircleButton) findViewById(R.id.searchButton);
         searchProgressBar = (ProgressBar) findViewById(R.id.searchProgressBar);
 
         toggleVisualComponents(true);
