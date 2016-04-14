@@ -69,11 +69,11 @@ public class MainActivity extends Activity
     private Double latitude;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
-    private TextView txtRadioLabel;
+    private TextView radioLabel;
 
     @Override
     public void onClick(View v) {
-        CharSequence charSequence = txtRadioLabel.getText();
+        CharSequence charSequence = radioLabel.getText();
 
         String radio = charSequence.toString();
 
@@ -232,7 +232,7 @@ public class MainActivity extends Activity
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtRadioLabel.setText(String.valueOf(progress));
+                radioLabel.setText(String.valueOf(progress));
             }
 
             @Override
@@ -292,7 +292,7 @@ public class MainActivity extends Activity
      */
     private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        txtRadioLabel = (TextView) findViewById(R.id.txtRadioLabel);
+        radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (ImageView) findViewById(R.id.searchButton);
         searchProgressBar = (ProgressBar) findViewById(R.id.searchProgressBar);
 
@@ -303,7 +303,7 @@ public class MainActivity extends Activity
         TextView txtKatangaLabel = (TextView) findViewById(R.id.title_katanga);
 
         txtKatangaLabel.setTypeface(tf);
-        txtRadioLabel.setTypeface(tf);
+        radioLabel.setTypeface(tf);
     }
 
     private void toggleVisualComponents(boolean buttonEnabled) {
@@ -311,7 +311,7 @@ public class MainActivity extends Activity
 
         int visibility = View.VISIBLE;
 
-        txtRadioLabel.setVisibility(visibility);
+        radioLabel.setVisibility(visibility);
 
         if (buttonEnabled) {
             visibility = View.INVISIBLE;
