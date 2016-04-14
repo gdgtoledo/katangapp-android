@@ -49,7 +49,7 @@ import com.squareup.otto.Subscribe;
  */
 public class MainActivity extends Activity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener, View.OnClickListener {
+        LocationListener {
 
     private static final int DEFAULT_RADIO = 500;
 
@@ -70,23 +70,6 @@ public class MainActivity extends Activity
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private TextView radioLabel;
-
-    @Override
-    public void onClick(View v) {
-        CharSequence charSequence = radioLabel.getText();
-
-        String radio = charSequence.toString();
-
-        if (radio.isEmpty()) {
-            radio = String.valueOf(DEFAULT_RADIO);
-        }
-
-        toggleVisualComponents(false);
-
-        StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
-
-        new Thread(stopsInteractor).start();
-    }
 
     @Subscribe
     public void stopsReceived(QueryResult queryResult) {
@@ -202,7 +185,7 @@ public class MainActivity extends Activity
 
         initializeSeekTrack();
 
-        initializeButton();
+        initializeClickableComponents();
     }
 
     @Override
@@ -246,8 +229,27 @@ public class MainActivity extends Activity
         });
     }
 
-    private void initializeButton() {
-        searchButton.setOnClickListener(this);
+    private void initializeClickableComponents() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                CharSequence charSequence = radioLabel.getText();
+
+                String radio = charSequence.toString();
+
+                if (radio.isEmpty()) {
+                    radio = String.valueOf(DEFAULT_RADIO);
+                }
+
+                toggleVisualComponents(false);
+
+                StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
+
+                new Thread(stopsInteractor).start();
+            }
+
+        });
     }
 
     private void initializeGooglePlayServices() {
