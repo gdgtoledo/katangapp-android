@@ -65,6 +65,7 @@ public class MainActivity extends Activity
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
 
     private CircleButton searchButton;
+    private CircleButton helpButton;
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
@@ -253,6 +254,17 @@ public class MainActivity extends Activity
             }
 
         });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+
+                startActivity(intent);
+            }
+
+        });
     }
 
     private void initializeGooglePlayServices() {
@@ -299,6 +311,7 @@ public class MainActivity extends Activity
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
+        helpButton = (CircleButton) findViewById(R.id.helpButton);
         searchProgressBar = (ProgressBar) findViewById(R.id.searchProgressBar);
 
         toggleVisualComponents(true);

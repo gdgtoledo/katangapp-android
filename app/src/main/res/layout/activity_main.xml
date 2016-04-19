@@ -25,6 +25,18 @@
         android:textColorHighlight="@android:color/white"
         android:textSize="40sp" />
 
+    <at.markushi.ui.CircleButton
+        android:id="@+id/helpButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_info_outline_24dp"
+        app:cb_color="#5eb7f6"
+        app:cb_pressedRingWidth="4dp"
+        android:layout_toEndOf="@+id/title_katanga"
+        android:layout_above="@+id/title_katanga"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="50dp" />
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="300dp"
