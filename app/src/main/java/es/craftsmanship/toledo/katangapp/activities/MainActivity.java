@@ -2,22 +2,18 @@ package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.interactors.StopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
-import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import at.markushi.ui.CircleButton;
 
 import android.Manifest;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import android.graphics.Typeface;
-
-import android.location.Location;
 
 import android.os.Bundle;
 
@@ -35,14 +31,6 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 
 import com.squareup.otto.Subscribe;
 
@@ -50,26 +38,13 @@ import com.squareup.otto.Subscribe;
  * @author Cristóbal Hermida
  * @author Javier Gamarra
  */
-public class MainActivity extends Activity
-    implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+public class MainActivity extends BaseGeoLocatedActivity {
 
     private static final int DEFAULT_RADIO = 500;
 
-    private static final LocationRequest GPS_REQUEST = LocationRequest.create()
-        .setInterval(3000)
-        .setFastestInterval(16)
-        .setNumUpdates(3)
-        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
     private static final String TAG = "KATANGAPP";
 
-    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
-
     private CircleButton searchButton;
-    private GoogleApiClient googleApiClient;
-    private Double longitude;
-    private Double latitude;
     private ImageView infoIcon;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
@@ -97,19 +72,6 @@ public class MainActivity extends Activity
         View content = findViewById(android.R.id.content);
 
         Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-
-        if (lastLocation != null) {
-            longitude = lastLocation.getLongitude();
-            latitude = lastLocation.getLatitude();
-        }
-
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-            googleApiClient, GPS_REQUEST, this);
     }
 
     private void checkRuntimePermissions(String[] permissions, int requestCode) {
@@ -141,41 +103,6 @@ public class MainActivity extends Activity
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-        if (location != null) {
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-            return;
-        }
-
-        if (resultCode == RESULT_OK) {
-            if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
-                googleApiClient.connect();
-            }
-        }
-        else if (resultCode == RESULT_CANCELED) {
-            Toast.makeText(
-                this, "Google Play Services must be installed.", Toast.LENGTH_SHORT).show();
-
-            finish();
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -183,35 +110,11 @@ public class MainActivity extends Activity
 
         initializeRuntimePermissions();
 
-        initializeGooglePlayServices();
-
         initializeVariables();
 
         initializeSeekTrack();
 
         initializeClickableComponents();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (googleApiClient != null) {
-            googleApiClient.connect();
-        }
-
-        AndroidBus.getInstance().register(this);
-    }
-
-    @Override
-    protected void onPause() {
-        AndroidBus.getInstance().unregister(this);
-
-        if (googleApiClient != null) {
-            googleApiClient.disconnect();
-        }
-
-        super.onPause();
     }
 
     private void initializeSeekTrack() {
@@ -260,39 +163,14 @@ public class MainActivity extends Activity
 
                 toggleVisualComponents(false);
 
-                StopsInteractor stopsInteractor = new StopsInteractor(radio, latitude, longitude);
+                StopsInteractor stopsInteractor = new StopsInteractor(
+                    radio, getLatitude(), getLongitude());
 
                 new Thread(stopsInteractor).start();
             }
 
         });
 
-    }
-
-    private void initializeGooglePlayServices() {
-        int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-
-        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
-            /*
-            * google play services is missing or update is required
-            *  return code could be
-            * SUCCESS,
-            * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
-            * SERVICE_DISABLED, SERVICE_INVALID.
-            */
-            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES);
-
-            errorDialog.show();
-
-            return;
-        }
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .addApi(LocationServices.API)
-            .build();
     }
 
     private void initializeRuntimePermissions() {
