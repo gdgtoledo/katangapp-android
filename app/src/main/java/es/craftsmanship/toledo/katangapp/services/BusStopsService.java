@@ -9,9 +9,9 @@ import retrofit2.http.Query;
 /**
  * @author Javier Gamarra
  */
-public interface StopsService {
+public interface BusStopsService {
 
     @GET("main")
-    Call<QueryResult> listStops(
+    Call<QueryResult> listBusStops(
         @Query("lt") Double latitude, @Query("ln") Double longitude, @Query("r") String radius);
 }

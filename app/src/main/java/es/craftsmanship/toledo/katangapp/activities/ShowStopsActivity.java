@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftsmanship.toledo.katangapp.interactors.StopsInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
@@ -88,10 +88,10 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             @Override
             public void onRefresh() {
-                StopsInteractor stopsInteractor = new StopsInteractor(
+                BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                     radio, getLatitude(), getLongitude());
 
-                new Thread(stopsInteractor).start();
+                new Thread(busStopsInteractor).start();
             }
 
         });

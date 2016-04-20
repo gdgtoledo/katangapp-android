@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftsmanship.toledo.katangapp.interactors.StopsInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
@@ -156,10 +156,10 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
                 toggleVisualComponents(false);
 
-                StopsInteractor stopsInteractor = new StopsInteractor(
+                BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                     radio, getLatitude(), getLongitude());
 
-                new Thread(stopsInteractor).start();
+                new Thread(busStopsInteractor).start();
             }
 
         });
