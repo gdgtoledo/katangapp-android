@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class ShowStopsActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class ShowStopsActivity extends AppCompatActivity {
                 return;
             }
 
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stops);
+            recyclerView = (RecyclerView) findViewById(R.id.stops);
 
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(new StopsAdapter(busStopResults));
