@@ -45,8 +45,7 @@ public class ShowStopsActivity extends AppCompatActivity {
 
             recyclerView = (RecyclerView) findViewById(R.id.stops);
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new StopsAdapter(busStopResults));
+            processResults(busStopResults);
         }
         else {
             processEmptyResults();
@@ -61,6 +60,11 @@ public class ShowStopsActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         startActivity(intent);
+    }
+
+    private void processResults(List<BusStopResult> busStopResults) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new StopsAdapter(busStopResults));
     }
 
 }
