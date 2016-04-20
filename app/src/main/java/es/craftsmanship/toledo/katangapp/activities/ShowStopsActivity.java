@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +33,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
     @Subscribe
     public void busStopsReceived(QueryResult queryResult) {
-        busStopResults.clear();
-
         List<BusStopResult> results = queryResult.getResults();
 
         busStopResults.addAll(results);
@@ -55,9 +54,11 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
-            busStopResults = queryResult.getResults();
+            busStopResults = new ArrayList<>();
 
-            if (busStopResults.isEmpty()) {
+            List<BusStopResult> results = queryResult.getResults();
+
+            if (results.isEmpty()) {
                 processEmptyResults();
 
                 return;
@@ -88,6 +89,8 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             @Override
             public void onRefresh() {
+                busStopResults.clear();
+
                 BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                     radio, getLatitude(), getLongitude());
 
