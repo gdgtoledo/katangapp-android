@@ -15,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 
 import android.widget.Toast;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.List;
 
 /**
@@ -26,6 +28,22 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
     private List<BusStopResult> busStopResults;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    @Subscribe
+    public void busStopsReceived(Error error) {
+    }
+
+    @Subscribe
+    public void busStopsReceived(QueryResult queryResult) {
+        busStopResults.clear();
+
+        List<BusStopResult> results = queryResult.getResults();
+
+        busStopResults.addAll(results);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new StopsAdapter(busStopResults));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +72,7 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             initializeSwipeRefreshLayout();
 
-            processResults(busStopResults);
+            busStopsReceived(queryResult);
         }
         else {
             processEmptyResults();
@@ -71,7 +89,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             @Override
             public void onRefresh() {
-                processResults(busStopResults);
             }
 
         });
@@ -97,11 +114,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         startActivity(intent);
-    }
-
-    private void processResults(List<BusStopResult> busStopResults) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new StopsAdapter(busStopResults));
     }
 
 }
