@@ -2,7 +2,6 @@ package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import android.content.Intent;
@@ -10,6 +9,8 @@ import android.content.Intent;
 import android.location.Location;
 
 import android.os.Bundle;
+
+import android.support.v7.app.AppCompatActivity;
 
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import com.google.android.gms.location.LocationServices;
 /**
  * @author Manuel de la Peña
  */
-public class BaseGeoLocatedActivity extends Activity
+public class BaseGeoLocatedActivity extends AppCompatActivity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
