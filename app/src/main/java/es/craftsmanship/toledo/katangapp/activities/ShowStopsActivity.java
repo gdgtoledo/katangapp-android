@@ -30,10 +30,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Subscribe
-    public void busStopsReceived(Error error) {
-    }
-
-    @Subscribe
     public void busStopsReceived(QueryResult queryResult) {
         busStopResults.clear();
 

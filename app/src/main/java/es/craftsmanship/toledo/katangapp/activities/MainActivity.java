@@ -17,11 +17,8 @@ import android.graphics.Typeface;
 
 import android.os.Bundle;
 
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-
-import android.util.Log;
 
 import android.view.View;
 
@@ -42,8 +39,6 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
     private static final int DEFAULT_RADIO = 500;
 
-    private static final String TAG = "KATANGAPP";
-
     private CircleButton searchButton;
     private ImageView infoIcon;
     private ProgressBar searchProgressBar;
@@ -54,11 +49,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
     public void busStopsReceived(Error error) {
         toggleVisualComponents(true);
 
-        Log.e(TAG, "Error calling server ", error);
-
-        View content = findViewById(android.R.id.content);
-
-        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
+        super.busStopsReceived(error);
     }
 
     @Subscribe

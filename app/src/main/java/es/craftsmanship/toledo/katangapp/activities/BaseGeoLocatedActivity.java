@@ -11,7 +11,12 @@ import android.location.Location;
 
 import android.os.Bundle;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+
+import android.util.Log;
+
+import android.view.View;
 
 import android.widget.Toast;
 
@@ -21,6 +26,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
+import com.squareup.otto.Subscribe;
 
 /**
  * @author Manuel de la Peña
@@ -37,9 +44,20 @@ public abstract class BaseGeoLocatedActivity extends AppCompatActivity
 
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
 
+    private static final String TAG = "KATANGAPP";
+
     private GoogleApiClient googleApiClient;
     private Double latitude;
     private Double longitude;
+
+    @Subscribe
+    public void busStopsReceived(Error error) {
+        Log.e(TAG, "Error calling server ", error);
+
+        View content = findViewById(android.R.id.content);
+
+        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
+    }
 
     @Override
     public void onConnected(Bundle bundle) {
