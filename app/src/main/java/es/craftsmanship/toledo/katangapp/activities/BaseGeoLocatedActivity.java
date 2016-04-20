@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import android.app.Dialog;
@@ -24,9 +25,9 @@ import com.google.android.gms.location.LocationServices;
 /**
  * @author Manuel de la Peña
  */
-public class BaseGeoLocatedActivity extends AppCompatActivity
+public abstract class BaseGeoLocatedActivity extends AppCompatActivity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener, BusStopsSubscriber {
 
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
         .setInterval(3000)
