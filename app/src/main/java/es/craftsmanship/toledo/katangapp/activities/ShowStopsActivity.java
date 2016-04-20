@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class ShowStopsActivity extends AppCompatActivity {
 
+    private List<BusStopResult> busStopResults;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -39,7 +40,7 @@ public class ShowStopsActivity extends AppCompatActivity {
 
             QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
 
-            List<BusStopResult> busStopResults = queryResult.getResults();
+            busStopResults = queryResult.getResults();
 
             if (busStopResults.isEmpty()) {
                 processEmptyResults();
@@ -51,7 +52,7 @@ public class ShowStopsActivity extends AppCompatActivity {
 
             swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
-            initializeSwipeRefreshLayout(busStopResults);
+            initializeSwipeRefreshLayout();
 
             processResults(busStopResults);
         }
@@ -60,7 +61,7 @@ public class ShowStopsActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeSwipeRefreshLayout(final List<BusStopResult> busStopResults) {
+    private void initializeSwipeRefreshLayout() {
         swipeRefreshLayout.setColorSchemeColors(
             Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
 
