@@ -66,6 +66,8 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
+            String radio = (String) intent.getSerializableExtra("radio");
+
             initializeSwipeRefreshLayout();
 
             busStopsReceived(queryResult);
