@@ -51,6 +51,17 @@ public class MainActivity extends BaseGeoLocatedActivity {
     private TextView radioLabel;
 
     @Subscribe
+    public void busStopsReceived(Error error) {
+        toggleVisualComponents(true);
+
+        Log.e(TAG, "Error calling server ", error);
+
+        View content = findViewById(android.R.id.content);
+
+        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
+    }
+
+    @Subscribe
     public void busStopsReceived(QueryResult queryResult) {
         Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
 
@@ -61,17 +72,6 @@ public class MainActivity extends BaseGeoLocatedActivity {
         getApplicationContext().startActivity(intent);
 
         toggleVisualComponents(true);
-    }
-
-    @Subscribe
-    public void busStopsReceived(Error error) {
-        toggleVisualComponents(true);
-
-        Log.e(TAG, "Error calling server ", error);
-
-        View content = findViewById(android.R.id.content);
-
-        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
     }
 
     private void checkRuntimePermissions(String[] permissions, int requestCode) {
