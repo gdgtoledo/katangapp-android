@@ -42,7 +42,7 @@ public class StopsInteractor implements Runnable {
 
             Object event = new Error(response.message());
 
-            if (response.isSuccess()) {
+            if (response.isSuccessful()) {
                 event = response.body();
             }
 
