@@ -83,7 +83,7 @@
         android:layout_marginBottom="30dp"
         android:height="50dp"
         android:singleLine="true"
-        android:text="500"
+        android:text="@string/default_value"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#76ffffff"
