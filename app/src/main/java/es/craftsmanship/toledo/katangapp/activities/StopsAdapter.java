@@ -81,7 +81,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
             address.setText(busStop.getAddress());
 
-            String sb = "(" + String.format("%.2f", stop.getDistance(), Locale.US) + " " +
+            String sb = "(" + String.format( Locale.US, "%.2f", stop.getDistance()) + " " +
                 context.getString(R.string.meters) + ")";
 
             distance.setText(sb);
