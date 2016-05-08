@@ -213,6 +213,7 @@ public class MainActivity extends Activity
     }
 
     private void initializeSeekTrack() {
+        radioLabel.setText(String.valueOf(seekBar.getProgress()));
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
             @Override
