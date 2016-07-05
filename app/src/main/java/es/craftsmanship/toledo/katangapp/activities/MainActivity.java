@@ -326,6 +326,9 @@ public class MainActivity extends Activity
         radioLabel.setTypeface(tf);
     }
 
+    /**
+     * Shows the overlay dialog showing the application information.
+     */
     private void showInfoOverLay() {
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
 
