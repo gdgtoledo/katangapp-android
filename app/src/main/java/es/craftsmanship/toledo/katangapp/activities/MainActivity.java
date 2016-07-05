@@ -240,7 +240,7 @@ public class MainActivity extends Activity
 
             @Override
             public void onClick(View v) {
-                showOverLay();
+                showInfoOverLay();
             }
 
         });
@@ -326,7 +326,7 @@ public class MainActivity extends Activity
         radioLabel.setTypeface(tf);
     }
 
-    private void showOverLay() {
+    private void showInfoOverLay() {
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
 
         dialog.setContentView(R.layout.overlay_view);
