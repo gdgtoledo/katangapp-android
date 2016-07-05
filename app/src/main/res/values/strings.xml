@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Katangapp</string>
+    <string name="katanga">katanga</string>
+    <string name="meters">metros</string>
+    <string name="minutes">minutos</string>
+    <string name="bus_image">bus image</string>
+    <string name="application_info">Los datos proporcionados por esta aplicación son obtenidos directamente de la web de UNAUTO.</string>
+    <string name="bustop_results_empty">No se han encontrado paradas cercanas en el radio seleccionado. Por favor, inténtalo de nuevo.</string>
+    <string name="default_radio_value">500</string>
+</resources>
