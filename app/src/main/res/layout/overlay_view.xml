@@ -6,6 +6,7 @@
     android:id="@+id/overlayLayout"
     android:background="#be131211"
     android:weightSum="1">
+
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -26,7 +27,4 @@
         android:layout_alignParentTop="true"
         android:text="@string/application_info"
         android:textColor="@android:color/white" />
-
-
-
 </LinearLayout>
