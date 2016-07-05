@@ -336,8 +336,6 @@ public class MainActivity extends Activity
 
         LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
 
-        dialog.findViewById(R.id.close_overlay);
-
         layout.setOnClickListener(new View.OnClickListener() {
 
             @Override
