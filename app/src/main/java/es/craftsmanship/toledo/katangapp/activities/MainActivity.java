@@ -69,7 +69,7 @@ public class MainActivity extends Activity
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
-    private ImageView iconInfo;
+    private ImageView infoIcon;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private TextView radioLabel;
@@ -236,7 +236,7 @@ public class MainActivity extends Activity
     }
 
     private void initializeClickableComponents() {
-        iconInfo.setOnClickListener(new View.OnClickListener() {
+        infoIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showOverLay();
@@ -308,7 +308,7 @@ public class MainActivity extends Activity
      */
     private void initializeVariables() {
 
-        iconInfo = (ImageView) findViewById(R.id.icon_info);
+        infoIcon = (ImageView) findViewById(R.id.icon_info);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
