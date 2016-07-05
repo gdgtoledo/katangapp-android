@@ -28,7 +28,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import android.view.View;
-
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -65,10 +66,10 @@ public class MainActivity extends Activity
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
 
     private CircleButton searchButton;
-    private CircleButton helpButton;
     private GoogleApiClient googleApiClient;
     private Double longitude;
     private Double latitude;
+    private ImageView iconInfo;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private TextView radioLabel;
@@ -235,6 +236,13 @@ public class MainActivity extends Activity
     }
 
     private void initializeClickableComponents() {
+        iconInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOverLay();
+            }
+        });
+
         searchButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -256,16 +264,6 @@ public class MainActivity extends Activity
 
         });
 
-        helpButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
-
-                startActivity(intent);
-            }
-
-        });
     }
 
     private void initializeGooglePlayServices() {
@@ -309,10 +307,11 @@ public class MainActivity extends Activity
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
+
+        iconInfo = (ImageView) findViewById(R.id.icon_info);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
-        helpButton = (CircleButton) findViewById(R.id.helpButton);
         searchProgressBar = (ProgressBar) findViewById(R.id.searchProgressBar);
 
         toggleVisualComponents(true);
@@ -323,6 +322,27 @@ public class MainActivity extends Activity
 
         txtKatangaLabel.setTypeface(tf);
         radioLabel.setTypeface(tf);
+    }
+    private void showOverLay(){
+
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.setContentView(R.layout.overlay_view);
+        LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
+        dialog.findViewById(R.id.close_overlay);
+
+        layout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+
+            }
+
+        });
+
+        dialog.show();
+
     }
 
     private void toggleVisualComponents(boolean buttonEnabled) {
