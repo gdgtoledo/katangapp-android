@@ -11,6 +11,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_margin="5dp"
+            android:id="@+id/icon_fav"
+            android:src="@drawable/ic_star_border_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_margin="5dp"
+            android:id="@+id/icon_info"
+            android:src="@drawable/ic_info_outline_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/title_katanga"
         android:layout_width="wrap_content"
@@ -25,17 +46,7 @@
         android:textColorHighlight="@android:color/white"
         android:textSize="40sp" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/helpButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_info_outline_24dp"
-        app:cb_color="#5eb7f6"
-        app:cb_pressedRingWidth="4dp"
-        android:layout_toEndOf="@+id/title_katanga"
-        android:layout_above="@+id/title_katanga"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="50dp" />
+
 
     <SeekBar
         android:id="@+id/seekBar"
