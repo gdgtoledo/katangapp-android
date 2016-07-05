@@ -237,10 +237,12 @@ public class MainActivity extends Activity
 
     private void initializeClickableComponents() {
         infoIcon.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 showOverLay();
             }
+
         });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -323,26 +325,26 @@ public class MainActivity extends Activity
         txtKatangaLabel.setTypeface(tf);
         radioLabel.setTypeface(tf);
     }
-    private void showOverLay(){
 
+    private void showOverLay() {
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+
         dialog.setContentView(R.layout.overlay_view);
+
         LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
+
         dialog.findViewById(R.id.close_overlay);
 
         layout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
                 dialog.dismiss();
-
             }
 
         });
 
         dialog.show();
-
     }
 
     private void toggleVisualComponents(boolean buttonEnabled) {
