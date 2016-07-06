@@ -32,9 +32,7 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
     @Override
     public LinesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new LinesHolder(
-            LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row, parent, false));
+        return new LinesHolder(parent);
     }
 
     @Override
@@ -50,11 +48,15 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
     static class LinesHolder extends RecyclerView.ViewHolder {
 
         private final TextView lineText;
+        private final ViewGroup parent;
         private final TextView timeText;
         private final TextView routeMinutesText;
 
-        public LinesHolder(View itemView) {
-            super(itemView);
+        public LinesHolder(ViewGroup parent) {
+            super(
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false));
+
+            this.parent = parent;
 
             lineText = (TextView) itemView.findViewById(R.id.line);
             timeText = (TextView) itemView.findViewById(R.id.time);
