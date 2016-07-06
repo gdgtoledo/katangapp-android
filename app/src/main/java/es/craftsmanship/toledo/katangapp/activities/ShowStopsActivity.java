@@ -83,18 +83,20 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
         swipeRefreshLayout.setColorSchemeColors(
             Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
 
-        swipeRefreshLayout.setRefreshing(true);
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+
                 busStopResults.clear();
 
                 BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                     radio, getLatitude(), getLongitude());
 
                 new Thread(busStopsInteractor).start();
+
+                swipeRefreshLayout.setRefreshing(false);
             }
 
         });
