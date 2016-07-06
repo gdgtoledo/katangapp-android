@@ -49,12 +49,14 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
         private final TextView lineText;
         private final TextView timeText;
+        private final TextView routeMinutesText;
 
         public LinesHolder(View itemView) {
             super(itemView);
 
             lineText = (TextView) itemView.findViewById(R.id.line);
             timeText = (TextView) itemView.findViewById(R.id.time);
+            routeMinutesText = (TextView) itemView.findViewById(R.id.routeMinutesLabel);
         }
 
         public void bind(RouteResult route) {
@@ -78,6 +80,9 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
             timeText.setTextColor(color);
             timeText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+
+            routeMinutesText.setTextColor(color);
+            routeMinutesText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
 
             NumberFormat numberFormat = NumberFormat.getInstance();
 
