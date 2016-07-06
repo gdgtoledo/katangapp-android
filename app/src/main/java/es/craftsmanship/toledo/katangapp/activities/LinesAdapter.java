@@ -44,24 +44,24 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
     static class LinesHolder extends RecyclerView.ViewHolder {
 
-        private final TextView line;
-        private final TextView time;
+        private final TextView lineText;
+        private final TextView timeText;
 
         public LinesHolder(View itemView) {
             super(itemView);
 
-            line = (TextView) itemView.findViewById(R.id.line);
-            time = (TextView) itemView.findViewById(R.id.time);
+            lineText = (TextView) itemView.findViewById(R.id.line);
+            timeText = (TextView) itemView.findViewById(R.id.time);
         }
 
         public void bind(RouteResult route) {
-            line.setText(route.getIdl());
+            lineText.setText(route.getIdl());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
 
             String formattedTime = numberFormat.format(route.getTime());
 
-            time.setText(formattedTime);
+            timeText.setText(formattedTime);
         }
     }
 
