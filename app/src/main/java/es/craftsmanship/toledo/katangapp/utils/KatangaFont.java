@@ -14,6 +14,8 @@ public enum KatangaFont {
 
     QUICKSAND_BOLD, QUICKSAND_LIGHT, QUICKSAND_REGULAR;
 
+    public static final float DEFAULT_FONT_SIZE = 18;
+
     public static Typeface getFont(AssetManager assetManager, KatangaFont font) {
         String fontPath = getFontPath(font);
 

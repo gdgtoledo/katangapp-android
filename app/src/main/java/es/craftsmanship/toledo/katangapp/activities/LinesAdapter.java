@@ -1,7 +1,10 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
+import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
+import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,12 +60,32 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
         public void bind(RouteResult route) {
             lineText.setText(route.getIdl());
 
+            formatTimeText(route.getTime());
+        }
+
+        private void formatTimeText(long time) {
+            int color = Color.BLACK;
+            float textSize = KatangaFont.DEFAULT_FONT_SIZE;
+
+            if (time <= 5) {
+                color = Color.parseColor("#FF4B45");
+                textSize *= 1.5;
+            }
+            else if (time < 10) {
+                color = Color.parseColor("#FFB300");
+                textSize *= 1.25;
+            }
+
+            timeText.setTextColor(color);
+            timeText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+
             NumberFormat numberFormat = NumberFormat.getInstance();
 
-            String formattedTime = numberFormat.format(route.getTime());
+            String formattedTime = numberFormat.format(time);
 
             timeText.setText(formattedTime);
         }
+
     }
 
 }
