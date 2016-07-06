@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * author Cristóbal Hermida
@@ -66,7 +67,7 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
             formatTimeTextStyles(timeText, route.getTime());
             formatTimeTextStyles(routeMinutesText, route.getTime());
 
-            NumberFormat numberFormat = NumberFormat.getInstance();
+            NumberFormat numberFormat = NumberFormat.getInstance(Locale.forLanguageTag("ES"));
 
             String formattedTime = numberFormat.format(route.getTime());
 
