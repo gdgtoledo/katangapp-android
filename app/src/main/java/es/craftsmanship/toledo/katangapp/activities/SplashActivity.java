@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
+/**
+ * author Cristóbal Hermida
+ */
 public class SplashActivity extends AppCompatActivity {
 
     // Splash screen timer
