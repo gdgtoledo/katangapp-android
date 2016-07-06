@@ -62,8 +62,8 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
         public void bind(RouteResult route) {
             lineText.setText(route.getIdl());
 
-            formatTimeText(timeText, route.getTime());
-            formatTimeText(routeMinutesText, route.getTime());
+            formatTimeTextStyles(timeText, route.getTime());
+            formatTimeTextStyles(routeMinutesText, route.getTime());
 
             NumberFormat numberFormat = NumberFormat.getInstance();
 
@@ -72,7 +72,7 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
             timeText.setText(formattedTime);
         }
 
-        private void formatTimeText(TextView textView, long time) {
+        private void formatTimeTextStyles(TextView textView, long time) {
             int color = Color.BLACK;
             float textSize = KatangaFont.DEFAULT_FONT_SIZE;
 
