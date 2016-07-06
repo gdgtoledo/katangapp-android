@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             />
         <TextView
-            android:id="@+id/title_splash"
+            android:id="@+id/splashTitle"
             android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:fontFamily="sans-serif"

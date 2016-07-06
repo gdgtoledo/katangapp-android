@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        splashTitle = (TextView) findViewById(R.id.title_splash);
+        splashTitle = (TextView) findViewById(R.id.splashTitle);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
