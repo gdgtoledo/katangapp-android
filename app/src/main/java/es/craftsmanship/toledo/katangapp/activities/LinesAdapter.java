@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * author Cristóbal Hermida
+ * author Manuel de la Peña
  */
 public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder> {
 
