@@ -18,9 +18,11 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
 
     private TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash);
 
         title = (TextView) findViewById(R.id.title_splash);
@@ -28,7 +30,6 @@ public class SplashActivity extends AppCompatActivity {
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
         title.setTypeface(tf);
-
 
         new Handler().postDelayed(new Runnable() {
 
@@ -42,11 +43,14 @@ public class SplashActivity extends AppCompatActivity {
                 // This method will be executed once the timer is over
                 // Start your app main activity
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
+
                 startActivity(i);
 
                 // close this activity
                 finish();
             }
+
         }, SPLASH_TIME_OUT);
     }
+
 }
