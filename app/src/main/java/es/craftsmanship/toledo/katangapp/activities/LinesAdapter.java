@@ -63,6 +63,12 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
             lineText.setText(route.getIdl());
 
             formatTimeText(route.getTime());
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+
+            String formattedTime = numberFormat.format(route.getTime());
+
+            timeText.setText(formattedTime);
         }
 
         private void formatTimeText(long time) {
@@ -83,12 +89,6 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
             routeMinutesText.setTextColor(color);
             routeMinutesText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-
-            NumberFormat numberFormat = NumberFormat.getInstance();
-
-            String formattedTime = numberFormat.format(time);
-
-            timeText.setText(formattedTime);
         }
 
     }
