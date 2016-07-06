@@ -50,7 +50,6 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
         private final TextView lineText;
         private final ViewGroup parent;
         private final TextView timeText;
-        private final TextView routeMinutesText;
 
         public LinesHolder(ViewGroup parent) {
             super(
@@ -60,20 +59,12 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
             lineText = (TextView) itemView.findViewById(R.id.line);
             timeText = (TextView) itemView.findViewById(R.id.time);
-            routeMinutesText = (TextView) itemView.findViewById(R.id.routeMinutesLabel);
         }
 
         public void bind(RouteResult route) {
             lineText.setText(route.getIdl());
 
             formatTimeTextStyles(timeText, route.getTime());
-            formatTimeTextStyles(routeMinutesText, route.getTime());
-
-            NumberFormat numberFormat = NumberFormat.getInstance(Locale.forLanguageTag("ES"));
-
-            String formattedTime = numberFormat.format(route.getTime());
-
-            timeText.setText(formattedTime);
         }
 
         private void formatTimeTextStyles(TextView textView, long time) {
@@ -91,6 +82,22 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
             textView.setTextColor(color);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+
+            if (time == 0) {
+                CharSequence text = parent.getContext().getText(R.string.proximo);
+
+                textView.setText(String.valueOf(text).toUpperCase());
+
+                return;
+            }
+
+            NumberFormat numberFormat = NumberFormat.getInstance(Locale.forLanguageTag("ES"));
+
+            String formattedTime = numberFormat.format(time);
+
+            CharSequence minutesText = parent.getContext().getText(R.string.minutes);
+
+            textView.setText(formattedTime + " " + minutesText);
         }
 
     }
