@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 2000;
 
-    private TextView title;
+    private TextView splashTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,11 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        title = (TextView) findViewById(R.id.title_splash);
+        splashTitle = (TextView) findViewById(R.id.title_splash);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
-        title.setTypeface(tf);
+        splashTitle.setTypeface(tf);
 
         new Handler().postDelayed(new Runnable() {
 
