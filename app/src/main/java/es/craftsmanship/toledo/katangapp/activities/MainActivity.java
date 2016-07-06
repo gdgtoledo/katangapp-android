@@ -311,7 +311,7 @@ public class MainActivity extends Activity
      */
     private void initializeVariables() {
 
-        infoIcon = (ImageView) findViewById(R.id.icon_info);
+        infoIcon = (ImageView) findViewById(R.id.infoIcon);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
