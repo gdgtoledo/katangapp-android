@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/overlayLayout"
-    android:background="#be131211"
+    android:background="@color/katanga_black_light"
     android:weightSum="1">
 
     <ImageView
