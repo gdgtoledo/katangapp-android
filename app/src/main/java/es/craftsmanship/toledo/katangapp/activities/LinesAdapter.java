@@ -73,11 +73,11 @@ public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder>
 
             if (time <= 5) {
                 color = Color.parseColor("#FF4B45");
-                textSize *= 1.5;
+                textSize *= 1.2;
             }
             else if (time < 10) {
                 color = Color.parseColor("#FFB300");
-                textSize *= 1.25;
+                textSize *= 1.1;
             }
 
             textView.setTextColor(color);
