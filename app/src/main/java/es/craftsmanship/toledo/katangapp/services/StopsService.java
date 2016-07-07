@@ -11,7 +11,7 @@ import retrofit2.http.Query;
  */
 public interface StopsService {
 
-    @GET("paradas")
+    @GET("main")
     Call<QueryResult> listStops(
         @Query("lt") Double latitude, @Query("ln") Double longitude, @Query("r") String radius);
 }
