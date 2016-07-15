@@ -6,6 +6,9 @@ import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractor;
 import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUtil;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import android.content.Intent;
 
@@ -13,13 +16,18 @@ import android.graphics.Color;
 
 import android.os.Bundle;
 
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.squareup.otto.Subscribe;
+
 
 import java.util.List;
 
@@ -41,6 +49,37 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
         swipeRefreshLayout.setRefreshing(false);
     }
 
+    @Subscribe
+    public void routesReceived(Route queryResult) {
+
+        if (queryResult!=null) {
+            Intent intent = new Intent(this, RouteMapActivity.class);
+            intent.putExtra("ruta", queryResult);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+
+    @Subscribe
+    public void routesReceived(Error error) {
+
+        processEmptyResults();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AndroidBus.getInstance().register(this);
+    }
+
+    @Override
+    protected void onPause() {
+        AndroidBus.getInstance().unregister(this);
+
+        super.onPause();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
