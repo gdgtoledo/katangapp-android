@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,6 @@ import java.util.List;
  */
 public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
-    private List<BusStopResult> busStopResults;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -35,10 +33,8 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
     public void busStopsReceived(QueryResult queryResult) {
         List<BusStopResult> results = queryResult.getResults();
 
-        busStopResults.addAll(results);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new StopsAdapter(busStopResults));
+        recyclerView.setAdapter(new StopsAdapter(results));
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -53,8 +49,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
             (intent.getSerializableExtra("queryResult") != null)) {
 
             QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
-
-            busStopResults = new ArrayList<>();
 
             List<BusStopResult> results = queryResult.getResults();
 
@@ -72,7 +66,8 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             initializeSwipeRefreshLayout(radio);
 
-            busStopsReceived(queryResult);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new StopsAdapter(results));
         }
         else {
             processEmptyResults();
@@ -87,28 +82,13 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
 
-                busStopResults.clear();
+                swipeRefreshLayout.setRefreshing(true);
 
                 BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                     radio, getLatitude(), getLongitude());
 
                 new Thread(busStopsInteractor).start();
-
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-        });
-
-        final LinearLayoutManager layoutParams = new LinearLayoutManager(this);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                swipeRefreshLayout.setEnabled(
-                    layoutParams.findFirstCompletelyVisibleItemPosition() == 0);
             }
 
         });
