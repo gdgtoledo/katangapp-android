@@ -1,0 +1,31 @@
+language: android
+
+sudo: false
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=30
+
+android:
+  components:
+    - platform-tools
+    - tools
+
+    - build-tools-23.0.3
+    - android-23
+    - extra
+    - sys-img-armeabi-v7a-android-23
+
+before_script:
+  - echo no | android create avd --force -n test -t android-23 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+
+script:
+  - ./gradlew clean
+  - ./gradlew assembleDebug
+  - ./gradlew aDAT
+  - android-wait-for-emulator
+  - adb install app/build/outputs/apk/app-debug.apk
+  - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+  - adb shell input keyevent 82 &
+  - adb shell am instrument -w es.craftsmanship.toledo.katangapp.test/android.support.test.runner.AndroidJUnitRunner
