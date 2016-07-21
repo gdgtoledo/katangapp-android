@@ -34,6 +34,7 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
         List<BusStopResult> results = queryResult.getResults();
 
         recyclerView.setAdapter(new StopsAdapter(results));
+
         swipeRefreshLayout.setRefreshing(false);
     }
 
@@ -82,7 +83,6 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
             @Override
             public void onRefresh() {
-
                 swipeRefreshLayout.setRefreshing(true);
 
                 BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
