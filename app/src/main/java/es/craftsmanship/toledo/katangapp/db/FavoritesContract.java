@@ -1,13 +1,37 @@
 package es.craftsmanship.toledo.katangapp.db;
 
+import android.content.Context;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import android.provider.BaseColumns;
 
 /**
  * @author Manuel de la Peña
  */
-public final class FavoritesContract {
+public final class FavoritesContract extends SQLiteOpenHelper {
 
-    public FavoritesContract() {}
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Katanga.db";
+
+    public FavoritesContract(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(SQL_CREATE_FAVORITES);
+    }
+
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQL_DELETE_FAVORITES);
+
+        onCreate(db);
+    }
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
