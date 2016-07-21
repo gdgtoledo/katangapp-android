@@ -37,9 +37,8 @@ public abstract class BaseGeoLocatedActivity extends AppCompatActivity
         LocationListener, BusStopsSubscriber {
 
     private static final LocationRequest GPS_REQUEST = LocationRequest.create()
-        .setInterval(3000)
-        .setFastestInterval(16)
-        .setNumUpdates(3)
+        .setInterval(10000)
+        .setFastestInterval(3000)
         .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
