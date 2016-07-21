@@ -32,17 +32,17 @@ public class FavoriteDAO {
 
         long insertId = database.insert(FavoritesContract.Favorite.TABLE_NAME, null, values);
 
-        Cursor cursor = database.query(
-            FavoritesContract.Favorite.TABLE_NAME, allColumns,
-            FavoritesContract.Favorite._ID + " = " + insertId, null, null, null, null);
+        try (Cursor cursor = database.query(
+                FavoritesContract.Favorite.TABLE_NAME, allColumns,
+                FavoritesContract.Favorite._ID + " = " + insertId, null, null, null, null)) {
 
-        cursor.moveToFirst();
+            cursor.moveToFirst();
 
-        Favorite favorite = cursorToFavorite(cursor);
+            Favorite favorite = cursorToFavorite(cursor);
 
-        cursor.close();
+            return favorite;
+        }
 
-        return favorite;
     }
 
     public void deleteFavorite(Favorite favorite) {
@@ -56,20 +56,19 @@ public class FavoriteDAO {
     public List<Favorite> getAllFavorites() {
         List<Favorite> favorites = new ArrayList<>();
 
-        Cursor cursor = database.query(
-            FavoritesContract.Favorite.TABLE_NAME, allColumns, null, null, null, null, null);
+        try (Cursor cursor = database.query(
+                FavoritesContract.Favorite.TABLE_NAME, allColumns, null, null, null, null, null)) {
 
-        cursor.moveToFirst();
+            cursor.moveToFirst();
 
-        while (!cursor.isAfterLast()) {
-            Favorite favorite = cursorToFavorite(cursor);
+            while (!cursor.isAfterLast()) {
+                Favorite favorite = cursorToFavorite(cursor);
 
-            favorites.add(favorite);
+                favorites.add(favorite);
 
-            cursor.moveToNext();
+                cursor.moveToNext();
+            }
         }
-
-        cursor.close();
 
         return favorites;
     }
