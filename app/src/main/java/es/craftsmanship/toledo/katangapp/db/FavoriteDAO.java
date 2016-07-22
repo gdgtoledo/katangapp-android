@@ -18,7 +18,7 @@ import java.util.List;
 public class FavoriteDAO {
 
     public FavoriteDAO(Context context) {
-        dbHelper = new FavoritesContract(context);
+        dbHelper = new FavoritesDBHelper(context);
     }
 
     public void close() {
@@ -28,13 +28,13 @@ public class FavoriteDAO {
     public Favorite createFavorite(String busStopId) {
         ContentValues values = new ContentValues();
 
-        values.put(FavoritesContract.Favorite.COLUMN_NAME_BUS_STOP_ID, busStopId);
+        values.put(FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID, busStopId);
 
-        long insertId = database.insert(FavoritesContract.Favorite.TABLE_NAME, null, values);
+        long insertId = database.insert(FavoritesDBHelper.Favorite.TABLE_NAME, null, values);
 
         try (Cursor cursor = database.query(
-                FavoritesContract.Favorite.TABLE_NAME, allColumns,
-                FavoritesContract.Favorite._ID + " = " + insertId, null, null, null, null)) {
+                FavoritesDBHelper.Favorite.TABLE_NAME, allColumns,
+                FavoritesDBHelper.Favorite._ID + " = " + insertId, null, null, null, null)) {
 
             cursor.moveToFirst();
 
@@ -49,15 +49,15 @@ public class FavoriteDAO {
         String[] whereArgs = { favorite.getBusStopId() };
 
         database.delete(
-            FavoritesContract.Favorite.TABLE_NAME,
-            FavoritesContract.Favorite.COLUMN_NAME_BUS_STOP_ID + " = ?", whereArgs);
+            FavoritesDBHelper.Favorite.TABLE_NAME,
+            FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID + " = ?", whereArgs);
     }
 
     public List<Favorite> getAllFavorites() {
         List<Favorite> favorites = new ArrayList<>();
 
         try (Cursor cursor = database.query(
-                FavoritesContract.Favorite.TABLE_NAME, allColumns, null, null, null, null, null)) {
+                FavoritesDBHelper.Favorite.TABLE_NAME, allColumns, null, null, null, null, null)) {
 
             cursor.moveToFirst();
 
@@ -74,11 +74,11 @@ public class FavoriteDAO {
     }
 
     public Favorite getFavorite(String favoriteId) {
-        String selection = FavoritesContract.Favorite.COLUMN_NAME_BUS_STOP_ID + "=?";
+        String selection = FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID + "=?";
         String[] selectionArgs = {favoriteId};
 
         try (Cursor cursor = database.query(
-                FavoritesContract.Favorite.TABLE_NAME, allColumns, selection, selectionArgs,
+                FavoritesDBHelper.Favorite.TABLE_NAME, allColumns, selection, selectionArgs,
                 null, null, null)) {
 
             cursor.moveToFirst();
@@ -105,10 +105,10 @@ public class FavoriteDAO {
     }
 
     private String[] allColumns = {
-        FavoritesContract.Favorite._ID,
-        FavoritesContract.Favorite.COLUMN_NAME_BUS_STOP_ID
+        FavoritesDBHelper.Favorite._ID,
+        FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID
     };
     private SQLiteDatabase database;
-    private FavoritesContract dbHelper;
+    private FavoritesDBHelper dbHelper;
 
 }

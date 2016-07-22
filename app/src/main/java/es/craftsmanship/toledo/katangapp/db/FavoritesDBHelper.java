@@ -10,12 +10,12 @@ import android.provider.BaseColumns;
 /**
  * @author Manuel de la Peña
  */
-public final class FavoritesContract extends SQLiteOpenHelper {
+public final class FavoritesDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Katanga.db";
 
-    public FavoritesContract(Context context) {
+    public FavoritesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
