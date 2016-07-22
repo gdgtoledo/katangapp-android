@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:layout_margin="5dp"
-            android:id="@+id/icon_fav"
+            android:id="@+id/favIcon"
             android:src="@drawable/ic_star_border_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
