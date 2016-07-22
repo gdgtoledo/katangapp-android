@@ -25,44 +25,44 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHolder> {
+public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusStopsViewHolder> {
 
-    private final List<BusStopResult> stops;
+    private final List<BusStopResult> busStops;
     private Context context;
     private RecyclerView lines;
     private TextView address;
     private ImageView busStopIcon;
     private TextView distance;
 
-    public StopsAdapter(List<BusStopResult> stops) {
-        this.stops = stops;
+    public BusStopsAdapter(List<BusStopResult> busStops) {
+        this.busStops = busStops;
     }
 
     @Override
-    public StopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BusStopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
 
         View view = LayoutInflater.from(context)
             .inflate(R.layout.stop, parent, false);
 
-        return new StopsViewHolder(view);
+        return new BusStopsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(StopsViewHolder holder, int position) {
-        holder.bind(stops.get(position));
+    public void onBindViewHolder(BusStopsViewHolder holder, int position) {
+        holder.bind(busStops.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return stops.size();
+        return busStops.size();
     }
 
-    public class StopsViewHolder extends RecyclerView.ViewHolder {
+    public class BusStopsViewHolder extends RecyclerView.ViewHolder {
 
         private BusStop currentBusStop;
 
-        public StopsViewHolder(View itemView) {
+        public BusStopsViewHolder(View itemView) {
             super(itemView);
 
             address = (TextView) itemView.findViewById(R.id.stop_address);

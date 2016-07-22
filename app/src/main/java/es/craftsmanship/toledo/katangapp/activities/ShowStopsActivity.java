@@ -33,7 +33,7 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
     public void busStopsReceived(QueryResult queryResult) {
         List<BusStopResult> results = queryResult.getResults();
 
-        recyclerView.setAdapter(new StopsAdapter(results));
+        recyclerView.setAdapter(new BusStopsAdapter(results));
 
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -68,7 +68,7 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
             initializeSwipeRefreshLayout(radio);
 
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new StopsAdapter(results));
+            recyclerView.setAdapter(new BusStopsAdapter(results));
         }
         else {
             processEmptyResults();
