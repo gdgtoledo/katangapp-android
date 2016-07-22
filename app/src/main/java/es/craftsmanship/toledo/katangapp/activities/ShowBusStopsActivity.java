@@ -42,7 +42,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_show_stops);
+        setContentView(R.layout.activity_show_bus_stops);
 
         Intent intent = getIntent();
 
