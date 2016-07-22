@@ -6,7 +6,6 @@ import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import android.support.v7.widget.RecyclerView;
@@ -22,36 +21,36 @@ import java.util.Locale;
  * author Cristóbal Hermida
  * author Manuel de la Peña
  */
-public class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.LinesHolder> {
+public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdapter.BusStopRoutesHolder> {
 
-    private List<RouteResult> lines;
+    private List<RouteResult> routes;
 
-    public LinesAdapter(List<RouteResult> lines) {
-        this.lines = lines;
+    public BusStopRoutesAdapter(List<RouteResult> routes) {
+        this.routes = routes;
     }
 
     @Override
-    public LinesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new LinesHolder(parent);
+    public BusStopRoutesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new BusStopRoutesHolder(parent);
     }
 
     @Override
-    public void onBindViewHolder(LinesHolder holder, int position) {
-        holder.bind(lines.get(position));
+    public void onBindViewHolder(BusStopRoutesHolder holder, int position) {
+        holder.bind(routes.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return lines.size();
+        return routes.size();
     }
 
-    static class LinesHolder extends RecyclerView.ViewHolder {
+    static class BusStopRoutesHolder extends RecyclerView.ViewHolder {
 
         private final TextView lineText;
         private final ViewGroup parent;
         private final TextView timeText;
 
-        public LinesHolder(ViewGroup parent) {
+        public BusStopRoutesHolder(ViewGroup parent) {
             super(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false));
 

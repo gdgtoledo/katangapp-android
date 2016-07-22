@@ -97,7 +97,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
             int size = results.size();
 
             lines.setMinimumHeight(size * 100);
-            lines.setAdapter(new LinesAdapter(results));
+            lines.setAdapter(new BusStopRoutesAdapter(results));
 
             BusStop busStop = stop.getBusStop();
 
