@@ -1,13 +1,17 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.models.BusStop;
+
+import android.content.Intent;
+
 import android.os.Bundle;
+
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import es.craftsmanship.toledo.katangapp.models.BusStop;
+import android.view.View;
 
 /**
  * @author Manuel de la Peña
@@ -22,27 +26,37 @@ public class BusStopActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_bus_stop);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Intent intent = getIntent();
 
-        setSupportActionBar(toolbar);
+        if (intent.hasExtra("busStop") && (intent.getSerializableExtra("busStop") != null)) {
+            busStop = (BusStop) intent.getSerializableExtra("busStop");
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(
-            R.id.fab);
+            String title = busStop.getId() + " (" + busStop.getAddress() + ")";
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            this.setTitle(title);
 
-            @Override
-            public void onClick(View view) {
-                // add to favorites database
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-                Snackbar.make(
-                    view, "Parada añadida a favoritas con éxito", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-            }
+            setSupportActionBar(toolbar);
 
-        });
+            FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(
+                R.id.fab);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    // add to favorites database
+
+                    Snackbar.make(
+                        view, "Parada añadida a favoritas con éxito", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+                }
+
+            });
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 }

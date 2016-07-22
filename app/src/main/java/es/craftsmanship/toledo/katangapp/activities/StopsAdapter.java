@@ -6,6 +6,7 @@ import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.content.Context;
+import android.content.Intent;
 
 import android.graphics.Typeface;
 
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
     private Context context;
     private RecyclerView lines;
     private TextView address;
+    private ImageView busStopIcon;
     private TextView distance;
 
     public StopsAdapter(List<BusStopResult> stops) {
@@ -57,14 +60,32 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
 
     public class StopsViewHolder extends RecyclerView.ViewHolder {
 
+        private BusStop currentBusStop;
+
         public StopsViewHolder(View itemView) {
             super(itemView);
 
             address = (TextView) itemView.findViewById(R.id.stop_address);
+            busStopIcon = (ImageView) itemView.findViewById(R.id.logo);
             distance = (TextView) itemView.findViewById(R.id.stop_distance);
             lines = (RecyclerView) itemView.findViewById(R.id.lines);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
+            busStopIcon.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent  =  new Intent(context, BusStopActivity.class);
+
+                    intent.putExtra("busStop", currentBusStop);
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    context.startActivity(intent);
+                }
+
+            });
 
             address.setTypeface(tf);
             distance.setTypeface(tf);
@@ -79,6 +100,8 @@ public class StopsAdapter extends RecyclerView.Adapter<StopsAdapter.StopsViewHol
             lines.setAdapter(new LinesAdapter(results));
 
             BusStop busStop = stop.getBusStop();
+
+            currentBusStop = busStop;
 
             address.setText(busStop.getAddress());
 
