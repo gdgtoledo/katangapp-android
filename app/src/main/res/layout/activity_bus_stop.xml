@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_bus_stop" />
+    <include layout="@layout/bus_stop_content" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
