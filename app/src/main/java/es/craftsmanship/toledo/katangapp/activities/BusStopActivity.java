@@ -25,7 +25,6 @@ public class BusStopActivity extends AppCompatActivity {
 
     private BusStop busStop;
     private boolean isFavorite;
-    private FavoriteDAO favoriteDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +37,6 @@ public class BusStopActivity extends AppCompatActivity {
         if (intent.hasExtra("busStop") && (intent.getSerializableExtra("busStop") != null)) {
             busStop = (BusStop) intent.getSerializableExtra("busStop");
 
-            favoriteDAO = new FavoriteDAO(this);
-
-            favoriteDAO.open();
-
             String title = busStop.getId() + " (" + busStop.getAddress() + ")";
 
             this.setTitle(title);
@@ -50,12 +45,16 @@ public class BusStopActivity extends AppCompatActivity {
 
             setSupportActionBar(toolbar);
 
-            Favorite favorite = favoriteDAO.getFavorite(busStop.getId());
+            try (FavoriteDAO favoriteDAO = new FavoriteDAO(this)) {
+                favoriteDAO.open();
 
-            isFavorite = (favorite != null);
+                Favorite favorite = favoriteDAO.getFavorite(busStop.getId());
 
-            final FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(
-                R.id.fab);
+                isFavorite = (favorite != null);
+            }
+
+            final FloatingActionButton floatingActionButton =
+                (FloatingActionButton) findViewById(R.id.fab);
 
             floatingActionButton.setImageDrawable(getFavoritedDrawable(isFavorite));
 
@@ -65,25 +64,28 @@ public class BusStopActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String message = "Parada AÑADIDA a favoritas con éxito";
 
-                    if (!isFavorite) {
-                        favoriteDAO.createFavorite(busStop.getId());
+                    try (FavoriteDAO favoriteDAO = new FavoriteDAO(BusStopActivity.this)) {
+                        favoriteDAO.open();
+
+                        if (!isFavorite) {
+                            favoriteDAO.createFavorite(busStop.getId());
+                        } else {
+                            message = "Parada ELIMINADA de favoritas con éxito";
+
+                            Favorite favorite = new Favorite();
+
+                            favorite.setBusStopId(busStop.getId());
+
+                            favoriteDAO.deleteFavorite(favorite);
+                        }
+
+                        isFavorite = !isFavorite;
+
+                        floatingActionButton.setImageDrawable(getFavoritedDrawable(isFavorite));
+
+                        Snackbar.make(
+                            view, message, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     }
-                    else {
-                        message = "Parada ELIMINADA de favoritas con éxito";
-
-                        Favorite favorite = new Favorite();
-
-                        favorite.setBusStopId(busStop.getId());
-
-                        favoriteDAO.deleteFavorite(favorite);
-                    }
-
-                    isFavorite = !isFavorite;
-
-                    floatingActionButton.setImageDrawable(getFavoritedDrawable(isFavorite));
-
-                    Snackbar.make(
-                        view, message, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
             });
