@@ -42,8 +42,7 @@ public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusSto
     public BusStopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
 
-        View view = LayoutInflater.from(context)
-            .inflate(R.layout.stop, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.bus_stop_row, parent, false);
 
         return new BusStopsViewHolder(view);
     }
