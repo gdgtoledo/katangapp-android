@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Katanga</string>
+    <string name="favorites_bus_stops">Paradas Favoritas</string>
     <string name="katanga">katanga</string>
     <string name="meters">metros</string>
     <string name="minutes">minutos</string>

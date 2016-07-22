@@ -19,6 +19,9 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+        <activity android:name=".FavoritesActivity"
+            android:label="@string/favorites_bus_stops" />
+
         <activity android:name=".ShowStopsActivity" />
 
         <activity android:name=".SplashActivity"

@@ -41,6 +41,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
     private CircleButton searchButton;
     private ImageView infoIcon;
+    private ImageView favIcon;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private String radio;
@@ -133,6 +134,17 @@ public class MainActivity extends BaseGeoLocatedActivity {
     }
 
     private void initializeClickableComponents() {
+        favIcon.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent  =  new Intent(MainActivity.this, FavoritesActivity.class);
+
+                startActivity(intent);
+            }
+
+        });
+
         infoIcon.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -183,6 +195,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
     private void initializeVariables() {
 
         infoIcon = (ImageView) findViewById(R.id.infoIcon);
+        favIcon = (ImageView) findViewById(R.id.favIcon);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
