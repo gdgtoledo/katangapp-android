@@ -24,7 +24,7 @@ import java.util.List;
  * @author Cristóbal Hermida
  * @author Manuel de la Peña
  */
-public class ShowStopsActivity extends BaseGeoLocatedActivity {
+public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -96,7 +96,7 @@ public class ShowStopsActivity extends BaseGeoLocatedActivity {
 
     private void processEmptyResults() {
         Toast.makeText(
-            ShowStopsActivity.this, getString(R.string.bustop_results_empty), Toast.LENGTH_SHORT
+            ShowBusStopsActivity.this, getString(R.string.bustop_results_empty), Toast.LENGTH_SHORT
         ).show();
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

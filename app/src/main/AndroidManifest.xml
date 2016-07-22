@@ -22,7 +22,7 @@
         <activity android:name=".FavoritesActivity"
             android:label="@string/favorites_bus_stops" />
 
-        <activity android:name=".ShowStopsActivity" />
+        <activity android:name=".ShowBusStopsActivity" />
 
         <activity android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -46,11 +46,11 @@
         <activity
             android:name=".BusStopActivity"
             android:label="@string/title_activity_bus_stop"
-            android:parentActivityName=".ShowStopsActivity"
+            android:parentActivityName=".ShowBusStopsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="es.craftsmanship.toledo.katangapp.activities.ShowStopsActivity" />
+                android:value=".ShowBusStopsActivity" />
         </activity>
     </application>
 

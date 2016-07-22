@@ -56,7 +56,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
     @Subscribe
     public void busStopsReceived(QueryResult queryResult) {
-        Intent intent = new Intent(MainActivity.this, ShowStopsActivity.class);
+        Intent intent = new Intent(MainActivity.this, ShowBusStopsActivity.class);
 
         intent.putExtra("queryResult", queryResult);
         intent.putExtra("radio", radio);

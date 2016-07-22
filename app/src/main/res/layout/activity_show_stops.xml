@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#be303030"
-    tools:context="es.craftsmanship.toledo.katangapp.activities.ShowStopsActivity">
+    tools:context=".ShowBusStopsActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
