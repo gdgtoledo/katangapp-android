@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.View;
 public class BusStopActivity extends AppCompatActivity {
 
     private BusStop busStop;
+    private FavoriteDAO favoriteDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,10 @@ public class BusStopActivity extends AppCompatActivity {
 
         if (intent.hasExtra("busStop") && (intent.getSerializableExtra("busStop") != null)) {
             busStop = (BusStop) intent.getSerializableExtra("busStop");
+
+            favoriteDAO = new FavoriteDAO(this);
+
+            favoriteDAO.open();
 
             String title = busStop.getId() + " (" + busStop.getAddress() + ")";
 
@@ -47,6 +53,7 @@ public class BusStopActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     // add to favorites database
+                    favoriteDAO.createFavorite(busStop.getId());
 
                     Snackbar.make(
                         view, "Parada añadida a favoritas con éxito", Snackbar.LENGTH_LONG)
