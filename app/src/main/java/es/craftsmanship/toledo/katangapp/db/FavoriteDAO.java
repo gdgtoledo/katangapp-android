@@ -9,18 +9,21 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Closeable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Manuel de la Peña
  */
-public class FavoriteDAO {
+public class FavoriteDAO implements Closeable {
 
     public FavoriteDAO(Context context) {
         dbHelper = new FavoritesDBHelper(context);
     }
 
+    @Override
     public void close() {
         dbHelper.close();
     }
