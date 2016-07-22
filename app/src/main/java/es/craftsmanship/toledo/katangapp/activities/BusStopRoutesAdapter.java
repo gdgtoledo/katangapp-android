@@ -52,7 +52,8 @@ public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdap
 
         public BusStopRoutesHolder(ViewGroup parent) {
             super(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false));
+                LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.bus_stop_route_row, parent, false));
 
             this.parent = parent;
 
