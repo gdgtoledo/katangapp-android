@@ -6,10 +6,13 @@ import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 import android.content.Intent;
 
+import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -21,6 +24,7 @@ import android.view.View;
 public class BusStopActivity extends AppCompatActivity {
 
     private BusStop busStop;
+    private boolean isFavorite;
     private FavoriteDAO favoriteDAO;
 
     @Override
@@ -46,19 +50,22 @@ public class BusStopActivity extends AppCompatActivity {
 
             setSupportActionBar(toolbar);
 
-            FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(
+            Favorite favorite = favoriteDAO.getFavorite(busStop.getId());
+
+            isFavorite = (favorite != null);
+
+            final FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(
                 R.id.fab);
+
+            floatingActionButton.setImageDrawable(getFavoritedDrawable(isFavorite));
 
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    boolean exits = favoriteDAO.exits(busStop.getId());
-
                     String message = "Parada AÑADIDA a favoritas con éxito";
 
-                    if (!exits) {
-                        // add to favorites database
+                    if (!isFavorite) {
                         favoriteDAO.createFavorite(busStop.getId());
                     }
                     else {
@@ -71,6 +78,10 @@ public class BusStopActivity extends AppCompatActivity {
                         favoriteDAO.deleteFavorite(favorite);
                     }
 
+                    isFavorite = !isFavorite;
+
+                    floatingActionButton.setImageDrawable(getFavoritedDrawable(isFavorite));
+
                     Snackbar.make(
                         view, message, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
@@ -79,6 +90,14 @@ public class BusStopActivity extends AppCompatActivity {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private Drawable getFavoritedDrawable(boolean favorited) {
+        if (favorited) {
+            return ContextCompat.getDrawable(BusStopActivity.this, android.R.drawable.ic_delete);
+        }
+
+        return ContextCompat.getDrawable(BusStopActivity.this, R.drawable.ic_star_favorite_24dp);
     }
 
 }
