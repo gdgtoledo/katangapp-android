@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
+import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 import android.content.Intent;
@@ -52,12 +53,26 @@ public class BusStopActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
-                    // add to favorites database
-                    favoriteDAO.createFavorite(busStop.getId());
+                    boolean exits = favoriteDAO.exits(busStop.getId());
+
+                    String message = "Parada AÑADIDA a favoritas con éxito";
+
+                    if (!exits) {
+                        // add to favorites database
+                        favoriteDAO.createFavorite(busStop.getId());
+                    }
+                    else {
+                        message = "Parada ELIMINADA de favoritas con éxito";
+
+                        Favorite favorite = new Favorite();
+
+                        favorite.setBusStopId(busStop.getId());
+
+                        favoriteDAO.deleteFavorite(favorite);
+                    }
 
                     Snackbar.make(
-                        view, "Parada añadida a favoritas con éxito", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+                        view, message, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
             });
