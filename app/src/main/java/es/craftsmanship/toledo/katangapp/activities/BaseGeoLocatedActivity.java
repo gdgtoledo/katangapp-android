@@ -1,7 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
-import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import android.app.Dialog;
 
@@ -12,7 +11,6 @@ import android.location.Location;
 import android.os.Bundle;
 
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
 
@@ -32,7 +30,7 @@ import com.squareup.otto.Subscribe;
 /**
  * @author Manuel de la Peña
  */
-public abstract class BaseGeoLocatedActivity extends AppCompatActivity
+public abstract class BaseGeoLocatedActivity extends BaseAndroidBusRegistrableActivity
     implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener, BusStopsSubscriber {
 
@@ -123,8 +121,6 @@ public abstract class BaseGeoLocatedActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
-        AndroidBus.getInstance().unregister(this);
-
         if (googleApiClient != null) {
             googleApiClient.disconnect();
         }
@@ -139,8 +135,6 @@ public abstract class BaseGeoLocatedActivity extends AppCompatActivity
         if (googleApiClient != null) {
             googleApiClient.connect();
         }
-
-        AndroidBus.getInstance().register(this);
     }
 
     private void initializeGooglePlayServices() {
