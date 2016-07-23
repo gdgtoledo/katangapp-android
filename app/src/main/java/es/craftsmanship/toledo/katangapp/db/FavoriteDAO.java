@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.db;
 
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
+import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,10 +29,11 @@ public class FavoriteDAO implements Closeable {
         dbHelper.close();
     }
 
-    public Favorite createFavorite(String busStopId) {
+    public Favorite createFavorite(BusStop busStop) {
         ContentValues values = new ContentValues();
 
-        values.put(FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID, busStopId);
+        values.put(FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID, busStop.getId());
+        values.put(FavoritesDBHelper.Favorite.COLUMN_NAME_ADDRESS, busStop.getAddress());
 
         long insertId = database.insert(FavoritesDBHelper.Favorite.TABLE_NAME, null, values);
 
@@ -103,13 +105,15 @@ public class FavoriteDAO implements Closeable {
 
         favorite.setId(cursor.getLong(0));
         favorite.setBusStopId(cursor.getString(1));
+        favorite.setAddress(cursor.getString(2));
 
         return favorite;
     }
 
     private String[] allColumns = {
         FavoritesDBHelper.Favorite._ID,
-        FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID
+        FavoritesDBHelper.Favorite.COLUMN_NAME_BUS_STOP_ID,
+        FavoritesDBHelper.Favorite.COLUMN_NAME_ADDRESS
     };
     private SQLiteDatabase database;
     private FavoritesDBHelper dbHelper;

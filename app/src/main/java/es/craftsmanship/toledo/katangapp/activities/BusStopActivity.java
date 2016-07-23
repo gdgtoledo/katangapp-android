@@ -68,13 +68,11 @@ public class BusStopActivity extends AppCompatActivity {
                         favoriteDAO.open();
 
                         if (!isFavorite) {
-                            favoriteDAO.createFavorite(busStop.getId());
+                            favoriteDAO.createFavorite(busStop);
                         } else {
                             message = "Parada ELIMINADA de favoritas con éxito";
 
-                            Favorite favorite = new Favorite();
-
-                            favorite.setBusStopId(busStop.getId());
+                            Favorite favorite = new Favorite(busStop);
 
                             favoriteDAO.deleteFavorite(favorite);
                         }

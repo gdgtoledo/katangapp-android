@@ -12,7 +12,7 @@ import android.provider.BaseColumns;
  */
 public final class FavoritesDBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "Katanga.db";
 
     public FavoritesDBHelper(Context context) {
@@ -38,7 +38,8 @@ public final class FavoritesDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_FAVORITES =
         "CREATE TABLE " + Favorite.TABLE_NAME + " (" +
             Favorite._ID + " INTEGER PRIMARY KEY" + COMMA_SEP + " " +
-            Favorite.COLUMN_NAME_BUS_STOP_ID + " " + TEXT_TYPE +
+            Favorite.COLUMN_NAME_BUS_STOP_ID + " " + TEXT_TYPE + COMMA_SEP + " " +
+            Favorite.COLUMN_NAME_ADDRESS + " " + TEXT_TYPE +
         " )";
 
     private static final String SQL_DELETE_FAVORITES =
@@ -47,6 +48,7 @@ public final class FavoritesDBHelper extends SQLiteOpenHelper {
     public static abstract class Favorite implements BaseColumns {
 
         public static final String TABLE_NAME = "favorite";
+        public static final String COLUMN_NAME_ADDRESS = "address";
         public static final String COLUMN_NAME_BUS_STOP_ID = "busStopId";
 
     }

@@ -25,6 +25,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
     private final List<Favorite> favorites;
 
+    private TextView address;
     private TextView busStopId;
     private Context context;
 
@@ -57,14 +58,17 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
             super(itemView);
 
             busStopId = (TextView) itemView.findViewById(R.id.busStopId);
+            address = (TextView) itemView.findViewById(R.id.busStopAddress);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
             busStopId.setTypeface(tf);
+            address.setTypeface(tf);
         }
 
         public void bind(Favorite favorite) {
             busStopId.setText(favorite.getBusStopId());
+            address.setText(favorite.getAddress());
         }
     }
 
