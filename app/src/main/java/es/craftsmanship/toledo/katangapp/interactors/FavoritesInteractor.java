@@ -4,17 +4,14 @@ import java.io.IOException;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.services.BusStopsService;
-import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
+
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
  * @author Manuel de la Peña
  */
-public class FavoritesInteractor implements Runnable {
+public class FavoritesInteractor extends BaseKatangaInteractor {
 
-    private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
     private final String busStopId;
 
     public FavoritesInteractor(String busStopId) {
@@ -22,28 +19,10 @@ public class FavoritesInteractor implements Runnable {
     }
 
     @Override
-    public void run() {
-        try {
-            Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BACKEND_ENDPOINT)
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build();
+    protected Response<QueryResult> getResponse(BusStopsService busStopsService)
+        throws IOException {
 
-            BusStopsService service = retrofit.create(BusStopsService.class);
-
-            Response<QueryResult> response = service.favorites(busStopId).execute();
-
-            Object event = new Error(response.message());
-
-            if (response.isSuccessful()) {
-                event = response.body();
-            }
-
-            AndroidBus.getInstance().post(event);
-        }
-        catch (IOException e) {
-            AndroidBus.getInstance().post(e);
-        }
+        return busStopsService.favorites(busStopId).execute();
     }
 
 }
