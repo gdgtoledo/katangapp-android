@@ -2,6 +2,7 @@ package es.craftsmanship.toledo.katangapp.adapters;
 
 import es.craftsmanship.toledo.katangapp.activities.R;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
+import es.craftsmanship.toledo.katangapp.interactors.FavoritesInteractor;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.content.Context;
@@ -64,6 +65,19 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
             busStopId.setTypeface(tf);
             address.setTypeface(tf);
+
+            busStopId.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    CharSequence charSequence = ((TextView) v).getText();
+
+                    FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
+                        charSequence.toString());
+
+                    new Thread(favoritesInteractor).start();
+                }
+            });
         }
 
         public void bind(Favorite favorite) {
