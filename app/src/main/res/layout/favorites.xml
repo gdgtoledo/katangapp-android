@@ -7,11 +7,11 @@
     android:background="@android:color/black"
     android:paddingRight="8dp">
 
-    <ListView android:id="@+id/favoritesList"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/favoritesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:layout_weight="1"
-        android:drawSelectorOnTop="false"/>
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
 </LinearLayout>
