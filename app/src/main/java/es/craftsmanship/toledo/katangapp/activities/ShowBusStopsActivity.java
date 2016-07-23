@@ -2,6 +2,8 @@ package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.FavoritesInteractor;
+import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
@@ -64,9 +66,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
 
             swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
-            String radio = (String) intent.getSerializableExtra("radio");
-
-            initializeSwipeRefreshLayout(radio);
+            initializeSwipeRefreshLayout(intent.getExtras());
 
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(new BusStopsAdapter(results));
@@ -76,9 +76,11 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
         }
     }
 
-    private void initializeSwipeRefreshLayout(final String radio) {
+    private void initializeSwipeRefreshLayout(final Bundle extras) {
         swipeRefreshLayout.setColorSchemeColors(
             Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
+
+        final boolean favorites = extras.getBoolean("favorites");
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -86,10 +88,22 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
 
-                BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
-                    radio, getLatitude(), getLongitude());
+                if (favorites) {
+                    BusStop busStop = (BusStop) extras.getSerializable("busStop");
 
-                new Thread(busStopsInteractor).start();
+                    FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
+                        busStop.getId());
+
+                    new Thread(favoritesInteractor).start();
+                }
+                else {
+                    String radio = extras.getString("radio");
+
+                    BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
+                        radio, getLatitude(), getLongitude());
+
+                    new Thread(busStopsInteractor).start();
+                }
             }
 
         });
