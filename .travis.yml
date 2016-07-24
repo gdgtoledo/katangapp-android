@@ -21,7 +21,7 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
-  - ./gradlew clean
+  - ./gradlew clean test
   - ./gradlew assembleDebug
   - ./gradlew aDAT
   - android-wait-for-emulator
