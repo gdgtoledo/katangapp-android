@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
     private TextView address;
     private TextView busStopId;
+    private ImageView busStopLogo;
     private Context context;
 
     public FavoritesAdapter(List<Favorite> favorites) {
@@ -59,6 +61,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
             super(itemView);
 
             busStopId = (TextView) itemView.findViewById(R.id.busStopId);
+            busStopLogo = (ImageView) itemView.findViewById(R.id.busStopLogo);
             address = (TextView) itemView.findViewById(R.id.busStopAddress);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
@@ -66,18 +69,22 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
             busStopId.setTypeface(tf);
             address.setTypeface(tf);
 
-            busStopId.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener busStopClickListener = new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    CharSequence charSequence = ((TextView) v).getText();
+                    CharSequence charSequence = busStopId.getText();
 
                     FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
                         charSequence.toString());
 
                     new Thread(favoritesInteractor).start();
                 }
-            });
+
+            };
+
+            busStopId.setOnClickListener(busStopClickListener);
+            busStopLogo.setOnClickListener(busStopClickListener);
         }
 
         public void bind(Favorite favorite) {
