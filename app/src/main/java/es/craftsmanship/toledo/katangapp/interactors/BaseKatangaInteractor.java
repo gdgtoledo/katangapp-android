@@ -14,7 +14,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 /**
  * @author Manuel de la Peña
  */
-public abstract class BaseKatangaInteractor implements Runnable {
+public abstract class BaseKatangaInteractor implements KatangaInteractor {
 
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
 
