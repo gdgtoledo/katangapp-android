@@ -1,9 +1,8 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
-import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
-import es.craftsmanship.toledo.katangapp.interactors.FavoritesInteractor;
-import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUtil;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
@@ -80,30 +79,19 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
         swipeRefreshLayout.setColorSchemeColors(
             Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
 
-        final boolean favorites = extras.getBoolean("favorites");
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
 
-                if (favorites) {
-                    BusStop busStop = (BusStop) extras.getSerializable("busStop");
+                extras.putDouble("latitude", getLatitude());
+                extras.putDouble("longitude", getLongitude());
 
-                    FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
-                        busStop.getId());
+                KatangaInteractor interactor =
+                    KatangaInteractorFactoryUtil.getInstance().getInteractor(extras);
 
-                    new Thread(favoritesInteractor).start();
-                }
-                else {
-                    String radio = extras.getString("radio");
-
-                    BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
-                        radio, getLatitude(), getLongitude());
-
-                    new Thread(busStopsInteractor).start();
-                }
+                new Thread(interactor).start();
             }
 
         });
