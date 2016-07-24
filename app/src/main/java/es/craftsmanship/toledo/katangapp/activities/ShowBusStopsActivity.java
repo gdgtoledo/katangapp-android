@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
+import es.craftsmanship.toledo.katangapp.interactors.InvalidInteractorException;
 import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractor;
 import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUtil;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
@@ -88,10 +89,23 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
                 extras.putDouble("latitude", getLatitude());
                 extras.putDouble("longitude", getLongitude());
 
-                KatangaInteractor interactor =
-                    KatangaInteractorFactoryUtil.getInstance().getInteractor(extras);
+                try {
+                    KatangaInteractor interactor =
+                        KatangaInteractorFactoryUtil.getInstance().getInteractor(extras);
 
-                new Thread(interactor).start();
+                    new Thread(interactor).start();
+                }
+                catch (InvalidInteractorException e) {
+                    Toast.makeText(
+                        ShowBusStopsActivity.this,
+                        getString(R.string.bustop_results_invalid_args) + e.getMessage(),
+                        Toast.LENGTH_SHORT
+                    ).show();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    startActivity(intent);
+                }
             }
 
         });

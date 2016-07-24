@@ -9,6 +9,7 @@
     <string name="bus_image">bus image</string>
     <string name="application_info">Los datos proporcionados por esta aplicación son obtenidos directamente de la web de UNAUTO (http://unauto.twa.es), por lo que los desarrolladores no se hacen responsables de que dichos datos pudieran aparecer desactualizados. Katanga únicamente procesa los datos de la web para aumentar la legibilidad de los mismos, mejorando la experiencia de usuario.</string>
     <string name="bustop_results_empty">No se han encontrado paradas cercanas en el radio seleccionado. Por favor, inténtalo de nuevo.</string>
+    <string name="bustop_results_invalid_args">No es posible consultar el servicio con los datos introducidos:</string>
     <string name="default_radio_value">500</string>
     <string name="title_activity_bus_stop">Detalle de Parada</string>
 </resources>

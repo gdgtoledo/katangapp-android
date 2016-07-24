@@ -7,6 +7,6 @@ import android.os.Bundle;
  */
 public interface KatangaInteractorFactory {
 
-    KatangaInteractor getInteractor(final Bundle extras);
+    KatangaInteractor getInteractor(final Bundle extras) throws InvalidInteractorException;
 
 }
