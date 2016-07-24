@@ -96,15 +96,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
                     new Thread(interactor).start();
                 }
                 catch (InvalidInteractorException e) {
-                    Toast.makeText(
-                        ShowBusStopsActivity.this,
-                        getString(R.string.bustop_results_invalid_args) + e.getMessage(),
-                        Toast.LENGTH_SHORT
-                    ).show();
-
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                    startActivity(intent);
+                    processErrors(getString(R.string.bustop_results_invalid_args) + e.getMessage());
                 }
             }
 
@@ -112,9 +104,11 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
     }
 
     private void processEmptyResults() {
-        Toast.makeText(
-            ShowBusStopsActivity.this, getString(R.string.bustop_results_empty), Toast.LENGTH_SHORT
-        ).show();
+        processErrors(getString(R.string.bustop_results_empty));
+    }
+
+    private void processErrors(String message) {
+        Toast.makeText(ShowBusStopsActivity.this, message, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
