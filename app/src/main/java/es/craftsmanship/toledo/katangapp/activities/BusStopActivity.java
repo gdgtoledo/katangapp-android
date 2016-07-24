@@ -37,7 +37,7 @@ public class BusStopActivity extends AppCompatActivity {
         if (intent.hasExtra("busStop") && (intent.getSerializableExtra("busStop") != null)) {
             busStop = (BusStop) intent.getSerializableExtra("busStop");
 
-            String title = busStop.getId() + " (" + busStop.getAddress() + ")";
+            String title = busStop.getId() + " - " + busStop.getAddress();
 
             this.setTitle(title);
 
