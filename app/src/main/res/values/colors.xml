@@ -3,6 +3,7 @@
     <color name="katanga_background_light">#f1f1f0</color>
     <color name="katanga_black_light">#be131211</color>
     <color name="katanga_grey">#76ffffff</color>
+    <color name="katanga_grey_dark">#be303030</color>
     <color name="katanga_grey_light">#8bffffff</color>
     <color name="katanga_yellow">#f6ec5e</color>
 </resources>
