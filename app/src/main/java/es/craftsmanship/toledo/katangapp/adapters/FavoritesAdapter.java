@@ -104,6 +104,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
             };
 
             busStopId.setOnClickListener(busStopClickListener);
+            address.setOnClickListener(busStopClickListener);
             busStopLogo.setOnClickListener(busStopClickListener);
         }
 
