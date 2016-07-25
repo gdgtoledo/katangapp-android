@@ -22,7 +22,7 @@
         <activity android:name=".FavoritesActivity"
             android:label="@string/favorites_bus_stops" />
 
-        <activity android:name=".ShowBusStopsActivity" />
+        <activity android:name=".ShowBusStopsActivity" android:launchMode="singleTop"/>
 
         <activity android:name=".SplashActivity"
             android:screenOrientation="portrait"
