@@ -67,6 +67,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
             recyclerView.setAdapter(favoritesAdapter);
         }
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpDismissFavoritesTouchGesture(FavoritesAdapter favoritesAdapter) {

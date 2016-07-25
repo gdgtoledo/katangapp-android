@@ -20,7 +20,11 @@
         </activity>
 
         <activity android:name=".FavoritesActivity"
-            android:label="@string/favorites_bus_stops" />
+            android:label="@string/favorites_bus_stops">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.craftsmanship.toledo.katangapp.activities.MainActivity" />
+        </activity>
 
         <activity android:name=".ShowBusStopsActivity" android:launchMode="singleTop"/>
 
