@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.adapters;
 
 import es.craftsmanship.toledo.katangapp.activities.R;
+import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.interactors.FavoritesInteractor;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -53,6 +55,24 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
     @Override
     public int getItemCount() {
         return favorites.size();
+    }
+
+    public void remove(int position) {
+        try(FavoriteDAO favoriteDAO = new FavoriteDAO(context)) {
+            favoriteDAO.open();
+
+            Favorite favorite = favorites.get(position);
+
+            favoriteDAO.deleteFavorite(favorite);
+
+            favorites.remove(position);
+
+            notifyItemRemoved(position);
+
+            Toast.makeText(
+                context, context.getString(R.string.favorite_deleted_ok), Toast.LENGTH_SHORT)
+            .show();
+        }
     }
 
     public class FavoriteViewHolder extends RecyclerView.ViewHolder {
