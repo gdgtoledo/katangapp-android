@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.adapters.FavoritesAdapter;
+import es.craftsmanship.toledo.katangapp.adapters.DismissFavoritesTouchHelper;
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.squareup.otto.Subscribe;
 
@@ -57,9 +59,22 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
             recyclerView = (RecyclerView) findViewById(R.id.favoritesList);
 
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new FavoritesAdapter(favorites));
+
+            FavoritesAdapter favoritesAdapter = new FavoritesAdapter(favorites);
+
+            setUpDismissFavoritesTouchGesture(favoritesAdapter);
+
+            recyclerView.setAdapter(favoritesAdapter);
         }
 
+    }
+
+    private void setUpDismissFavoritesTouchGesture(FavoritesAdapter favoritesAdapter) {
+        ItemTouchHelper.Callback callback = new DismissFavoritesTouchHelper(favoritesAdapter);
+
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+
+        helper.attachToRecyclerView(recyclerView);
     }
 
 }
