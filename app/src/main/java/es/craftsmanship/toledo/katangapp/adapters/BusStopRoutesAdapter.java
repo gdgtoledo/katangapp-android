@@ -1,5 +1,6 @@
-package es.craftsmanship.toledo.katangapp.activities;
+package es.craftsmanship.toledo.katangapp.adapters;
 
+import es.craftsmanship.toledo.katangapp.activities.R;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
