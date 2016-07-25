@@ -73,11 +73,11 @@ public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusSto
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
-            busStopIcon.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener onClickListener = new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    Intent intent  =  new Intent(context, BusStopActivity.class);
+                    Intent intent = new Intent(context, BusStopActivity.class);
 
                     intent.putExtra("busStop", currentBusStop);
 
@@ -86,7 +86,10 @@ public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusSto
                     context.startActivity(intent);
                 }
 
-            });
+            };
+
+            address.setOnClickListener(onClickListener);
+            busStopIcon.setOnClickListener(onClickListener);
 
             address.setTypeface(tf);
             distance.setTypeface(tf);
