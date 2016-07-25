@@ -77,6 +77,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
     public class FavoriteViewHolder extends RecyclerView.ViewHolder {
 
+        private String busStopIdText;
+
         public FavoriteViewHolder(View itemView) {
             super(itemView);
 
@@ -93,10 +95,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
                 @Override
                 public void onClick(View v) {
-                    CharSequence charSequence = busStopId.getText();
-
                     FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
-                        charSequence.toString());
+                        busStopIdText);
 
                     new Thread(favoritesInteractor).start();
                 }
@@ -108,6 +108,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
         }
 
         public void bind(Favorite favorite) {
+            busStopIdText = favorite.getBusStopId();
+
             busStopId.setText(favorite.getBusStopId());
             address.setText(favorite.getAddress());
         }
