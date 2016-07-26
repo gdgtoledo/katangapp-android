@@ -132,7 +132,7 @@ public class KatangaInteractorFactoryUtilTest {
     }
 
     private void mockGetBusStopsInteractor(boolean radio, boolean latitude, boolean longitude) {
-        Mockito.when(extras.getBoolean("favorites")).thenReturn(false);
+        Mockito.when(extras.containsKey("favorites")).thenReturn(false);
 
         Mockito.when(extras.containsKey("radio")).thenReturn(radio);
         Mockito.when(extras.containsKey("latitude")).thenReturn(latitude);
