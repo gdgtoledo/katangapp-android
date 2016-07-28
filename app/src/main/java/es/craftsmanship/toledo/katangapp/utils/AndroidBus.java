@@ -5,6 +5,8 @@ import android.os.Looper;
 
 import com.squareup.otto.Bus;
 
+import java.util.ArrayList;
+
 /**
  * @author Javier Gamarra
  */
@@ -18,7 +20,7 @@ public class AndroidBus {
 
     public static class MainThreadBus extends Bus {
         private final Handler handler = new Handler(Looper.getMainLooper());
-
+        private ArrayList registeredObjects = new ArrayList<>();
         @Override
         public void post(final Object event) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -35,9 +37,26 @@ public class AndroidBus {
                 });
             }
         }
+        @Override
+        public void register(Object object) {
+            if (!registeredObjects.contains(object)) {
+                registeredObjects.add(object);
+                super.register(object);
+            }
+        }
+
+        @Override
+        public void unregister(Object object) {
+            if (registeredObjects.contains(object)) {
+                registeredObjects.remove(object);
+                super.unregister(object);
+            }
+        }
+
     }
 
     private AndroidBus() {
     }
+
 
 }
