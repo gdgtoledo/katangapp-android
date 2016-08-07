@@ -1,37 +1,41 @@
 package es.craftsmanship.toledo.katangapp.fragments;
 
+import es.craftsmanship.toledo.katangapp.activities.R;
+import es.craftsmanship.toledo.katangapp.adapters.LineBusStopAdapter;
+import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.models.Route;
 
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.otto.Bus;
-
 import java.io.Serializable;
 import java.util.List;
 
-import es.craftsmanship.toledo.katangapp.activities.R;
-import es.craftsmanship.toledo.katangapp.models.BusStop;
+
 
 
 public class RouteFragment extends Fragment {
 
-        private static final String ARG_SECTION_NUMBER = "section_number";
         private static final String ARG_LINE_NUMBER = "line_number";
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
+        private List<BusStop> lineStops;
 
         public RouteFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static RouteFragment newInstance(List<BusStop> linea) {
+
+        public static RouteFragment newInstance(Route ruta) {
             RouteFragment fragment = new RouteFragment();
             Bundle args = new Bundle();
-            args.putSerializable(ARG_LINE_NUMBER, (Serializable) linea);
+            args.putSerializable(ARG_LINE_NUMBER, (Serializable) ruta);
             fragment.setArguments(args);
             return fragment;
         }
@@ -39,21 +43,20 @@ public class RouteFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_route, container, false);
-
-         /* List<BusStop>  ruta= (List<BusStop>) getArguments().getSerializable(ARG_LINE_NUMBER);
-            for(BusStop stop: ruta){
-                stop.getAddress();
-                stop.getId();
-                stop.getRouteId();
+            mRecyclerView = (RecyclerView) rootView.findViewById(R.id.line_stops);
+            Route  ruta= (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
+            if(ruta!=null){
+              lineStops= ruta.getBusStops();
             }
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            TextView textViewRuta = (TextView) rootView.findViewById(R.id.section_ruta);
 
+            mLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setAdapter(new LineBusStopAdapter(lineStops));
 
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            textViewRuta.setText(getArguments().getString(ARG_LINE_NUMBER));*/
             return rootView;
+
         }
     }
 
