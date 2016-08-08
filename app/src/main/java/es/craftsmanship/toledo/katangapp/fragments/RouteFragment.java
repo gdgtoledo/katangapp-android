@@ -15,8 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.Serializable;
-
 import java.util.List;
 
 /**
@@ -38,7 +36,7 @@ public class RouteFragment extends Fragment {
 
         Bundle args = new Bundle();
 
-        args.putSerializable(ARG_LINE_NUMBER, (Serializable) ruta);
+        args.putSerializable(ARG_LINE_NUMBER, ruta);
 
         fragment.setArguments(args);
 
