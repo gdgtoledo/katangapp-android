@@ -11,7 +11,6 @@ import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
@@ -25,7 +24,6 @@ public class RouteBusStopsAdapter
     extends RecyclerView.Adapter<RouteBusStopsAdapter.RouteBusStopsViewHolder>  {
 
     private TextView address;
-    private Context context;
     private final List<BusStop> busStops;
 
     public RouteBusStopsAdapter(List<BusStop> busStops) {
@@ -41,11 +39,7 @@ public class RouteBusStopsAdapter
     public RouteBusStopsViewHolder onCreateViewHolder(
         ViewGroup parent, int viewType) {
 
-        context = parent.getContext();
-
-        View v = LayoutInflater.from(context).inflate(R.layout.bus_line_row, parent, false);
-
-        return new RouteBusStopsViewHolder(v);
+        return new RouteBusStopsViewHolder(parent);
     }
 
     @Override
@@ -55,8 +49,16 @@ public class RouteBusStopsAdapter
 
     public class RouteBusStopsViewHolder extends RecyclerView.ViewHolder {
 
-        public RouteBusStopsViewHolder(View itemView) {
-            super(itemView);
+        private final ViewGroup parent;
+
+        public RouteBusStopsViewHolder(ViewGroup parent) {
+            super(
+                LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.bus_line_row, parent, false));
+
+            this.parent = parent;
+
+            Context context = this.parent.getContext();
 
             address = (TextView) itemView.findViewById(R.id.bus_line_stop_name);
 
