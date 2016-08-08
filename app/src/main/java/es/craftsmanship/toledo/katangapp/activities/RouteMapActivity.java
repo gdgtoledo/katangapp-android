@@ -170,8 +170,8 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    mapFragment.newInstance().getMapAsync(RouteMapActivity.this);
-
+                    mapFragment = RouteMapFragment.newInstance();
+                    mapFragment.getMapAsync(RouteMapActivity.this);
                     return mapFragment;
                 case 1:
                     return RouteFragment.newInstance(route);
