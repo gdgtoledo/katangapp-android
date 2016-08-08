@@ -46,38 +46,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private ViewPager viewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_route_map);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Intent intent = getIntent();
-
-        if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
-            Route route = (Route) intent.getSerializableExtra("route");
-
-            setTitle(route.getName());
-
-            busStopResults = route.getBusStops();
-            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),route);
-        }
-        else {
-            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
-        }
-
-        viewPager = (ViewPager) findViewById(R.id.container);
-
-        viewPager.setAdapter(sectionsPagerAdapter);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-
-        tabLayout.setupWithViewPager(viewPager);
+    public void busStopsReceived(QueryResult queryResult) {
     }
 
     @Override
@@ -144,7 +113,38 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     }
 
     @Override
-    public void busStopsReceived(QueryResult queryResult) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_route_map);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
+            Route route = (Route) intent.getSerializableExtra("route");
+
+            setTitle(route.getName());
+
+            busStopResults = route.getBusStops();
+            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),route);
+        }
+        else {
+            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
+        }
+
+        viewPager = (ViewPager) findViewById(R.id.container);
+
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     /**

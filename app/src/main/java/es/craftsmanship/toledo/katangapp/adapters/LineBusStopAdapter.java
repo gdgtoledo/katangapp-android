@@ -33,6 +33,11 @@ public class LineBusStopAdapter
     }
 
     @Override
+    public void onBindViewHolder(LineStopsViewHolder holder, int position) {
+        holder.bind(lineStops.get(position));
+    }
+
+    @Override
     public LineBusStopAdapter.LineStopsViewHolder onCreateViewHolder(
         ViewGroup parent, int viewType) {
 
@@ -41,11 +46,6 @@ public class LineBusStopAdapter
         View v = LayoutInflater.from(context).inflate(R.layout.bus_line_row, parent, false);
 
         return new LineStopsViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(LineStopsViewHolder holder, int position) {
-        holder.bind(lineStops.get(position));
     }
 
     @Override

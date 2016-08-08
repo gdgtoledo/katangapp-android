@@ -47,11 +47,6 @@ public class BusStopRoutesAdapter
     }
 
     @Override
-    public int getItemCount() {
-        return routes.size();
-    }
-
-    @Override
     public void onItemClick(View view, int position) {
         RouteResult route = routes.get(position);
 
@@ -62,8 +57,13 @@ public class BusStopRoutesAdapter
         new Thread(stopsInteractor).start();
     }
 
-     static class BusStopRoutesHolder extends RecyclerView.ViewHolder
-         implements View.OnClickListener {
+    @Override
+    public int getItemCount() {
+        return routes.size();
+    }
+
+    static class BusStopRoutesHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
 
         private final TextView lineText;
         private final ViewGroup parent;
@@ -89,6 +89,11 @@ public class BusStopRoutesAdapter
             lineText.setText(route.getIdl());
 
             formatTimeTextStyles(timeText, route.getTime());
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(v, getAdapterPosition());
         }
 
         private void formatTimeTextStyles(TextView textView, long time) {
@@ -122,11 +127,6 @@ public class BusStopRoutesAdapter
             CharSequence minutesText = parent.getContext().getText(R.string.minutes);
 
             textView.setText(formattedTime + " " + minutesText);
-        }
-
-        @Override
-        public void onClick(View v) {
-            listener.onItemClick(v, getAdapterPosition());
         }
 
     }

@@ -42,23 +42,6 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
         swipeRefreshLayout.setRefreshing(false);
     }
 
-    @Subscribe
-    public void routesReceived(Route route) {
-        if (route != null) {
-            Intent intent = new Intent(this, RouteMapActivity.class);
-
-            intent.putExtra("route", route);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            startActivity(intent);
-        }
-    }
-
-    @Subscribe
-    public void routesReceived(Error error) {
-        processEmptyResults();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +74,23 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
         }
         else {
             processEmptyResults();
+        }
+    }
+
+    @Subscribe
+    public void routesReceived(Error error) {
+        processEmptyResults();
+    }
+
+    @Subscribe
+    public void routesReceived(Route route) {
+        if (route != null) {
+            Intent intent = new Intent(this, RouteMapActivity.class);
+
+            intent.putExtra("route", route);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
         }
     }
 
