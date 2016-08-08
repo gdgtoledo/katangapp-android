@@ -19,6 +19,9 @@ import java.io.Serializable;
 
 import java.util.List;
 
+/**
+ * @author Cristóbal Hermida
+ */
 public class RouteFragment extends Fragment {
 
     private static final String ARG_LINE_NUMBER = "line_number";

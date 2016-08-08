@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by chermida on 12/07/2016.
+ * @author Cristóbal Hermida
  */
 public interface RoutesService {
     @GET("api/routes/{routeId}")

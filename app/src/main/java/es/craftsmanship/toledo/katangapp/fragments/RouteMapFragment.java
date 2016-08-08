@@ -2,8 +2,6 @@ package es.craftsmanship.toledo.katangapp.fragments;
 
 import android.os.Bundle;
 
-import android.support.v4.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.SupportMapFragment;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author Cristóbal Hermida
  */
 public class RouteMapFragment extends SupportMapFragment {
 

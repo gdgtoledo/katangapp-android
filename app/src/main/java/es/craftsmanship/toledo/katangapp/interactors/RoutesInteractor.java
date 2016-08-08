@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
- * Created by chermida on 12/07/2016.
+ * @author Cristóbal Hermida
  */
 public class RoutesInteractor implements Runnable{
     private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";

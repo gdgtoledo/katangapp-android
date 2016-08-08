@@ -30,6 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+/**
+ * @author Cristóbal Hermida
+ */
 public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapReadyCallback {
 
     private static final String CTE_MAPA = "MAPA";
