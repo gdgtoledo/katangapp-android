@@ -15,6 +15,7 @@
             android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:contentDescription="@string/bus_image"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
