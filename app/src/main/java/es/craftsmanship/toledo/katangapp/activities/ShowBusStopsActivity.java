@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.squareup.otto.Subscribe;
 
-
 import java.util.List;
 
 /**
@@ -62,9 +61,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
 
     @Subscribe
     public void routesReceived(Error error) {
-
         processEmptyResults();
-
     }
 
     @Override
@@ -80,6 +77,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
 
         super.onPause();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,24 +24,27 @@ public class RoutesInteractor implements Runnable{
     public void run() {
         try {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BACKEND_ENDPOINT)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
+                .baseUrl(BACKEND_ENDPOINT)
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
+
             RoutesService service = retrofit.create(RoutesService.class);
 
             Response<Route> response = null;
 
             response = service.getRouteId(route).execute();
 
-
             Object event = new Error(response.message());
 
             if (response.isSuccessful()) {
                 event = response.body();
             }
+
             AndroidBus.getInstance().post(event);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             AndroidBus.getInstance().post(e);
         }
     }
+
 }

@@ -28,11 +28,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
 import java.util.List;
-
-
-
 
 public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapReadyCallback {
 
@@ -46,71 +42,83 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_route_map);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("ruta") &&
-                (intent.getSerializableExtra("ruta") != null)) {
+
+        if (intent.hasExtra("ruta") && (intent.getSerializableExtra("ruta") != null)) {
             Route route = (Route) intent.getSerializableExtra("ruta");
+
             setTitle(route.getName());
+
             busStopResults = route.getBusStops();
             mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),route);
-        }else {
+        }
+        else {
             mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
         }
+
         mViewPager = (ViewPager) findViewById(R.id.container);
+
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+
         tabLayout.setupWithViewPager(mViewPager);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_route_map, menu);
+
         return true;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
+
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
         if (!busStopResults.isEmpty()) {
-
             for (BusStop stop : busStopResults) {
                 LatLng locStop = new LatLng(stop.getLatitude(), stop.getLongitude());
-                mMap.addMarker(new MarkerOptions()
-                        .position(locStop)
-                        .title(stop.getAddress()));
+
+                mMap.addMarker(
+                    new MarkerOptions().position(locStop).title(stop.getAddress()));
             }
         }
+
         LatLng locStopIni=null;
-        if(getLatitude()!=null && getLongitude()!=null){
+
+        if (getLatitude()!=null && getLongitude()!=null) {
             locStopIni  = new LatLng( getLatitude(), getLongitude());
-        }else{
-            BusStop busStop=   busStopResults.get(0);
-            locStopIni  = new LatLng(  busStop.getLatitude(), busStop.getLongitude());
+        }
+        else {
+            BusStop busStop =  busStopResults.get(0);
+
+            locStopIni = new LatLng(busStop.getLatitude(), busStop.getLongitude());
         }
 
-        mMap.addMarker(new MarkerOptions()
+        mMap.addMarker(
+            new MarkerOptions()
                 .position(locStopIni)
                 .title("Mi situación")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(locStopIni)
                 .zoom(12)
@@ -119,22 +127,21 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
+
         if (id == android.R.id.home) {
             Intent intent = new Intent(getApplicationContext(), ShowBusStopsActivity.class);
+
             startActivity(intent);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void busStopsReceived(QueryResult queryResult) {
-
     }
 
     /**
@@ -147,6 +154,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
         public SectionsPagerAdapter(FragmentManager fm, Route route) {
             super(fm);
+
             this.route=route;
         }
 
@@ -157,18 +165,16 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
         @Override
         public Fragment getItem(int position) {
-
             switch (position) {
                 case 0:
                     mFirstMapFragment.newInstance().getMapAsync(RouteMapActivity.this);
-                    return mFirstMapFragment;
 
+                    return mFirstMapFragment;
                 case 1:
                     return RouteFragment.newInstance(route);
-
             }
-            return null;
 
+            return null;
         }
 
         @Override
@@ -179,7 +185,10 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
                 case 1:
                     return CTE_RUTA;
             }
+
             return null;
         }
+
     }
+
 }

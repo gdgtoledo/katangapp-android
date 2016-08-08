@@ -18,12 +18,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
-
 /**
  * @author Cristobal Hermida
  */
-public class LineBusStopAdapter  extends RecyclerView.Adapter<LineBusStopAdapter.LineStopsViewHolder>  {
+public class LineBusStopAdapter
+    extends RecyclerView.Adapter<LineBusStopAdapter.LineStopsViewHolder>  {
 
     private final List<BusStop> lineStops;
     private Context context;
@@ -34,11 +33,12 @@ public class LineBusStopAdapter  extends RecyclerView.Adapter<LineBusStopAdapter
     }
 
     @Override
-    public LineBusStopAdapter.LineStopsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LineBusStopAdapter.LineStopsViewHolder onCreateViewHolder(
+        ViewGroup parent, int viewType) {
+
         context = parent.getContext();
 
-        View v = LayoutInflater.from(context)
-                .inflate(R.layout.bus_line_row, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.bus_line_row, parent, false);
 
         return new LineStopsViewHolder(v);
     }
@@ -59,14 +59,17 @@ public class LineBusStopAdapter  extends RecyclerView.Adapter<LineBusStopAdapter
             super(itemView);
 
             address = (TextView) itemView.findViewById(R.id.bus_line_stop_name);
-            Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
-            address.setTypeface(tf);
 
+            Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
+
+            address.setTypeface(tf);
         }
+
         public void bind(BusStop busLineStop) {
-                address.setText(busLineStop.getAddress());
-            }
+            address.setText(busLineStop.getAddress());
         }
+
+    }
 
 }
 

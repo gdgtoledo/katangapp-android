@@ -25,7 +25,9 @@ import java.util.Locale;
  * author Cristóbal Hermida
  * author Manuel de la Peña
  */
-public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdapter.BusStopRoutesHolder> implements ItemClickListener {
+public class BusStopRoutesAdapter
+    extends RecyclerView.Adapter<BusStopRoutesAdapter.BusStopRoutesHolder>
+    implements ItemClickListener {
 
     private List<RouteResult> routes;
 
@@ -48,13 +50,14 @@ public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdap
         return routes.size();
     }
 
-
-
     @Override
     public void onItemClick(View view, int position) {
         RouteResult route = routes.get(position);
-        String idRuta =route.getIdl();
+
+        String idRuta = route.getIdl();
+
         RoutesInteractor stopsInteractor = new RoutesInteractor(idRuta);
+
         new Thread(stopsInteractor).start();
 
        /* Intent intent = new Intent(view.getContext(), RouteMapActivity.class);
@@ -63,14 +66,15 @@ public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdap
         view.getContext().startActivity(intent);*/
     }
 
-     static class BusStopRoutesHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
+     static class BusStopRoutesHolder extends RecyclerView.ViewHolder
+         implements View.OnClickListener {
 
         private final TextView lineText;
         private final ViewGroup parent;
         private final TextView timeText;
         public ItemClickListener listener;
-        public BusStopRoutesHolder(ViewGroup parent, ItemClickListener listener) {
 
+        public BusStopRoutesHolder(ViewGroup parent, ItemClickListener listener) {
             super(
                 LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.bus_stop_route_row, parent, false));
@@ -81,6 +85,7 @@ public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdap
 
             lineText = (TextView) itemView.findViewById(R.id.line);
             timeText = (TextView) itemView.findViewById(R.id.time);
+
             lineText.setOnClickListener(this);
         }
 
@@ -123,14 +128,15 @@ public class BusStopRoutesAdapter extends RecyclerView.Adapter<BusStopRoutesAdap
             textView.setText(formattedTime + " " + minutesText);
         }
 
-
         @Override
         public void onClick(View v) {
             listener.onItemClick(v, getAdapterPosition());
         }
+
     }
 
 }
+
 interface ItemClickListener {
     void onItemClick(View view, int position);
 }
