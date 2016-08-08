@@ -2,6 +2,7 @@ package es.craftsmanship.toledo.katangapp.services;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
+import es.craftsmanship.toledo.katangapp.models.Route;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -9,6 +10,7 @@ import retrofit2.http.Query;
 
 /**
  * @author Javier Gamarra
+ * @author Cristóbal Hermida
  */
 public interface BusStopsService {
 
@@ -18,5 +20,8 @@ public interface BusStopsService {
 
     @GET("favorite/{busStopId}")
     Call<QueryResult> favorites(@Path("busStopId") String busStopId);
+
+    @GET("api/routes/{routeId}")
+    Call<Route> getRouteId(@Path("routeId") String routeId);
 
 }

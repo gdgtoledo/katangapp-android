@@ -3,7 +3,7 @@ package es.craftsmanship.toledo.katangapp.interactors;
 import java.io.IOException;
 
 import es.craftsmanship.toledo.katangapp.models.Route;
-import es.craftsmanship.toledo.katangapp.services.RoutesService;
+import es.craftsmanship.toledo.katangapp.services.BusStopsService;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -28,7 +28,7 @@ public class RoutesInteractor implements Runnable{
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
-            RoutesService service = retrofit.create(RoutesService.class);
+            BusStopsService service = retrofit.create(BusStopsService.class);
 
             Response<Route> response = null;
 
