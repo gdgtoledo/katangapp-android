@@ -7,7 +7,6 @@ import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUti
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
-import es.craftsmanship.toledo.katangapp.models.Route;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import android.content.Intent;
@@ -16,16 +15,12 @@ import android.graphics.Color;
 
 import android.os.Bundle;
 
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
 import com.squareup.otto.Subscribe;
 
 import java.util.List;

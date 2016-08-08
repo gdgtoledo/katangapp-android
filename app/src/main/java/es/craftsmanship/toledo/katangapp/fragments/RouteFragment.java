@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 public class RouteFragment extends Fragment {
