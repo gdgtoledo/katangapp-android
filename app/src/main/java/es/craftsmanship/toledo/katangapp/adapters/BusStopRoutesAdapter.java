@@ -55,9 +55,9 @@ public class BusStopRoutesAdapter
     public void onItemClick(View view, int position) {
         RouteResult route = routes.get(position);
 
-        String idRuta = route.getIdl();
+        String routeId = route.getIdl();
 
-        RoutesInteractor stopsInteractor = new RoutesInteractor(idRuta);
+        RoutesInteractor stopsInteractor = new RoutesInteractor(routeId);
 
         new Thread(stopsInteractor).start();
 

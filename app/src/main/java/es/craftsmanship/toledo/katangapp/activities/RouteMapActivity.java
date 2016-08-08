@@ -35,15 +35,15 @@ import java.util.List;
  */
 public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapReadyCallback {
 
-    private static final String CTE_MAPA = "MAPA";
-    private static final String CTE_RUTA = "RUTA";
+    private static final String MAP_KEY = "MAPA";
+    private static final String ROUTE_KEY = "RUTA";
 
-    private GoogleMap mMap;
-    private RouteMapFragment mFirstMapFragment;
     private List<BusStop> busStopResults;
+    private GoogleMap googleMap;
+    private RouteMapFragment mapFragment;
+    private SectionsPagerAdapter sectionsPagerAdapter;
     private TabLayout tabLayout;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +65,19 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
             setTitle(route.getName());
 
             busStopResults = route.getBusStops();
-            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),route);
+            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),route);
         }
         else {
-            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
+            sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
         }
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = (ViewPager) findViewById(R.id.container);
 
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -89,18 +89,18 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        this.googleMap = googleMap;
 
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mMap.getUiSettings().setMapToolbarEnabled(true);
-        mMap.getUiSettings().setCompassEnabled(true);
+        this.googleMap.getUiSettings().setZoomControlsEnabled(true);
+        this.googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        this.googleMap.getUiSettings().setMapToolbarEnabled(true);
+        this.googleMap.getUiSettings().setCompassEnabled(true);
 
         if (!busStopResults.isEmpty()) {
             for (BusStop stop : busStopResults) {
                 LatLng locStop = new LatLng(stop.getLatitude(), stop.getLongitude());
 
-                mMap.addMarker(
+                this.googleMap.addMarker(
                     new MarkerOptions().position(locStop).title(stop.getAddress()));
             }
         }
@@ -116,7 +116,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
             locStopIni = new LatLng(busStop.getLatitude(), busStop.getLongitude());
         }
 
-        mMap.addMarker(
+        this.googleMap.addMarker(
             new MarkerOptions()
                 .position(locStopIni)
                 .title("Mi situación")
@@ -127,7 +127,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
                 .zoom(12)
                 .build();
 
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        this.googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     @Override
@@ -170,9 +170,9 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    mFirstMapFragment.newInstance().getMapAsync(RouteMapActivity.this);
+                    mapFragment.newInstance().getMapAsync(RouteMapActivity.this);
 
-                    return mFirstMapFragment;
+                    return mapFragment;
                 case 1:
                     return RouteFragment.newInstance(route);
             }
@@ -184,9 +184,9 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return CTE_MAPA;
+                    return MAP_KEY;
                 case 1:
-                    return CTE_RUTA;
+                    return ROUTE_KEY;
             }
 
             return null;

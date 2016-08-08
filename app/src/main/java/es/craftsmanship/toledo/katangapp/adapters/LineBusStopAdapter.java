@@ -24,9 +24,9 @@ import java.util.List;
 public class LineBusStopAdapter
     extends RecyclerView.Adapter<LineBusStopAdapter.LineStopsViewHolder>  {
 
-    private final List<BusStop> lineStops;
-    private Context context;
     private TextView address;
+    private Context context;
+    private final List<BusStop> lineStops;
 
     public LineBusStopAdapter(List<BusStop> lineStops) {
         this.lineStops = lineStops;
