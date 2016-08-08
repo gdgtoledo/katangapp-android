@@ -95,8 +95,11 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
     }
 
     private void initializeSwipeRefreshLayout(final Bundle extras) {
-        swipeRefreshLayout.setColorSchemeColors(
-            Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
+        int color = getResources().getColor(R.color.katanga_yellow);
+
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(color);
+
+        swipeRefreshLayout.setColorSchemeColors(Color.BLACK);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
