@@ -49,7 +49,7 @@ public class RouteFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_route, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.line_stops);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.route_bus_stops);
 
         Route  ruta= (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
 
