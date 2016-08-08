@@ -105,13 +105,13 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
             }
         }
 
-        LatLng locStopIni=null;
+        LatLng locStopIni = null;
 
-        if (getLatitude()!=null && getLongitude()!=null) {
+        if (getLatitude() != null && getLongitude() != null) {
             locStopIni  = new LatLng( getLatitude(), getLongitude());
         }
         else {
-            BusStop busStop =  busStopResults.get(0);
+            BusStop busStop = busStopResults.get(0);
 
             locStopIni = new LatLng(busStop.getLatitude(), busStop.getLongitude());
         }
