@@ -2,6 +2,7 @@ package es.craftsmanship.toledo.katangapp.interactors;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.services.BusStopsService;
+import es.craftsmanship.toledo.katangapp.services.KatangaResponseWrapper;
 
 import java.io.IOException;
 
@@ -24,10 +25,14 @@ public class BusStopsInteractor extends BaseKatangaInteractor {
     }
 
     @Override
-    protected Response<QueryResult> getResponse(BusStopsService busStopsService)
+    protected KatangaResponseWrapper<Response<QueryResult>> getResponse(
+            BusStopsService busStopsService)
         throws IOException {
 
-        return busStopsService.listBusStops(latitude, longitude, radio).execute();
+        Response<QueryResult> response = busStopsService.listBusStops(latitude, longitude, radio)
+            .execute();
+
+        return new KatangaResponseWrapper<>(response);
     }
 
 }

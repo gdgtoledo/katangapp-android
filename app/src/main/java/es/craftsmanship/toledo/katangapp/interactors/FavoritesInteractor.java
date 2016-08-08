@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.services.BusStopsService;
+import es.craftsmanship.toledo.katangapp.services.KatangaResponseWrapper;
 
 import retrofit2.Response;
 
@@ -19,10 +20,13 @@ public class FavoritesInteractor extends BaseKatangaInteractor {
     }
 
     @Override
-    protected Response<QueryResult> getResponse(BusStopsService busStopsService)
+    protected KatangaResponseWrapper<Response<QueryResult>> getResponse(
+            BusStopsService busStopsService)
         throws IOException {
 
-        return busStopsService.favorites(busStopId).execute();
+        Response<QueryResult> response = busStopsService.favorites(busStopId).execute();
+
+        return new KatangaResponseWrapper<>(response);
     }
 
 }

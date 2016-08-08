@@ -1,7 +1,7 @@
 package es.craftsmanship.toledo.katangapp.interactors;
 
-import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.services.BusStopsService;
+import es.craftsmanship.toledo.katangapp.services.KatangaResponseWrapper;
 import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import java.io.IOException;
@@ -28,7 +28,9 @@ public abstract class BaseKatangaInteractor implements KatangaInteractor {
 
             BusStopsService service = retrofit.create(BusStopsService.class);
 
-            Response<QueryResult> response = getResponse(service);
+            KatangaResponseWrapper katangaResponseWrapper = getResponse(service);
+
+            Response response = (Response) katangaResponseWrapper.getResponse();
 
             Object event = new Error(response.message());
 
@@ -43,7 +45,7 @@ public abstract class BaseKatangaInteractor implements KatangaInteractor {
         }
     }
 
-    protected abstract Response<QueryResult> getResponse(BusStopsService busStopsService)
+    protected abstract KatangaResponseWrapper getResponse(BusStopsService busStopsService)
         throws IOException;
 
 }
