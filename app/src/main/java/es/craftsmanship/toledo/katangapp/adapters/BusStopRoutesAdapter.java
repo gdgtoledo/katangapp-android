@@ -60,11 +60,6 @@ public class BusStopRoutesAdapter
         RoutesInteractor stopsInteractor = new RoutesInteractor(routeId);
 
         new Thread(stopsInteractor).start();
-
-       /* Intent intent = new Intent(view.getContext(), RouteMapActivity.class);
-        intent.putExtra("ruta", route);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        view.getContext().startActivity(intent);*/
     }
 
      static class BusStopRoutesHolder extends RecyclerView.ViewHolder
