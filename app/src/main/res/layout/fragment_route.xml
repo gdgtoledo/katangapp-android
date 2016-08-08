@@ -13,6 +13,7 @@
                  android:text="Titulo de la ruta"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content" />
+
              <android.support.v7.widget.RecyclerView
                  android:id="@+id/line_stops"
                  android:layout_width="match_parent"
@@ -20,12 +21,4 @@
                  android:fadeScrollbars="true"
                  android:scrollbars="vertical" />
          </LinearLayout>
-
-
-
  </FrameLayout>
-
-
-
-
-
