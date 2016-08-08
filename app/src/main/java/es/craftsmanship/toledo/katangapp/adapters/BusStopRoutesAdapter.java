@@ -132,7 +132,3 @@ public class BusStopRoutesAdapter
     }
 
 }
-
-interface ItemClickListener {
-    void onItemClick(View view, int position);
-}
