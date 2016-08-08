@@ -51,10 +51,10 @@ public class RouteFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.route_bus_stops);
 
-        Route ruta = (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
+        Route route = (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
 
-        if (ruta != null) {
-            lineStops = ruta.getBusStops();
+        if (route != null) {
+            lineStops = route.getBusStops();
         }
 
         layoutManager = new LinearLayoutManager(getActivity());
