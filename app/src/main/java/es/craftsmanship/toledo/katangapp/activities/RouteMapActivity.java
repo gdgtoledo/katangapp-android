@@ -14,6 +14,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
@@ -101,12 +102,11 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
 
-        if (id == android.R.id.home) {
-            Intent intent = new Intent(getApplicationContext(), ShowBusStopsActivity.class);
-
-            startActivity(intent);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

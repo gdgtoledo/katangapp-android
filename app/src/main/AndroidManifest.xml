@@ -49,6 +49,7 @@
         <activity
             android:name=".RouteMapActivity"
             android:label="@string/title_activity_route_map"
+            android:parentActivityName=".ShowBusStopsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
