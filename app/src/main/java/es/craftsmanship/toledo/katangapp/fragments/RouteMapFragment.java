@@ -3,41 +3,26 @@ package es.craftsmanship.toledo.katangapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.io.Serializable;
-import java.util.List;
-
-import es.craftsmanship.toledo.katangapp.activities.R;
-import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapaFragment extends SupportMapFragment
+public class RouteMapFragment extends SupportMapFragment
     {
     private static final String ARG_LINE_NUMBER = "line_number";
 
 
-    public MapaFragment() {
+    public RouteMapFragment() {
         // Required empty public constructor
     }
-    public static MapaFragment newInstance() {
-        MapaFragment fragment = new MapaFragment();
+    public static RouteMapFragment newInstance() {
+        RouteMapFragment fragment = new RouteMapFragment();
        /* Bundle args = new Bundle();
         args.putSerializable(ARG_LINE_NUMBER, (Serializable) linea);
         fragment.setArguments(args);*/
@@ -51,6 +36,6 @@ public class MapaFragment extends SupportMapFragment
         View root = super.onCreateView(inflater, container, savedInstanceState);
 
         return root;
-      //  return inflater.inflate(R.layout.fragment_mapa, container, false);
+      //  return inflater.inflate(R.layout.fragment_route_map, container, false);
     }
 }

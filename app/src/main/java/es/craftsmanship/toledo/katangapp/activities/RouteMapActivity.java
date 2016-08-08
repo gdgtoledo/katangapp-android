@@ -1,22 +1,19 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import es.craftsmanship.toledo.katangapp.fragments.MapaFragment;
+import es.craftsmanship.toledo.katangapp.fragments.RouteMapFragment;
 import es.craftsmanship.toledo.katangapp.fragments.RouteFragment;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 
 import android.os.Bundle;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
@@ -43,7 +40,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private static final String CTE_RUTA = "RUTA";
 
     private GoogleMap mMap;
-    private MapaFragment mFirstMapFragment;
+    private RouteMapFragment mFirstMapFragment;
     private List<BusStop> busStopResults;
     private TabLayout tabLayout;
     private SectionsPagerAdapter mSectionsPagerAdapter;
