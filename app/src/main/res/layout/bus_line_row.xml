@@ -23,7 +23,7 @@
         <TextView
             android:padding="5dp"
             android:textSize="18sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@android:color/white"
             android:id="@+id/bus_line_stop_name"
             android:layout_gravity="center_vertical"
             android:text="Nombre parada"
