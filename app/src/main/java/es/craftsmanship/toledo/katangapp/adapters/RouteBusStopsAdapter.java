@@ -21,41 +21,41 @@ import java.util.List;
 /**
  * @author Cristobal Hermida
  */
-public class LineBusStopAdapter
-    extends RecyclerView.Adapter<LineBusStopAdapter.LineStopsViewHolder>  {
+public class RouteBusStopsAdapter
+    extends RecyclerView.Adapter<RouteBusStopsAdapter.RouteBusStopsViewHolder>  {
 
     private TextView address;
     private Context context;
-    private final List<BusStop> lineStops;
+    private final List<BusStop> busStops;
 
-    public LineBusStopAdapter(List<BusStop> lineStops) {
-        this.lineStops = lineStops;
+    public RouteBusStopsAdapter(List<BusStop> busStops) {
+        this.busStops = busStops;
     }
 
     @Override
-    public void onBindViewHolder(LineStopsViewHolder holder, int position) {
-        holder.bind(lineStops.get(position));
+    public void onBindViewHolder(RouteBusStopsViewHolder holder, int position) {
+        holder.bind(busStops.get(position));
     }
 
     @Override
-    public LineBusStopAdapter.LineStopsViewHolder onCreateViewHolder(
+    public RouteBusStopsViewHolder onCreateViewHolder(
         ViewGroup parent, int viewType) {
 
         context = parent.getContext();
 
         View v = LayoutInflater.from(context).inflate(R.layout.bus_line_row, parent, false);
 
-        return new LineStopsViewHolder(v);
+        return new RouteBusStopsViewHolder(v);
     }
 
     @Override
     public int getItemCount() {
-        return lineStops.size();
+        return busStops.size();
     }
 
-    public class LineStopsViewHolder extends RecyclerView.ViewHolder {
+    public class RouteBusStopsViewHolder extends RecyclerView.ViewHolder {
 
-        public LineStopsViewHolder(View itemView) {
+        public RouteBusStopsViewHolder(View itemView) {
             super(itemView);
 
             address = (TextView) itemView.findViewById(R.id.bus_line_stop_name);
@@ -65,8 +65,8 @@ public class LineBusStopAdapter
             address.setTypeface(tf);
         }
 
-        public void bind(BusStop busLineStop) {
-            address.setText(busLineStop.getAddress());
+        public void bind(BusStop busStop) {
+            address.setText(busStop.getAddress());
         }
 
     }

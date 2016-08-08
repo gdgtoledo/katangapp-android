@@ -1,7 +1,7 @@
 package es.craftsmanship.toledo.katangapp.fragments;
 
 import es.craftsmanship.toledo.katangapp.activities.R;
-import es.craftsmanship.toledo.katangapp.adapters.LineBusStopAdapter;
+import es.craftsmanship.toledo.katangapp.adapters.RouteBusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
 
@@ -24,8 +24,8 @@ public class RouteFragment extends Fragment {
 
     private static final String ARG_LINE_NUMBER = "line_number";
 
+    private List<BusStop> busStops;
     private RecyclerView.LayoutManager layoutManager;
-    private List<BusStop> lineStops;
     private RecyclerView recyclerView;
 
     public RouteFragment() {
@@ -54,13 +54,13 @@ public class RouteFragment extends Fragment {
         Route route = (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
 
         if (route != null) {
-            lineStops = route.getBusStops();
+            busStops = route.getBusStops();
         }
 
         layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new LineBusStopAdapter(lineStops));
+        recyclerView.setAdapter(new RouteBusStopsAdapter(busStops));
 
         return rootView;
     }
