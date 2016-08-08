@@ -44,11 +44,12 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
 
     @Subscribe
     public void routesReceived(Route queryResult) {
-
         if (queryResult!=null) {
             Intent intent = new Intent(this, RouteMapActivity.class);
+
             intent.putExtra("route", queryResult);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
         }
     }
