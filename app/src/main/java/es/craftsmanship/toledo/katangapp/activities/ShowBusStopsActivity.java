@@ -7,7 +7,6 @@ import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUti
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
-import es.craftsmanship.toledo.katangapp.utils.AndroidBus;
 
 import android.content.Intent;
 
@@ -57,20 +56,6 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
     @Subscribe
     public void routesReceived(Error error) {
         processEmptyResults();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        AndroidBus.getInstance().register(this);
-    }
-
-    @Override
-    protected void onPause() {
-        AndroidBus.getInstance().unregister(this);
-
-        super.onPause();
     }
 
     @Override
