@@ -23,7 +23,6 @@ import java.util.List;
 public class RouteBusStopsAdapter
     extends RecyclerView.Adapter<RouteBusStopsAdapter.RouteBusStopsViewHolder>  {
 
-    private TextView address;
     private final List<BusStop> busStops;
 
     public RouteBusStopsAdapter(List<BusStop> busStops) {
@@ -49,6 +48,7 @@ public class RouteBusStopsAdapter
 
     public class RouteBusStopsViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView address;
         private final ViewGroup parent;
 
         public RouteBusStopsViewHolder(ViewGroup parent) {
