@@ -59,8 +59,8 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("ruta") && (intent.getSerializableExtra("ruta") != null)) {
-            Route route = (Route) intent.getSerializableExtra("ruta");
+        if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
+            Route route = (Route) intent.getSerializableExtra("route");
 
             setTitle(route.getName());
 
