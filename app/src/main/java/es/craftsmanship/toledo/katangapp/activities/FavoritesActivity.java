@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.adapters.FavoritesAdapter;
 import es.craftsmanship.toledo.katangapp.adapters.DismissFavoritesTouchHelper;
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;

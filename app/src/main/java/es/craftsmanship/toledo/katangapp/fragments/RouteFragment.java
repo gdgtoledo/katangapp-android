@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.fragments;
 
-import es.craftsmanship.toledo.katangapp.activities.R;
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.adapters.RouteBusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;

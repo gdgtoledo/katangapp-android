@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.models.BusStop;

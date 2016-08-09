@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.interactors.InvalidInteractorException;
 import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractor;

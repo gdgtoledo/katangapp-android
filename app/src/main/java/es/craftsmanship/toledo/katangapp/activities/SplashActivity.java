@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 /**

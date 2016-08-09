@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
