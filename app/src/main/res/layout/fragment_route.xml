@@ -1,32 +1,22 @@
- <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/route_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="es.craftsmanship.toledo.katangapp.activities.RouteMapActivity">
+    <View
+        android:layout_width="3dp"
+        android:layout_marginLeft="34dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@android:color/white" />
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="vertical">
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="105dp"
+        android:id="@+id/route_bus_stops"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
-         <TextView
-             android:text="Titulo de la ruta"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content" />
-
-         <android.support.v7.widget.RecyclerView
-             android:id="@+id/route_bus_stops"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:fadeScrollbars="true"
-             android:scrollbars="vertical" />
-
-         <View
-             android:layout_width="3dp"
-             android:layout_marginLeft="46dp"
-             android:layout_height="fill_parent"
-             android:layout_gravity="left"
-             android:background="@android:color/white" />
-     </LinearLayout>
- </FrameLayout>
+</FrameLayout>
