@@ -6,7 +6,7 @@
     tools:context="es.craftsmanship.toledo.katangapp.activities.RouteMapActivity">
     <View
         android:layout_width="3dp"
-        android:layout_marginLeft="34dp"
+        android:layout_marginLeft="29dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@android:color/white" />
