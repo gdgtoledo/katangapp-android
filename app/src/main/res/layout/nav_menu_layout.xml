@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true">
 
     <!-- Contenido Principal -->
-    <include layout="@layout/main_content" />
+    <include layout="@layout/nav_menu_main_content" />
 
     <!-- Menú Deslizante -->
     <android.support.design.widget.NavigationView
@@ -17,7 +17,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="#FFFFFF"
-        app:headerLayout="@layout/header_drawer"
+        app:headerLayout="@layout/nav_menu_header_drawer"
         app:menu="@menu/menu_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
