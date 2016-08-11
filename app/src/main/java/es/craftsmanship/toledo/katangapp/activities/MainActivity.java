@@ -18,12 +18,18 @@ import android.graphics.Typeface;
 
 import android.os.Bundle;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -40,9 +46,8 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
     private static final int DEFAULT_RADIO = 500;
 
+    private DrawerLayout drawerLayout;
     private CircleButton searchButton;
-    private ImageView infoIcon;
-    private ImageView favIcon;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
     private String radio;
@@ -67,6 +72,63 @@ public class MainActivity extends BaseGeoLocatedActivity {
         getApplicationContext().startActivity(intent);
 
         toggleVisualComponents(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_drawer, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.nav_menu_layout);
+
+        addToolbar();
+
+        initializeRuntimePermissions();
+
+        initializeVariables();
+
+        initializeSeekTrack();
+
+        initializeClickableComponents();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            prepareDrawer(navigationView);
+        }
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    }
+
+    private void addToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void checkRuntimePermissions(String[] permissions, int requestCode) {
@@ -97,64 +159,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        initializeRuntimePermissions();
-
-        initializeVariables();
-
-        initializeSeekTrack();
-
-        initializeClickableComponents();
-    }
-
-    private void initializeSeekTrack() {
-        radioLabel.setText(String.valueOf(seekBar.getProgress()));
-        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                radioLabel.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                searchButton.setPressed(true);
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                searchButton.setPressed(false);
-            }
-
-        });
-    }
-
     private void initializeClickableComponents() {
-        favIcon.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent  =  new Intent(MainActivity.this, FavoritesActivity.class);
-
-                startActivity(intent);
-            }
-
-        });
-
-        infoIcon.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                showInfoOverLay();
-            }
-
-        });
-
         searchButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -190,13 +195,32 @@ public class MainActivity extends BaseGeoLocatedActivity {
         checkRuntimePermissions(permissions, requestCode);
     }
 
+    private void initializeSeekTrack() {
+        radioLabel.setText(String.valueOf(seekBar.getProgress()));
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                radioLabel.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(true);
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(false);
+            }
+
+        });
+    }
+
     /**
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-
-        infoIcon = (ImageView) findViewById(R.id.infoIcon);
-        favIcon = (ImageView) findViewById(R.id.favIcon);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
@@ -210,6 +234,42 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
         txtKatangaLabel.setTypeface(tf);
         radioLabel.setTypeface(tf);
+    }
+
+    private void prepareDrawer(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+
+                        selectItem(menuItem);
+
+                        drawerLayout.closeDrawers();
+
+                        return true;
+                    }
+                }
+
+        );
+    }
+
+    private void selectItem(MenuItem itemDrawer) {
+        switch (itemDrawer.getItemId()) {
+            case R.id.item_info:
+                showInfoOverLay();
+
+                break;
+            case R.id.item_favs:
+                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
+
+                startActivity(intent);
+
+                break;
+        }
+
+        setTitle(itemDrawer.getTitle());
     }
 
     /**
