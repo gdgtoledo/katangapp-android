@@ -262,7 +262,7 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
                 break;
             case R.id.item_favs:
-                Intent intent  =  new Intent(MainActivity.this, FavoritesActivity.class);
+                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
 
                 startActivity(intent);
 
