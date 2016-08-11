@@ -11,6 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     >
+
     <TextView
         android:text="Katanga"
         android:layout_width="match_parent"

@@ -21,11 +21,11 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,8 +45,8 @@ import com.squareup.otto.Subscribe;
 public class MainActivity extends BaseGeoLocatedActivity {
 
     private static final int DEFAULT_RADIO = 500;
-    private DrawerLayout drawerLayout;
 
+    private DrawerLayout drawerLayout;
     private CircleButton searchButton;
     private ProgressBar searchProgressBar;
     private SeekBar seekBar;
@@ -76,13 +76,15 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
     private void addToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+
         setSupportActionBar(toolbar);
+
         final ActionBar ab = getSupportActionBar();
+
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
     }
 
     private void checkRuntimePermissions(String[] permissions, int requestCode) {
@@ -200,7 +202,6 @@ public class MainActivity extends BaseGeoLocatedActivity {
      * A private method to help us initialize our variables
      */
     private void initializeVariables() {
-
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         radioLabel = (TextView) findViewById(R.id.radioLabel);
         searchButton = (CircleButton) findViewById(R.id.searchButton);
@@ -216,10 +217,10 @@ public class MainActivity extends BaseGeoLocatedActivity {
         radioLabel.setTypeface(tf);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_drawer, menu);
+
         return true;
     }
 
@@ -228,44 +229,48 @@ public class MainActivity extends BaseGeoLocatedActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
+
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     private void prepareDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
+
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
+
                         selectItem(menuItem);
+
                         drawerLayout.closeDrawers();
+
                         return true;
                     }
-                });
+                }
 
+        );
     }
 
-
     private void selectItem(MenuItem itemDrawer) {
-
         switch (itemDrawer.getItemId()) {
             case R.id.item_info:
-
                 showInfoOverLay();
 
                 break;
             case R.id.item_favs:
-
                 Intent intent  =  new Intent(MainActivity.this, FavoritesActivity.class);
+
                 startActivity(intent);
 
                 break;
         }
+
         setTitle(itemDrawer.getTitle());
     }
-
 
     /**
      * Shows the overlay dialog showing the application information.
