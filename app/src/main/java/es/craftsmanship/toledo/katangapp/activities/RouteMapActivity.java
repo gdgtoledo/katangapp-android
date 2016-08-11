@@ -5,7 +5,6 @@ import es.craftsmanship.toledo.katangapp.fragments.RouteMapFragment;
 import es.craftsmanship.toledo.katangapp.fragments.RouteFragment;
 import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
-import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
 
 import android.content.Intent;
@@ -45,10 +44,6 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private SectionsPagerAdapter sectionsPagerAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
-    @Override
-    public void busStopsReceived(QueryResult queryResult) {
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

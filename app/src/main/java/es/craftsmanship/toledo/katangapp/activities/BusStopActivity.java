@@ -5,7 +5,6 @@ import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
-import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import android.content.Intent;
 
@@ -51,10 +50,6 @@ public class BusStopActivity extends BaseGeoLocatedActivity
     private SupportMapFragment mapFragment;
     private SupportStreetViewPanoramaFragment streetViewPanoramaFragment;
     private StreetViewPanorama streetViewPanorama;
-
-    @Override
-    public void busStopsReceived(QueryResult queryResult) {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,6 +8,7 @@ import es.craftsmanship.toledo.katangapp.interactors.KatangaInteractorFactoryUti
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
 
 import android.content.Intent;
 
@@ -29,11 +30,17 @@ import java.util.List;
  * @author Cristóbal Hermida
  * @author Manuel de la Peña
  */
-public class ShowBusStopsActivity extends BaseGeoLocatedActivity {
+public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusStopsSubscriber {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    @Override
+    @Subscribe
+    public void busStopsReceived(Error error) {
+    }
+
+    @Override
     @Subscribe
     public void busStopsReceived(QueryResult queryResult) {
         List<BusStopResult> results = queryResult.getResults();

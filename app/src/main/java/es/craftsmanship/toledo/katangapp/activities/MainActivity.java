@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import at.markushi.ui.CircleButton;
@@ -19,6 +20,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +28,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,9 +45,10 @@ import com.squareup.otto.Subscribe;
  * @author Cristóbal Hermida
  * @author Javier Gamarra
  */
-public class MainActivity extends BaseGeoLocatedActivity {
+public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubscriber {
 
     private static final int DEFAULT_RADIO = 500;
+    private static final String TAG = "KATANGAPP";
 
     private DrawerLayout drawerLayout;
     private CircleButton searchButton;
@@ -57,7 +61,11 @@ public class MainActivity extends BaseGeoLocatedActivity {
     public void busStopsReceived(Error error) {
         toggleVisualComponents(true);
 
-        super.busStopsReceived(error);
+        Log.e(TAG, "Error calling server ", error);
+
+        View content = findViewById(android.R.id.content);
+
+        Snackbar.make(content, "Error finding the nearest stop", Snackbar.LENGTH_LONG).show();
     }
 
     @Subscribe
