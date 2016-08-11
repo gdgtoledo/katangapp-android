@@ -74,6 +74,50 @@ public class MainActivity extends BaseGeoLocatedActivity {
         toggleVisualComponents(true);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_drawer, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.nav_menu_layout);
+
+        addToolbar();
+
+        initializeRuntimePermissions();
+
+        initializeVariables();
+
+        initializeSeekTrack();
+
+        initializeClickableComponents();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            prepareDrawer(navigationView);
+        }
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    }
+
     private void addToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
@@ -115,53 +159,6 @@ public class MainActivity extends BaseGeoLocatedActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.nav_menu_layout);
-
-        addToolbar();
-
-        initializeRuntimePermissions();
-
-        initializeVariables();
-
-        initializeSeekTrack();
-
-        initializeClickableComponents();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            prepareDrawer(navigationView);
-        }
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-    }
-
-    private void initializeSeekTrack() {
-        radioLabel.setText(String.valueOf(seekBar.getProgress()));
-        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                radioLabel.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                searchButton.setPressed(true);
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                searchButton.setPressed(false);
-            }
-
-        });
-    }
-
-
     private void initializeClickableComponents() {
         searchButton.setOnClickListener(new View.OnClickListener() {
 
@@ -198,6 +195,28 @@ public class MainActivity extends BaseGeoLocatedActivity {
         checkRuntimePermissions(permissions, requestCode);
     }
 
+    private void initializeSeekTrack() {
+        radioLabel.setText(String.valueOf(seekBar.getProgress()));
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                radioLabel.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(true);
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                searchButton.setPressed(false);
+            }
+
+        });
+    }
+
     /**
      * A private method to help us initialize our variables
      */
@@ -215,25 +234,6 @@ public class MainActivity extends BaseGeoLocatedActivity {
 
         txtKatangaLabel.setTypeface(tf);
         radioLabel.setTypeface(tf);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_drawer, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void prepareDrawer(NavigationView navigationView) {
