@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_info"
+            android:checked="false"
+            android:icon="@drawable/ic_info_outline_24dp"
+            android:title="@string/item_info" />
+        <item
+            android:id="@+id/item_favs"
+            android:checked="false"
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="@string/item_fav" />
+
+    </group>
+</menu>
