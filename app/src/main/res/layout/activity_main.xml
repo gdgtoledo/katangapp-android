@@ -9,26 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_margin="5dp"
-            android:id="@+id/favIcon"
-            android:src="@drawable/ic_star_border_black_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_margin="5dp"
-            android:id="@+id/infoIcon"
-            android:src="@drawable/ic_info_outline_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/title_katanga"
