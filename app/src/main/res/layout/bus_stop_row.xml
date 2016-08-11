@@ -17,7 +17,7 @@
         android:background="@android:color/white">
 
         <ImageView
-            android:id="@+id/logo"
+            android:id="@+id/bus_stop_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/bus_image"
@@ -28,7 +28,7 @@
             android:id="@+id/stop_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/logo"
+            android:layout_toRightOf="@+id/bus_stop_icon"
             android:gravity="center_horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/stop_address"
-            android:layout_toRightOf="@id/logo"
+            android:layout_toRightOf="@id/bus_stop_icon"
             android:gravity="center_horizontal"
             android:textSize="12sp" />
 
@@ -50,7 +50,7 @@
             android:id="@+id/lines"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/logo"
+            android:layout_below="@+id/bus_stop_icon"
             android:minHeight="100dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
     </RelativeLayout>
