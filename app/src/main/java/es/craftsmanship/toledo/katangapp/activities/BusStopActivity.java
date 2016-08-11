@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
+import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
@@ -21,7 +22,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,7 +31,6 @@ import com.google.android.gms.maps.StreetViewPanorama.OnStreetViewPanoramaChange
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.SupportStreetViewPanoramaFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -202,12 +201,7 @@ public class BusStopActivity extends BaseGeoLocatedActivity
                     currentPosition = new LatLng(getLatitude(), getLongitude());
                 }
 
-                CameraPosition cameraPosition = CameraPosition.builder()
-                    .target(currentPosition)
-                    .zoom(16)
-                    .build();
-
-                map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                map.moveCamera(GoogleMapsCameraHelper.getCameraUpdate(currentPosition, 16));
             }
 
         });

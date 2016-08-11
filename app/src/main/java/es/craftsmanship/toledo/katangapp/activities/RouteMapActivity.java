@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.fragments.RouteMapFragment;
 import es.craftsmanship.toledo.katangapp.fragments.RouteFragment;
+import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
@@ -22,11 +23,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -93,12 +92,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
                 .title("Mi situación")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
-        CameraPosition cameraPosition = CameraPosition.builder()
-                .target(locStopIni)
-                .zoom(12)
-                .build();
-
-        this.googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        googleMap.moveCamera(GoogleMapsCameraHelper.getCameraUpdate(locStopIni, 12));
     }
 
     @Override
