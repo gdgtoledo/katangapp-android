@@ -60,7 +60,7 @@ public class RouteBusStopsAdapter
 
             Context context = this.parent.getContext();
 
-            address = (TextView) itemView.findViewById(R.id.bus_line_stop_name);
+            address = (TextView) itemView.findViewById(R.id.bus_stop_address);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
 

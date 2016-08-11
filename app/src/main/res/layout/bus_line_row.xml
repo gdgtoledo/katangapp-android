@@ -25,7 +25,7 @@
             android:padding="5dp"
             android:textSize="18sp"
             android:textColor="@android:color/white"
-            android:id="@+id/bus_line_stop_name"
+            android:id="@+id/bus_stop_address"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
