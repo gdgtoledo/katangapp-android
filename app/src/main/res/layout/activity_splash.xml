@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/id_icon_katanga"
-            android:src="@drawable/logok"
+            android:src="@drawable/logo_small"
             android:layout_gravity="center"
             />
         <TextView

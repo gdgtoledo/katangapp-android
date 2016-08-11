@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/bus_image"
             android:padding="6dp"
-            android:src="@drawable/logok" />
+            android:src="@drawable/logo_small" />
 
         <TextView
             android:id="@+id/busStopId"
