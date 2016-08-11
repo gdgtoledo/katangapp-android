@@ -4,6 +4,7 @@ import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import android.content.Intent;
 
@@ -15,25 +16,59 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
+import com.google.android.gms.maps.StreetViewPanorama;
+import com.google.android.gms.maps.StreetViewPanorama.OnStreetViewPanoramaChangeListener;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.SupportStreetViewPanoramaFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.StreetViewPanoramaLocation;
+
 /**
  * @author Manuel de la Peña
  */
-public class BusStopActivity extends AppCompatActivity {
+public class BusStopActivity extends BaseGeoLocatedActivity
+    implements OnMarkerDragListener, OnStreetViewPanoramaChangeListener {
+
+    private static final String MARKER_POSITION_KEY = "MarkerPosition";
 
     private BusStop busStop;
+    private LatLng busStopLatLng;
+    private Marker currentPositionMarker;
     private boolean isFavorite;
+    private SupportMapFragment mapFragment;
+    private SupportStreetViewPanoramaFragment streetViewPanoramaFragment;
+    private StreetViewPanorama streetViewPanorama;
+
+    @Override
+    public void busStopsReceived(QueryResult queryResult) {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_bus_stop);
+
+        mapFragment =
+            (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.bus_stop_map);
+
+        streetViewPanoramaFragment =
+            (SupportStreetViewPanoramaFragment)
+                getSupportFragmentManager().findFragmentById(R.id.street_view_panorama);
 
         Intent intent = getIntent();
 
@@ -43,6 +78,11 @@ public class BusStopActivity extends AppCompatActivity {
             String title = busStop.getId() + " - " + busStop.getAddress();
 
             this.setTitle(title);
+
+            busStopLatLng = new LatLng(busStop.getLatitude(), busStop.getLongitude());
+
+            configureGoogleMaps(savedInstanceState);
+            configureGoogleStreetView(savedInstanceState);
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -96,6 +136,19 @@ public class BusStopActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onMarkerDragStart(Marker marker) {
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        streetViewPanorama.setPosition(marker.getPosition(), 150);
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -105,6 +158,80 @@ public class BusStopActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStreetViewPanoramaChange(StreetViewPanoramaLocation location) {
+        if (location != null) {
+            currentPositionMarker.setPosition(location.position);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(MARKER_POSITION_KEY, currentPositionMarker.getPosition());
+    }
+
+    private void configureGoogleMaps(final Bundle savedInstanceState) {
+        final LatLng markerPosition;
+
+        if (savedInstanceState == null) {
+            markerPosition = busStopLatLng;
+        }
+        else {
+            markerPosition = savedInstanceState.getParcelable(MARKER_POSITION_KEY);
+        }
+
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+
+            @Override
+            public void onMapReady(GoogleMap map) {
+                map.setOnMarkerDragListener(BusStopActivity.this);
+
+                currentPositionMarker = map.addMarker(
+                    new MarkerOptions()
+                        .position(markerPosition)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.pegman))
+                        .draggable(true));
+
+                LatLng currentPosition = busStopLatLng;
+
+                if (getLatitude() != null && getLongitude() != null) {
+                    currentPosition = new LatLng(getLatitude(), getLongitude());
+                }
+
+                CameraPosition cameraPosition = CameraPosition.builder()
+                    .target(currentPosition)
+                    .zoom(16)
+                    .build();
+
+                map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+
+        });
+    }
+
+    private void configureGoogleStreetView(final Bundle savedInstanceState) {
+        streetViewPanoramaFragment.getStreetViewPanoramaAsync(
+            new OnStreetViewPanoramaReadyCallback() {
+
+                @Override
+                public void onStreetViewPanoramaReady(StreetViewPanorama panorama) {
+                    streetViewPanorama = panorama;
+
+                    streetViewPanorama.setOnStreetViewPanoramaChangeListener(BusStopActivity.this);
+
+                    // Only need to set the position once as the streetview fragment will maintain
+                    // its state.
+
+                    if (savedInstanceState == null) {
+                        streetViewPanorama.setPosition(busStopLatLng);
+                    }
+                }
+
+        });
     }
 
     private Drawable getFavoritedDrawable(boolean favorited) {

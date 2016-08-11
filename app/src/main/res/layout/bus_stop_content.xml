@@ -12,4 +12,34 @@
     tools:context="es.craftsmanship.toledo.katangapp.activities.BusStopActivity"
     tools:showIn="@layout/activity_bus_stop">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/map_container2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/street_view_panorama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                class="com.google.android.gms.maps.SupportStreetViewPanoramaFragment" />
+
+            <fragment
+                android:id="@+id/bus_stop_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                 />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
