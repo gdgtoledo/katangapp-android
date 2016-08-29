@@ -46,13 +46,6 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private ViewPager viewPager;
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_route_map, menu);
-
-        return true;
-    }
-
-    @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
 
