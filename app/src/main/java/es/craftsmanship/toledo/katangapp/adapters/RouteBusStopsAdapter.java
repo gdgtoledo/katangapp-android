@@ -57,7 +57,6 @@ public class RouteBusStopsAdapter
 
         private BusStop currentBusStop;
         private TextView address;
-        private ImageView busStopIcon;
 
         public RouteBusStopsViewHolder(ViewGroup parent) {
             super(
@@ -65,7 +64,7 @@ public class RouteBusStopsAdapter
                     .inflate(R.layout.bus_line_row, parent, false));
 
             address = (TextView) itemView.findViewById(R.id.bus_stop_address);
-            busStopIcon = (ImageView) itemView.findViewById(R.id.bus_stop_icon);
+            ImageView busStopIcon = (ImageView) itemView.findViewById(R.id.bus_stop_icon);
 
             Typeface tf = KatangaFont.getFont(context.getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
