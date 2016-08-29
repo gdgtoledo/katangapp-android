@@ -39,23 +39,15 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:9.2.0'
     compile 'com.google.android.gms:play-services-maps:9.2.0'
     compile 'com.squareup:otto:1.3.8'
-    compile 'com.squareup.retrofit2:converter-jackson:2.0.2'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.0.57-beta'
+    testCompile 'org.mockito:mockito-core:2.0.111-beta'
 
     androidTestCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'support-v4'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test:rules:0.4.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test:runner:0.4.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
+    androidTestCompile 'com.android.support:design:23.4.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test:runner:0.5'
 }
