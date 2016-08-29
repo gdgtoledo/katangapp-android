@@ -33,7 +33,6 @@ public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusSto
     private Context context;
     private RecyclerView lines;
     private TextView address;
-    private ImageView busStopIcon;
     private TextView distance;
 
     public BusStopsAdapter(List<BusStopResult> busStops) {
@@ -67,7 +66,7 @@ public class BusStopsAdapter extends RecyclerView.Adapter<BusStopsAdapter.BusSto
             super(itemView);
 
             address = (TextView) itemView.findViewById(R.id.stop_address);
-            busStopIcon = (ImageView) itemView.findViewById(R.id.logo);
+            ImageView busStopIcon = (ImageView) itemView.findViewById(R.id.logo);
             distance = (TextView) itemView.findViewById(R.id.stop_distance);
             lines = (RecyclerView) itemView.findViewById(R.id.lines);
 
