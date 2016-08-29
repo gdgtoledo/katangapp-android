@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
+
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -118,8 +119,8 @@ public abstract class BaseGeoLocatedActivity extends BaseAndroidBusRegistrableAc
     }
 
     private void initializeGooglePlayServices() {
-
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+
         int checkGooglePlayServices = googleApiAvailability.isGooglePlayServicesAvailable(this);
 
         if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
@@ -131,7 +132,7 @@ public abstract class BaseGeoLocatedActivity extends BaseAndroidBusRegistrableAc
             * SERVICE_DISABLED, SERVICE_INVALID.
             */
             Dialog errorDialog = googleApiAvailability.getErrorDialog(this,
-	            checkGooglePlayServices, REQUEST_CODE_RECOVER_PLAY_SERVICES);
+                checkGooglePlayServices, REQUEST_CODE_RECOVER_PLAY_SERVICES);
 
             errorDialog.show();
 

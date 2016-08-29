@@ -1,6 +1,5 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
-import android.support.v4.content.res.ResourcesCompat;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.interactors.InvalidInteractorException;
@@ -17,6 +16,7 @@ import android.graphics.Color;
 
 import android.os.Bundle;
 
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

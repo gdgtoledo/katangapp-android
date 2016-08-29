@@ -102,6 +102,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         Intent intent = getIntent();
 
         SectionsPagerAdapter sectionsPagerAdapter;
+
         if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
             Route route = (Route) intent.getSerializableExtra("route");
 
