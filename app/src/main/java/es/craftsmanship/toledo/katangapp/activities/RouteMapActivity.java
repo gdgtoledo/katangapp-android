@@ -19,7 +19,6 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -39,31 +38,24 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
     private static final String ROUTE_KEY = "RUTA";
 
     private List<BusStop> busStopResults;
-    private GoogleMap googleMap;
-    private RouteMapFragment mapFragment;
-    private SectionsPagerAdapter sectionsPagerAdapter;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
-
-        this.googleMap.getUiSettings().setZoomControlsEnabled(true);
-        this.googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-        this.googleMap.getUiSettings().setMapToolbarEnabled(true);
-        this.googleMap.getUiSettings().setCompassEnabled(true);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        googleMap.getUiSettings().setMapToolbarEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
 
         if (!busStopResults.isEmpty()) {
             for (BusStop stop : busStopResults) {
                 LatLng locStop = new LatLng(stop.getLatitude(), stop.getLongitude());
 
-                this.googleMap.addMarker(
+                googleMap.addMarker(
                     new MarkerOptions().position(locStop).title(stop.getAddress()));
             }
         }
 
-        LatLng locStopIni = null;
+        LatLng locStopIni;
 
         if (getLatitude() != null && getLongitude() != null) {
             locStopIni  = new LatLng( getLatitude(), getLongitude());
@@ -74,7 +66,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
             locStopIni = new LatLng(busStop.getLatitude(), busStop.getLongitude());
         }
 
-        this.googleMap.addMarker(
+        googleMap.addMarker(
             new MarkerOptions()
                 .position(locStopIni)
                 .title("Mi situación")
@@ -109,6 +101,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
         Intent intent = getIntent();
 
+        SectionsPagerAdapter sectionsPagerAdapter;
         if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
             Route route = (Route) intent.getSerializableExtra("route");
 
@@ -121,11 +114,11 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
             sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),null);
         }
 
-        viewPager = (ViewPager) findViewById(R.id.container);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
 
         viewPager.setAdapter(sectionsPagerAdapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -153,7 +146,7 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    mapFragment = RouteMapFragment.newInstance();
+                    RouteMapFragment mapFragment = RouteMapFragment.newInstance();
 
                     mapFragment.getMapAsync(RouteMapActivity.this);
 
