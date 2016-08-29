@@ -32,7 +32,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
         Intent intent = new Intent(FavoritesActivity.this, ShowBusStopsActivity.class);
 
         intent.putExtra("queryResult", queryResult);
-        intent.putExtra("favorites", true);
+        intent.putExtra("activity_favorites", true);
 
         List<BusStopResult> results = queryResult.getResults();
 
@@ -50,7 +50,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.favorites);
+        setContentView(R.layout.activity_favorites);
 
         try(FavoriteDAO favoriteDAO = new FavoriteDAO(this)) {
             favoriteDAO.open();
