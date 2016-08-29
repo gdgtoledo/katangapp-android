@@ -16,12 +16,11 @@ public class KatangaResponseWrapperTest {
 
     @Test
     public void testConstructorFromInteger() {
-        KatangaResponseWrapper<Integer> katangaResponseWrapper = new KatangaResponseWrapper<>(
-            new Integer(1000));
+        KatangaResponseWrapper<Integer> katangaResponseWrapper = new KatangaResponseWrapper<>(1000);
 
         Integer response = katangaResponseWrapper.getResponse();
 
-        Assert.assertTrue(response instanceof Integer);
+        Assert.assertTrue(response != null);
         Assert.assertEquals(1000, response.intValue());
     }
 
@@ -38,7 +37,7 @@ public class KatangaResponseWrapperTest {
 
         QueryResult response = katangaResponseWrapper.getResponse();
 
-        Assert.assertTrue(response instanceof QueryResult);
+        Assert.assertTrue(response != null);
         Assert.assertEquals(1, response.getResults().size());
     }
 
@@ -49,7 +48,7 @@ public class KatangaResponseWrapperTest {
 
         String response = katangaResponseWrapper.getResponse();
 
-        Assert.assertTrue(response instanceof String);
+        Assert.assertTrue(response != null);
         Assert.assertEquals("Hello World!", response);
     }
 
