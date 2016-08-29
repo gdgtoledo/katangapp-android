@@ -15,9 +15,7 @@ import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
  */
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 2000;
-
-    private TextView splashTitle;
+    private static final int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        splashTitle = (TextView) findViewById(R.id.splashTitle);
+        TextView splashTitle = (TextView) findViewById(R.id.splashTitle);
 
         Typeface tf = KatangaFont.getFont(getAssets(), KatangaFont.QUICKSAND_REGULAR);
 
