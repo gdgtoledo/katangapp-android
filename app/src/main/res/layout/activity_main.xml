@@ -1,80 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="es.craftsmanship.toledo.katangapp.activities.MainActivity">
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/title_katanga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/searchComponentsFrame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp"
-        android:fontFamily=""
-        android:text="@string/katanga"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:textColorHighlight="@android:color/white"
-        android:textSize="40sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:max="1000"
-        android:progress="500"
-        android:progressDrawable="@drawable/seekbar_progressbar"
-        android:thumb="@drawable/seekbar_thumb" />
-
-    <FrameLayout
-        android:id="@+id/searchComponentsFrame"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/seekBar"
-        android:layout_alignParentBottom="true">
-
-        <at.markushi.ui.CircleButton
-            android:id="@+id/searchButton"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_place_24dp"
-            app:cb_color="@color/katanga_yellow"
-            app:cb_pressedRingWidth="8dp" />
+            android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/searchProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:indeterminateTintMode="src_atop"
-            android:indeterminateTint="@android:color/black"
-            android:visibility="invisible" />
-    </FrameLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_main"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/black" />
 
-    <TextView
-        android:id="@+id/radioLabel"
+        </android.support.design.widget.AppBarLayout>
+
+        <include layout="@layout/content_main" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/seekBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:height="50dp"
-        android:singleLine="true"
-        android:text="@string/default_radio_value"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/katanga_grey"
-        android:textColorHighlight="@color/katanga_grey_light"
-        android:visibility="visible" />
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_menu_header_drawer"
+        app:menu="@menu/menu_drawer" />
+
+</android.support.v4.widget.DrawerLayout>

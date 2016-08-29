@@ -25,8 +25,6 @@ public class RouteFragment extends Fragment {
     private static final String ARG_LINE_NUMBER = "line_number";
 
     private List<BusStop> busStops;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView recyclerView;
 
     public RouteFragment() {
     }
@@ -49,7 +47,7 @@ public class RouteFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_route, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.route_bus_stops);
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.route_bus_stops);
 
         Route route = (Route) getArguments().getSerializable(ARG_LINE_NUMBER);
 
@@ -57,7 +55,7 @@ public class RouteFragment extends Fragment {
             busStops = route.getBusStops();
         }
 
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new RouteBusStopsAdapter(busStops));
