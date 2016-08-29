@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -118,7 +118,9 @@ public abstract class BaseGeoLocatedActivity extends BaseAndroidBusRegistrableAc
     }
 
     private void initializeGooglePlayServices() {
-        int checkGooglePlayServices = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int checkGooglePlayServices = googleApiAvailability.isGooglePlayServicesAvailable(this);
 
         if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
             /*
@@ -128,8 +130,8 @@ public abstract class BaseGeoLocatedActivity extends BaseAndroidBusRegistrableAc
             * SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
             * SERVICE_DISABLED, SERVICE_INVALID.
             */
-            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-                checkGooglePlayServices, this, REQUEST_CODE_RECOVER_PLAY_SERVICES);
+            Dialog errorDialog = googleApiAvailability.getErrorDialog(this,
+	            checkGooglePlayServices, REQUEST_CODE_RECOVER_PLAY_SERVICES);
 
             errorDialog.show();
 
