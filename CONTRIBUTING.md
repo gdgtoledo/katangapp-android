@@ -38,7 +38,7 @@ There won't be a blank line before method endings.
 Use camel case for variables and methods.
 
 ## Order
-Having an order criterium  will increase speed when searching for them.
+Having an order criterion  will increase speed when searching for them.
 
 ### Attributes in a class
 Use alphabetical order to define the attributes in a class.
@@ -47,7 +47,7 @@ Use alphabetical order to define the attributes in a class.
 Use common Android-style order (see [http://blog.jetbrains.com/idea/2013/10/rearrange-attributes-in-android-xml-files-with-intellij-idea-13](http://blog.jetbrains.com/idea/2013/10/rearrange-attributes-in-android-xml-files-with-intellij-idea-13)).
 
 ### Imports
-Order imports by this criterium:
+Order imports by this criterion:
 
 First the application packages, then order them alphabetically, adding blank lines when needed.
 
