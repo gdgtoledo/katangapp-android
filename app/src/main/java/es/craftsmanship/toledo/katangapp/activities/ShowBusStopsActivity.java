@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.activities;
 
+import android.support.v4.content.res.ResourcesCompat;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.adapters.BusStopsAdapter;
 import es.craftsmanship.toledo.katangapp.interactors.InvalidInteractorException;
@@ -103,7 +104,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
     }
 
     private void initializeSwipeRefreshLayout(final Bundle extras) {
-        int color = getResources().getColor(R.color.katanga_yellow);
+        int color = ResourcesCompat.getColor(getResources(), R.color.katanga_yellow, getTheme());
 
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(color);
 
