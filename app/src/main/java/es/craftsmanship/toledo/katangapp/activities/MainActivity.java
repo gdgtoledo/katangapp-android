@@ -106,7 +106,7 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.nav_menu_layout);
+        setContentView(R.layout.activity_main);
 
         addToolbar();
 

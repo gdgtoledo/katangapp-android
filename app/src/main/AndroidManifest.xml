@@ -21,17 +21,20 @@
         </activity>
 
         <activity android:name=".activities.FavoritesActivity"
+            android:theme="@style/GreyAppTheme"
             android:label="@string/favorites_bus_stops">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.craftsmanship.toledo.katangapp.activities.MainActivity" />
         </activity>
 
-        <activity android:name=".activities.ShowBusStopsActivity" android:launchMode="singleTop"/>
+        <activity android:name=".activities.ShowBusStopsActivity"
+            android:theme="@style/GreyAppTheme"
+            android:launchMode="singleTop"/>
 
         <activity android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/WhiteTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
