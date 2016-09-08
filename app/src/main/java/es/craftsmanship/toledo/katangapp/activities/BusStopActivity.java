@@ -5,6 +5,7 @@ import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
 
@@ -66,8 +67,10 @@ public class BusStopActivity extends BaseGeoLocatedActivity
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("busStop") && (intent.getSerializableExtra("busStop") != null)) {
-            busStop = (BusStop) intent.getSerializableExtra("busStop");
+        if (intent.hasExtra(ExtrasConstants.BUS_STOP) &&
+            (intent.getSerializableExtra(ExtrasConstants.BUS_STOP) != null)) {
+
+            busStop = (BusStop) intent.getSerializableExtra(ExtrasConstants.BUS_STOP);
 
             String title = busStop.getId() + " - " + busStop.getAddress();
 

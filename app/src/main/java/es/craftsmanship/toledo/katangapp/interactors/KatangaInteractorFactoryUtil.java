@@ -21,7 +21,7 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
         boolean favorites = extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES);
 
         if (favorites) {
-            BusStop busStop = (BusStop) extras.getSerializable("busStop");
+            BusStop busStop = (BusStop) extras.getSerializable(ExtrasConstants.BUS_STOP);
 
             FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
                 busStop.getId());
@@ -57,7 +57,9 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
         if (extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES) &&
             extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES)) {
 
-            if (!extras.containsKey("busStop") || (extras.getSerializable("busStop") == null)) {
+            if (!extras.containsKey(ExtrasConstants.BUS_STOP) ||
+                (extras.getSerializable(ExtrasConstants.BUS_STOP) == null)) {
+
                 throw new InvalidInteractorException("Favorite Bus Stop is not present.");
             }
 

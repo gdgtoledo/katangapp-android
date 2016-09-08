@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.adapters;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.activities.BusStopActivity;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import android.content.Context;
@@ -76,7 +77,7 @@ public class RouteBusStopsAdapter
                 public void onClick(View v) {
                     Intent intent = new Intent(context, BusStopActivity.class);
 
-                    intent.putExtra("busStop", currentBusStop);
+                    intent.putExtra(ExtrasConstants.BUS_STOP, currentBusStop);
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

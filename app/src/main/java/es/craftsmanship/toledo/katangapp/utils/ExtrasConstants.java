@@ -7,4 +7,6 @@ public class ExtrasConstants {
 
     public static final String ACTIVITY_FAVORITES = "activity_favorites";
 
+    public static final String BUS_STOP = "bus_stop";
+
 }

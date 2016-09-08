@@ -74,7 +74,7 @@ public class KatangaInteractorFactoryUtilTest {
 
         mockGetFavoritesInteractor(true, true);
 
-        Mockito.when(extras.getSerializable("busStop"))
+        Mockito.when(extras.getSerializable(ExtrasConstants.BUS_STOP))
             .thenReturn(new BusStop("", "P001", "", 0, 0, ""));
 
         KatangaInteractor interactor = instance.getInteractor(extras);
@@ -144,7 +144,7 @@ public class KatangaInteractorFactoryUtilTest {
         Mockito.when(extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(favorites);
         Mockito.when(extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(favorites);
 
-        Mockito.when(extras.containsKey("busStop")).thenReturn(busStop);
+        Mockito.when(extras.containsKey(ExtrasConstants.BUS_STOP)).thenReturn(busStop);
     }
 
     @Mock

@@ -40,7 +40,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
         // there should be only one
         BusStopResult busStopResult = results.get(0);
 
-        intent.putExtra("busStop", busStopResult.getBusStop());
+        intent.putExtra(ExtrasConstants.BUS_STOP, busStopResult.getBusStop());
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
