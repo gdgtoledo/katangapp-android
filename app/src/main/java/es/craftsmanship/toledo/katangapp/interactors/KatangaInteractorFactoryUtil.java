@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.interactors;
 import android.os.Bundle;
 
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 /**
  * @author Manuel de la Peña
@@ -17,7 +18,7 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
     public KatangaInteractor getInteractor(Bundle extras) throws InvalidInteractorException {
         validate(extras);
 
-        boolean favorites = extras.getBoolean("favorites");
+        boolean favorites = extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES);
 
         if (favorites) {
             BusStop busStop = (BusStop) extras.getSerializable("busStop");
@@ -53,7 +54,9 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
      * @throws InvalidInteractorException if any validation condition is not satisfied
      */
     private void validate(Bundle extras) throws InvalidInteractorException {
-        if (extras.containsKey("favorites") && extras.getBoolean("favorites")) {
+        if (extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES) &&
+            extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES)) {
+
             if (!extras.containsKey("busStop") || (extras.getSerializable("busStop") == null)) {
                 throw new InvalidInteractorException("Favorite Bus Stop is not present.");
             }

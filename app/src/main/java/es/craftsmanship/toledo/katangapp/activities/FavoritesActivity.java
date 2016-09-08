@@ -7,6 +7,7 @@ import es.craftsmanship.toledo.katangapp.db.FavoriteDAO;
 import es.craftsmanship.toledo.katangapp.db.model.Favorite;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
 
@@ -32,7 +33,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
         Intent intent = new Intent(FavoritesActivity.this, ShowBusStopsActivity.class);
 
         intent.putExtra("queryResult", queryResult);
-        intent.putExtra("activity_favorites", true);
+        intent.putExtra(ExtrasConstants.ACTIVITY_FAVORITES, true);
 
         List<BusStopResult> results = queryResult.getResults();
 

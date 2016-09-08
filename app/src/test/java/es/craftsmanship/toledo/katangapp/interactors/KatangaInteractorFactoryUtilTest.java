@@ -1,6 +1,7 @@
 package es.craftsmanship.toledo.katangapp.interactors;
 
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.os.Bundle;
 
@@ -85,8 +86,8 @@ public class KatangaInteractorFactoryUtilTest {
     public void testGetFavoritesInteractorWithFalseFavoritesFlag() throws Exception {
         KatangaInteractorFactoryUtil instance = KatangaInteractorFactoryUtil.getInstance();
 
-        Mockito.when(extras.containsKey("favorites")).thenReturn(true);
-        Mockito.when(extras.getBoolean("favorites")).thenReturn(false);
+        Mockito.when(extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(true);
+        Mockito.when(extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(false);
 
         exception.expect(InvalidInteractorException.class);
         exception.expectMessage("Main search parameters (lat, long, radio) are not present.");
@@ -132,7 +133,7 @@ public class KatangaInteractorFactoryUtilTest {
     }
 
     private void mockGetBusStopsInteractor(boolean radio, boolean latitude, boolean longitude) {
-        Mockito.when(extras.containsKey("favorites")).thenReturn(false);
+        Mockito.when(extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(false);
 
         Mockito.when(extras.containsKey("radio")).thenReturn(radio);
         Mockito.when(extras.containsKey("latitude")).thenReturn(latitude);
@@ -140,8 +141,8 @@ public class KatangaInteractorFactoryUtilTest {
     }
 
     private void mockGetFavoritesInteractor(boolean favorites, boolean busStop) {
-        Mockito.when(extras.containsKey("favorites")).thenReturn(favorites);
-        Mockito.when(extras.getBoolean("favorites")).thenReturn(favorites);
+        Mockito.when(extras.containsKey(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(favorites);
+        Mockito.when(extras.getBoolean(ExtrasConstants.ACTIVITY_FAVORITES)).thenReturn(favorites);
 
         Mockito.when(extras.containsKey("busStop")).thenReturn(busStop);
     }
