@@ -32,7 +32,7 @@ public class FavoritesActivity extends BaseAndroidBusRegistrableActivity {
     public void favoritesReceived(QueryResult queryResult) {
         Intent intent = new Intent(FavoritesActivity.this, ShowBusStopsActivity.class);
 
-        intent.putExtra("queryResult", queryResult);
+        intent.putExtra(ExtrasConstants.QUERY_RESULT, queryResult);
         intent.putExtra(ExtrasConstants.ACTIVITY_FAVORITES, true);
 
         List<BusStopResult> results = queryResult.getResults();

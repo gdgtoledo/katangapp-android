@@ -73,7 +73,7 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
     public void busStopsReceived(QueryResult queryResult) {
         Intent intent = new Intent(MainActivity.this, ShowBusStopsActivity.class);
 
-        intent.putExtra("queryResult", queryResult);
+        intent.putExtra(ExtrasConstants.QUERY_RESULT, queryResult);
         intent.putExtra(ExtrasConstants.RADIO, radio);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

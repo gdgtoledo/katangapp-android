@@ -60,10 +60,11 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("queryResult") &&
-            (intent.getSerializableExtra("queryResult") != null)) {
+        if (intent.hasExtra(ExtrasConstants.QUERY_RESULT) &&
+            (intent.getSerializableExtra(ExtrasConstants.QUERY_RESULT) != null)) {
 
-            QueryResult queryResult = (QueryResult) intent.getSerializableExtra("queryResult");
+            QueryResult queryResult =
+                (QueryResult) intent.getSerializableExtra(ExtrasConstants.QUERY_RESULT);
 
             List<BusStopResult> results = queryResult.getResults();
 

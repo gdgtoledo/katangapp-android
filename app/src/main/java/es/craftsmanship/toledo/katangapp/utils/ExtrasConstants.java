@@ -13,6 +13,8 @@ public class ExtrasConstants {
 
     public static final String LONGITUDE = "longitude";
 
+    public static final String QUERY_RESULT = "query_result";
+
     public static final String RADIO = "radio";
 
 }
