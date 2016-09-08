@@ -11,4 +11,6 @@ public class ExtrasConstants {
 
     public static final String LATITUDE = "latitude";
 
+    public static final String LONGITUDE = "longitude";
+
 }

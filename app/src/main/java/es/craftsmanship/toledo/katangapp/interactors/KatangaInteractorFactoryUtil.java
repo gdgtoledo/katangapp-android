@@ -31,7 +31,7 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
         else {
             String radio = extras.getString("radio");
             Double latitude = extras.getDouble(ExtrasConstants.LATITUDE);
-            Double longitude = extras.getDouble("longitude");
+            Double longitude = extras.getDouble(ExtrasConstants.LONGITUDE);
 
             BusStopsInteractor busStopsInteractor = new BusStopsInteractor(
                 radio, latitude, longitude);
@@ -67,7 +67,7 @@ public class KatangaInteractorFactoryUtil implements KatangaInteractorFactory {
         }
 
         if (!extras.containsKey("radio") || !extras.containsKey(ExtrasConstants.LATITUDE) ||
-            !extras.containsKey("longitude")) {
+            !extras.containsKey(ExtrasConstants.LONGITUDE)) {
 
             throw new InvalidInteractorException(
                 "Main search parameters (lat, long, radio) are not present.");

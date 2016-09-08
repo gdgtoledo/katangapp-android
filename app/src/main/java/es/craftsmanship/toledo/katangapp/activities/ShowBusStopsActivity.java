@@ -118,7 +118,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
                 swipeRefreshLayout.setRefreshing(true);
 
                 extras.putDouble(ExtrasConstants.LATITUDE, getLatitude());
-                extras.putDouble("longitude", getLongitude());
+                extras.putDouble(ExtrasConstants.LONGITUDE, getLongitude());
 
                 try {
                     KatangaInteractor interactor =
