@@ -9,4 +9,6 @@ public class ExtrasConstants {
 
     public static final String BUS_STOP = "bus_stop";
 
+    public static final String LATITUDE = "latitude";
+
 }

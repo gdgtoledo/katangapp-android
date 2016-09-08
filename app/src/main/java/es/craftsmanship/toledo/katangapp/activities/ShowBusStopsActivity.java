@@ -9,6 +9,7 @@ import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
 
@@ -116,7 +117,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
 
-                extras.putDouble("latitude", getLatitude());
+                extras.putDouble(ExtrasConstants.LATITUDE, getLatitude());
                 extras.putDouble("longitude", getLongitude());
 
                 try {
