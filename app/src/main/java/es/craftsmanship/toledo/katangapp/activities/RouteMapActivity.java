@@ -6,6 +6,7 @@ import es.craftsmanship.toledo.katangapp.fragments.RouteFragment;
 import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
 
@@ -103,8 +104,10 @@ public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapRea
 
         SectionsPagerAdapter sectionsPagerAdapter;
 
-        if (intent.hasExtra("route") && (intent.getSerializableExtra("route") != null)) {
-            Route route = (Route) intent.getSerializableExtra("route");
+        if (intent.hasExtra(ExtrasConstants.ROUTE) &&
+            (intent.getSerializableExtra(ExtrasConstants.ROUTE) != null)) {
+
+            Route route = (Route) intent.getSerializableExtra(ExtrasConstants.ROUTE);
 
             setTitle(route.getName());
 

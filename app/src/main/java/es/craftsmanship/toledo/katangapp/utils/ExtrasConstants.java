@@ -17,4 +17,6 @@ public class ExtrasConstants {
 
     public static final String RADIO = "radio";
 
+    public static final String ROUTE = "route";
+
 }

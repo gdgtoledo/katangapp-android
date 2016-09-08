@@ -98,7 +98,7 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
         if (route != null) {
             Intent intent = new Intent(this, RouteMapActivity.class);
 
-            intent.putExtra("route", route);
+            intent.putExtra(ExtrasConstants.ROUTE, route);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
