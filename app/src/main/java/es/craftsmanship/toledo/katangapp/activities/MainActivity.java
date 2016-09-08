@@ -4,6 +4,7 @@ import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
+import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
 import at.markushi.ui.CircleButton;
@@ -73,7 +74,7 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
         Intent intent = new Intent(MainActivity.this, ShowBusStopsActivity.class);
 
         intent.putExtra("queryResult", queryResult);
-        intent.putExtra("radio", radio);
+        intent.putExtra(ExtrasConstants.RADIO, radio);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

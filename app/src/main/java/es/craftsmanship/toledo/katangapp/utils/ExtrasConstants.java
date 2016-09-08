@@ -13,4 +13,6 @@ public class ExtrasConstants {
 
     public static final String LONGITUDE = "longitude";
 
+    public static final String RADIO = "radio";
+
 }
