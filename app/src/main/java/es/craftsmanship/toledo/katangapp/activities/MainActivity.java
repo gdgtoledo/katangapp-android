@@ -282,14 +282,14 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
 
     private void selectItem(MenuItem itemDrawer) {
         switch (itemDrawer.getItemId()) {
-            case R.id.item_info:
-                showInfoOverLay();
-
-                break;
             case R.id.item_favs:
                 Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
 
                 startActivity(intent);
+
+                break;
+            case R.id.item_info:
+                showInfoOverLay();
 
                 break;
         }
