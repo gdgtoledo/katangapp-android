@@ -11,6 +11,7 @@
     <string name="katanga">katanga</string>
     <string name="main_menu_item_info">Información</string>
     <string name="main_menu_item_favorites">Favoritos</string>
+    <string name="main_menu_item_routes">Lineas</string>
     <string name="meters">metros</string>
     <string name="minutes">minutos</string>
     <string name="proximo">Próximo</string>
