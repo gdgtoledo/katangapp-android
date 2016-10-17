@@ -28,11 +28,11 @@ import retrofit2.Response;
  * @author Cristóbal Hermida
  * @author Manuel de la Peña
  */
-public class RoutesInteractor extends BaseKatangaInteractor {
+public class RouteIdInteractor extends BaseKatangaInteractor {
 
     private final String route;
 
-    public RoutesInteractor(String route) {
+    public RouteIdInteractor(String route) {
         this.route = route;
     }
 

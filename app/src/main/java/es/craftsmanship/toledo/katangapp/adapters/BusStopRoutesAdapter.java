@@ -17,7 +17,7 @@
 package es.craftsmanship.toledo.katangapp.adapters;
 
 import es.craftsmanship.toledo.katangapp.R;
-import es.craftsmanship.toledo.katangapp.interactors.RoutesInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.RouteIdInteractor;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
@@ -68,9 +68,9 @@ public class BusStopRoutesAdapter
 
         String routeId = route.getIdl();
 
-        RoutesInteractor stopsInteractor = new RoutesInteractor(routeId);
+        RouteIdInteractor routeIdInteractor = new RouteIdInteractor(routeId);
 
-        new Thread(stopsInteractor).start();
+        new Thread(routeIdInteractor).start();
     }
 
     @Override
