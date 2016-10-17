@@ -292,6 +292,10 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
                 showInfoOverLay();
 
                 break;
+            case R.id.item_routes:
+                startActivity(new Intent(MainActivity.this, RoutesActivity.class));
+
+                break;
         }
 
         setTitle(itemDrawer.getTitle());

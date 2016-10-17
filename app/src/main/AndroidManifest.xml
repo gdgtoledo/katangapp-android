@@ -28,6 +28,14 @@
                 android:value="es.craftsmanship.toledo.katangapp.activities.MainActivity" />
         </activity>
 
+        <activity android:name=".activities.RoutesActivity"
+            android:theme="@style/GreyAppTheme"
+            android:label="@string/main_menu_item_routes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.craftsmanship.toledo.katangapp.activities.MainActivity" />
+        </activity>
+
         <activity android:name=".activities.ShowBusStopsActivity"
             android:theme="@style/GreyAppTheme"
             android:launchMode="singleTop"/>
