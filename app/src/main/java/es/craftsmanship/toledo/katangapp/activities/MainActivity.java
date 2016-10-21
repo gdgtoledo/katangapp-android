@@ -18,6 +18,7 @@ package es.craftsmanship.toledo.katangapp.activities;
 
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
+import es.craftsmanship.toledo.katangapp.interactors.RoutesInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
@@ -315,7 +316,9 @@ public class MainActivity extends BaseGeoLocatedActivity
 
                 break;
             case R.id.item_routes:
-                startActivity(new Intent(MainActivity.this, RoutesActivity.class));
+                RoutesInteractor routesInteractor = new RoutesInteractor();
+
+                new Thread(routesInteractor).start();
 
                 break;
         }
