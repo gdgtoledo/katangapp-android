@@ -17,8 +17,8 @@
 package es.craftsmanship.toledo.katangapp.services;
 
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
-
 import es.craftsmanship.toledo.katangapp.models.Route;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -39,5 +39,8 @@ public interface BusStopsService {
 
     @GET("api/routes/{routeId}")
     Call<Route> getRouteId(@Path("routeId") String routeId);
+
+    @GET("api/routes")
+    Call<Route[]> getRoutes();
 
 }
