@@ -25,6 +25,7 @@ import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
+import es.craftsmanship.toledo.katangapp.subscribers.RouteSubscriber;
 import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
@@ -48,7 +49,9 @@ import java.util.List;
  * @author Cristóbal Hermida
  * @author Manuel de la Peña
  */
-public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusStopsSubscriber {
+public class ShowBusStopsActivity
+    extends BaseGeoLocatedActivity
+    implements BusStopsSubscriber, RouteSubscriber {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -104,13 +107,15 @@ public class ShowBusStopsActivity extends BaseGeoLocatedActivity implements BusS
         }
     }
 
+    @Override
     @Subscribe
-    public void routesReceived(Error error) {
+    public void routeReceived(Error error) {
         processEmptyResults();
     }
 
+    @Override
     @Subscribe
-    public void routesReceived(Route route) {
+    public void routeReceived(Route route) {
         if (route != null) {
             Intent intent = new Intent(this, RouteMapActivity.class);
 
