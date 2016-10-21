@@ -19,7 +19,9 @@ package es.craftsmanship.toledo.katangapp.activities;
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.interactors.BusStopsInteractor;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
+import es.craftsmanship.toledo.katangapp.models.Route;
 import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
+import es.craftsmanship.toledo.katangapp.subscribers.RoutesSubscriber;
 import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
 
@@ -62,7 +64,8 @@ import com.squareup.otto.Subscribe;
  * @author Cristóbal Hermida
  * @author Javier Gamarra
  */
-public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubscriber {
+public class MainActivity extends BaseGeoLocatedActivity
+    implements BusStopsSubscriber, RoutesSubscriber {
 
     private static final int DEFAULT_RADIO = 500;
     private static final String TAG = "KATANGAPP";
@@ -118,6 +121,25 @@ public class MainActivity extends BaseGeoLocatedActivity implements BusStopsSubs
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    @Subscribe
+    public void routesReceived(Error error) {
+        busStopsReceived(error);
+    }
+
+    @Override
+    @Subscribe
+    public void routesReceived(Route[] routes) {
+        Intent intent = new Intent(MainActivity.this, RoutesActivity.class);
+
+        intent.putExtra(ExtrasConstants.ROUTES, routes);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        getApplicationContext().startActivity(intent);
+
+        toggleVisualComponents(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
