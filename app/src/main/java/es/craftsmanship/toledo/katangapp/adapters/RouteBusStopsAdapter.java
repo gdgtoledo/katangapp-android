@@ -78,7 +78,7 @@ public class RouteBusStopsAdapter
         public RouteBusStopsViewHolder(ViewGroup parent) {
             super(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.bus_line_row, parent, false));
+                    .inflate(R.layout.route_bus_stop_row, parent, false));
 
             address = (TextView) itemView.findViewById(R.id.bus_stop_address);
             ImageView busStopIcon = (ImageView) itemView.findViewById(R.id.bus_stop_icon);
