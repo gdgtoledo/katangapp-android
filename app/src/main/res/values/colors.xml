@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="katanga_background_default">#000000</color>
     <color name="katanga_background_light">#f1f1f0</color>
     <color name="katanga_black_light">#be131211</color>
     <color name="katanga_grey">#76ffffff</color>
