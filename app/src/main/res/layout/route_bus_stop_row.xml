@@ -26,6 +26,15 @@
             android:contentDescription="@string/bus_image"
             android:src="@drawable/logo_small" />
 
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/bus_stop_time_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/time_icon"
+            android:src="@drawable/ic_time" />
+
         <TextView
             android:layout_margin="10dp"
             android:padding="5dp"

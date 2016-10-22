@@ -21,7 +21,10 @@ import es.craftsmanship.toledo.katangapp.fragments.RouteMapFragment;
 import es.craftsmanship.toledo.katangapp.fragments.RouteFragment;
 import es.craftsmanship.toledo.katangapp.maps.GoogleMapsCameraHelper;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
+import es.craftsmanship.toledo.katangapp.models.BusStopResult;
+import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.subscribers.BusStopsSubscriber;
 import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 
 import android.content.Intent;
@@ -44,17 +47,43 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.List;
 
 /**
  * @author Cristóbal Hermida
  */
-public class RouteMapActivity extends BaseGeoLocatedActivity implements OnMapReadyCallback {
+public class RouteMapActivity extends BaseGeoLocatedActivity
+    implements BusStopsSubscriber, OnMapReadyCallback {
 
     private static final String MAP_KEY = "MAPA";
     private static final String ROUTE_KEY = "RUTA";
 
     private List<BusStop> busStopResults;
+
+    @Subscribe
+    public void busStopsReceived(Error error) {
+    }
+
+    @Subscribe
+    public void busStopsReceived(QueryResult queryResult) {
+        Intent intent = new Intent(RouteMapActivity.this, ShowBusStopsActivity.class);
+
+        intent.putExtra(ExtrasConstants.QUERY_RESULT, queryResult);
+        intent.putExtra(ExtrasConstants.ACTIVITY_FAVORITES, true);
+
+        List<BusStopResult> results = queryResult.getResults();
+
+        // there should be only one
+        BusStopResult busStopResult = results.get(0);
+
+        intent.putExtra(ExtrasConstants.BUS_STOP, busStopResult.getBusStop());
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        getApplicationContext().startActivity(intent);
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

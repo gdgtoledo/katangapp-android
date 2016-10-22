@@ -18,6 +18,7 @@ package es.craftsmanship.toledo.katangapp.adapters;
 
 import es.craftsmanship.toledo.katangapp.R;
 import es.craftsmanship.toledo.katangapp.activities.BusStopActivity;
+import es.craftsmanship.toledo.katangapp.interactors.FavoritesInteractor;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.utils.ExtrasConstants;
 import es.craftsmanship.toledo.katangapp.utils.KatangaFont;
@@ -104,6 +105,20 @@ public class RouteBusStopsAdapter
 
             address.setOnClickListener(busStopClickListener);
             busStopIcon.setOnClickListener(busStopClickListener);
+
+            ImageView timeIcon = (ImageView) itemView.findViewById(R.id.bus_stop_time_icon);
+
+            timeIcon.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    FavoritesInteractor favoritesInteractor = new FavoritesInteractor(
+                        currentBusStop.getId());
+
+                    new Thread(favoritesInteractor).start();
+                }
+
+            });
         }
 
         public void bind(BusStop busStop) {
