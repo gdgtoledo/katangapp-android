@@ -136,7 +136,14 @@ public class BusStopRoutesAdapter
                 return;
             }
 
-            NumberFormat numberFormat = NumberFormat.getInstance(Locale.forLanguageTag("ES"));
+            NumberFormat numberFormat;
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                numberFormat = NumberFormat.getInstance(Locale.forLanguageTag("ES"));
+            }
+            else {
+                numberFormat = NumberFormat.getNumberInstance();
+            }
 
             String formattedTime = numberFormat.format(time);
 
