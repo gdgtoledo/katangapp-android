@@ -57,7 +57,7 @@ public abstract class BaseKatangaInteractor implements KatangaInteractor {
             AndroidBus.getInstance().post(event);
         }
         catch (IOException e) {
-            AndroidBus.getInstance().post(e);
+            AndroidBus.getInstance().post(new Error(e));
         }
     }
 
