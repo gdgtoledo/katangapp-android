@@ -1,0 +1,13 @@
+.DS_Store
+.gradle
+
+local.properties
+
+/.idea
+
+/app/build
+/app/src/main/res/values/constants.xml
+/build
+/captures
+
+*.iml
