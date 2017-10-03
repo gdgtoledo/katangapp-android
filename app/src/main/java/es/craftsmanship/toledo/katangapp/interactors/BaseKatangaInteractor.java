@@ -32,7 +32,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public abstract class BaseKatangaInteractor implements KatangaInteractor {
 
-    private static final String BACKEND_ENDPOINT = "https://secret-depths-4660.herokuapp.com";
+    private static final String BACKEND_ENDPOINT = "https://backend-katanga.wedeploy.io";
 
     @Override
     public void run() {
